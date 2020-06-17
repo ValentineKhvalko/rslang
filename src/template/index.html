@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rs Lang</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SpeakIt</title>
 </head>
 <body>
-  <h1>HELLO WORLD</h1>
+	<div class="start">
+		<h1>SpeakIt</h1>
+		<p>Click on the words to hear them sound. <br> Click on the button and speak the words into the microphone.</p>
+		<button class="start-button">Start</button>
+	</div>
+	<div class="main wrapper hidden">
+		<div class="levels">
+			<ul class="points">
+				<li class="point"></li>
+				<li class="point"></li>
+				<li class="point"></li>
+				<li class="point"></li>
+				<li class="point"></li>
+				<li class="point"></li>
+			</ul>
+			<div class="score"></div>
+		</div>
+		<div class="image">
+			<img class="img" src="./img/blank.jpg" alt="">
+          	<p class="trans"></p>
+          	<input type="text" class="input hidden" readonly>
+		</div>
+		<div class="items">
+		</div>
+		<div class="buttons">
+			<button class="button restart">Restart</button>
+			<button class="button speak">Speak</button>
+			<button class="button result">Results</button>
+		</div>
+	</div>
+	<section class="results hidden">
+		<div class="results-container">
+			<p class="errors">Ошибок
+           		<span class="errors-num">10</span>
+        	</p>
+        	 <div class="error-list"></div>
+        	 <p class="succes">Знаю
+           		<span class="succes-num">0</span>
+         	</p>
+         	<div class="succes-list"></div>
+         	<div class="buttons buttons-res">
+         		<button class="button button-res return">Return</button>
+         		<button class="button button-res new-game">New Game</button>
+         		<button class="button button-res statistics">Statistics</button>
+         	</div>
+		</div>
+	</section>
+	<section class="statisc hidden">
+		<div class="statisc-container">
+			<div class="buttons">
+				<button class="button result-back">Results</button>
+			</div>
+			<table class="table">
+				<tr>
+					<th>Date</th>
+					<th>Yes</th>
+					<th>No</th>
+				</tr>
+			</table>
+		</div>
+	</section>
 </body>
 </html>
