@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="sprint-game">
+            <div class="start-screen">
+                <div class="settings layout-flex">
+                    <label for="time-duration">Длительность раунда:</label>
+                    <input type="number" min="30" max="300" value="30" id="time-duration" class="time-duration">
+                    <label for="difficulty">Уровень сложности:</label>
+                    <input type="number" min="1" max="6" value="1" id="difficulty" class="difficulty">
+                    <p>Использовать слова:</p>
+                    <div class="words-in-game">
+                        <input type="radio" id="all-words" name="words" value="text">
+                        <label for="all-words">все</label>
+
+                        <input type="radio" id="known-words" name="words" value="text" checked>
+                        <label for="known-words">выученные</label>
+
+                        <input type="radio" id="unknown-words" name="words" value="text">
+                        <label for="unknown-words">невыученные</label>
+                    </div>
+                    <input type="button" id="start-game" class="game-action" value="start">
+                </div>
+            </div>
+            <div class="game hidden layout-flex">
+                <div class="correct-answers"> </div>
+                <div class="main-card">
+                    <div class="correct-answers-in-a-row">2</div>
+                    <div class="word">Mouse</div>
+                    <div class="translation">Мышь</div>
+                    <div class="cards-button">
+                        <input type="button" value="Верно">
+                        <input type="button" value="Неверно">
+                    </div>
+                </div>
+                <div>
+                    <div class="timer">30</div>
+                </div>
+                <input type="button" id="repeat-game" class="game-action" value="Начать сначала">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

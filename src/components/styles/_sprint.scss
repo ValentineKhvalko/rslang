@@ -1,0 +1,19 @@
+.sprint-game{
+    width: 95%;
+	max-width: 1000px;
+	position: relative;
+	border-radius: 20px;
+	box-shadow: 0 14px 28px -10px rgba(0, 0, 0, .1), 0 10px 10px -10px rgba(0, 0, 0, .02);
+	transform-style: preserve-3d;
+}
+
+.layout-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.hidden{
+    display: none !important;
+}
