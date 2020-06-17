@@ -1,0 +1,68 @@
+#app {
+  background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+  position: relative;
+  min-height: 100vh;
+  color: rgb(255, 255, 255);
+}
+
+li {
+  list-style-type: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(252, 195, 8);
+  padding: 10px 0;
+
+  h1 {
+    font-size: 48px;
+  }
+
+  nav {
+    display: flex;
+    font-size: 20px;
+
+    li {
+      margin: 10px;
+    }
+  }
+}
+
+.main {
+  display: flex;
+  padding: 100px 60px;
+  color: black;
+  align-items: flex-start;
+
+  .newWords {
+    padding: 60px 40px;
+    width: 70vw;
+    background-color:white;
+    font-size: 52px;
+    border: 2px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .games {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+    .game {
+      width: 150px;
+      height: 150px;
+      margin: 0 20px 20px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border-radius: 20px;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+  }
+}
+
