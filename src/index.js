@@ -1,5 +1,6 @@
-import './components/styles/style.css';
-import blank from './components/img/blank.jpg';
+import './components/styles/style.scss';
+
+document.querySelector('.img').src = require('./components/img/blank.jpg').default;
 
 let page = Math.round(-0.5 + Math.random() * (29 + 1));
 let group = 0;
@@ -128,6 +129,9 @@ recognizer.addEventListener('result', (event) => {
         document.querySelectorAll('.item')[i].classList.add('activeItem');
         const div = document.createElement('div');
         div.classList.add('star');
+        const im = document.createElement('img');
+        im.src = require('./components/img/star.svg').default;
+        div.append(im);
         score.append(div);
         for (let j = 0; j < document.querySelector('.error-list').children.length; j++) {
           if (document.querySelectorAll('.item .word')[i].innerHTML === document.querySelectorAll('.error-list .item .word')[j].innerHTML) {
