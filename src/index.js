@@ -4,6 +4,7 @@ document.querySelector('.img').src = require('./components/img/blank.jpg').defau
 
 let page = Math.round(-0.5 + Math.random() * (29 + 1));
 let group = 0;
+let maxNum = 0;
 const audio_icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                       <path fill="currentColor" d="M15.788 13.007a3 3 0 110 5.985c.571 3.312 2.064 5.675 3.815 5.675 2.244 0 4.064-3.88 4.064-8.667 0-4.786-1.82-8.667-4.064-8.667-1.751 0-3.244 2.363-3.815 5.674zM19 26c-3.314 0-12-4.144-12-10S15.686 6 19 6s6 4.477 6 10-2.686 10-6 10z" fill-rule="evenodd"></path>
                     </svg>`;
@@ -14,20 +15,35 @@ const table = document.querySelector('.table');
 let arrOfSrc = [];
 let arrOfSrcErr = [];
 let arrOfSrcSuc = [];
+let maxArr = [];
 const score = document.querySelector('.score');
 let dates = [];
 let suc = [];
 let err = [];
+let mx = [];
 let date = new Date();
 if (!localStorage.getItem('dates')) {
   dates = [];
   suc = [];
   err = [];
+  mx = [];
 } else {
   dates = localStorage.getItem('dates').split(',');
   suc = localStorage.getItem('suc').split(',');
   err = localStorage.getItem('err').split(',');
+  mx = localStorage.getItem('mx').split(',');
   locale(1);
+}
+
+function maxOfArr(arr) {
+  if(arr.length === 0)
+    return 0;
+  var t = arr[0];
+  for(var i = 0; i < arr.length; i++) {
+    if(t < arr[i])
+      t = arr[i];
+  }
+  return t;
 }
 
 const getWords = async (page, group) => {
@@ -122,6 +138,7 @@ recognizer.addEventListener('result', (event) => {
     let str = result[0].transcript;
     input.value = str.toLowerCase();
     recognizer.stop();
+    const t = maxNum;
     for (let i = 0; i < document.querySelector('.items').children.length; i++) {
       if (document.querySelectorAll('.item .word')[i].innerHTML === input.value && !document.querySelectorAll('.item')[i].classList.contains('activeItem')) {
         str = `https://raw.githubusercontent.com/bobroden/rslang-data/master/data/${arrOfSrc[i]}.jpg`;
@@ -129,6 +146,7 @@ recognizer.addEventListener('result', (event) => {
         document.querySelectorAll('.item')[i].classList.add('activeItem');
         const div = document.createElement('div');
         div.classList.add('star');
+        maxNum++;
         const im = document.createElement('img');
         im.src = require('./components/img/star.svg').default;
         div.append(im);
@@ -148,6 +166,10 @@ recognizer.addEventListener('result', (event) => {
           }
         }
       }
+    }
+    if(t === maxNum) {
+      maxArr.push(maxNum);
+      maxNum = 0;
     }
   }
 });
@@ -303,27 +325,35 @@ document.querySelector('.result-back').addEventListener('click', () => {
 function locale(s = 0) {
   if (s === 1) {
     for (let i = 0; i < suc.length; i++) {
-      table.innerHTML += '<tr><td></td><td></td><td></td></tr>';
+      table.innerHTML += '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
       table.rows[i + 1].cells[0].innerHTML = dates[i];
       table.rows[i + 1].cells[1].innerHTML = suc[i];
       table.rows[i + 1].cells[2].innerHTML = err[i];
+      table.rows[i + 1].cells[3].innerHTML = +suc[i] * 10 + '%';
+      table.rows[i + 1].cells[4].innerHTML = mx[i];
     }
   } else {
     if (suc.length === 10) {
       dates.shift();
       suc.shift();
       err.shift();
+      mx.shift();
       table.deleteRow(1);
     }
     dates.push(`${date.getHours()}:${date.getMinutes()}; ${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`);
     suc.push(document.querySelector('.succes-num').innerHTML);
     err.push(document.querySelector('.errors-num').innerHTML);
-    table.innerHTML += '<tr><td></td><td></td><td></td></tr>';
+    mx.push(maxOfArr(maxArr));
+    maxArr = [];
+    table.innerHTML += '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
     table.rows[suc.length].cells[0].innerHTML = dates[suc.length - 1];
     table.rows[suc.length].cells[1].innerHTML = suc[suc.length - 1];
     table.rows[suc.length].cells[2].innerHTML = err[suc.length - 1];
+    table.rows[suc.length].cells[3].innerHTML = +suc[suc.length - 1] * 10 + '%';
+    table.rows[suc.length].cells[4].innerHTML = mx[suc.length - 1];
   }
   localStorage.setItem('dates', dates);
   localStorage.setItem('suc', suc);
   localStorage.setItem('err', err);
+  localStorage.setItem('mx', mx);
 }
