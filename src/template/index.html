@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rs Lang</title>
+  <title>RS Lang</title>
 </head>
 <body>
 	<div class="bg">
 		<header class="header">
+			<h1>RS Lang</h1>
 			<div class="wrapper w-header">
 				<div class="settings">
 					<img class="settings-img" alt="settings">
 				</div>
-				<h1>RS Lang</h1>
+				<span class="games">Игры</span>
+				<span class="static">Статистика</span>
 			</div>
 		</header>
 		<section class="st hidden">
 			<div class="settings-window">
+				<div class="close settings-close">
+					<img class="settings-close-img" alt="close">
+				</div>
 				<form class="settings-form" method="post" action="" onsubmit="return false">
 					<p class="razd">План на день</p>
 					<label class="set" for="new-words">Число новых слов: </label>
@@ -24,15 +29,15 @@
 					<br>
 					<label class="set" for="cards-words">Число карточек со словами: </label>
 					<input type="number" name="cards-words" id="cards-words">
-					<p class="razd">Информация на карточках</p>
+					<p class="razd">Главная информация на карточках</p>
 					<label class="set" for="translation" checked>Перевод слова: </label>
-					<input class="check" type="checkbox" name="translation" id="translation">
+					<input class="check m-check" type="checkbox" name="translation" id="translation">
 					<br>
 					<label class="set" for="explanation">Предложение с объяснением значения слова: </label>
-					<input class="check" type="checkbox" name="explanation" id="explanation">
+					<input class="check m-check" type="checkbox" name="explanation" id="explanation">
 					<br>
 					<label class="set" for="example">Предложение с примером использования слова: </label>
-					<input class="check" type="checkbox" name="example" id="example">
+					<input class="check m-check" type="checkbox" name="example" id="example">
 					<p class="razd">Дополнительно</p>
 					<label class="set" for="transcription">Транскрипция: </label>
 					<input class="check" type="checkbox" name="transcription" id="transcription">
@@ -42,6 +47,19 @@
 					<br>
 					<button class="settings-button">OK</button>
 				</form>
+			</div>
+		</section>
+		<section class="gm hidden">
+			<div class="games-window">
+				<div class="close games-close">
+					<img class="games-close-img" alt="close">
+				</div>
+				<a href="#"><div class="game puzzle">English Puzzle</div></a>
+				<a href="#"><div class="game speak-it">SpeakIt</div></a>
+				<a href="#"><div class="game savanna">Саванна</div></a>
+				<a href="#"><div class="game audiocall">Аудиовызов</div></a>
+				<a href="#"><div class="game sprint">Спринт</div></a>
+				<a href="#"><div class="game our-game">Своя игра</div></a>
 			</div>
 		</section>
 	</div>

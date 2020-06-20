@@ -10,11 +10,18 @@ div.hidden, section.hidden {
 
 .header {
 	background: #2C9090;
+	margin-bottom: 40px;
 }
 
 .header h1 {
-	font-size: 3rem;
-	text-decoration: underline;
+	font-size: 40px;
+	padding-top: 20px;
+    color: #6cffde;
+    opacity: .8;
+    text-transform: uppercase;
+    letter-spacing: 13px;
+    font-weight: 300;
+    text-align: center;
 }
 
 .wrapper {
@@ -31,6 +38,20 @@ div.hidden, section.hidden {
     flex-wrap: wrap;
 }
 
+.w-header span {
+	transition: .5s;
+	cursor: pointer;
+	font-size: 2rem;
+	vertical-align: middle;
+	color: #fff;
+	padding: 2px;
+}
+
+.w-header span:hover {
+	border-radius: 5px;
+	background: #00bf82;
+}
+
 .settings {
 	transition: .5s;
 	height: 24px;
@@ -43,13 +64,13 @@ div.hidden, section.hidden {
 	transform: rotate(90deg);
 }
 
-.st {
+/*.st {
 	padding-top: 40px;
 	transition: .5s;
 	height: 100%;
 	width: 100%;
 	background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
-}
+}*/
 
 .bg {
 	position: fixed;
@@ -59,17 +80,20 @@ div.hidden, section.hidden {
 }
 
 
-.settings-window {
+.settings-window, .games-window {
 	transition: .5s;
 	margin: 0 auto;
 	width: 95%;
     max-width: 780px;
-    min-height: 700px;
+    background-color: #fff;
     text-align: center;
     vertical-align: middle;
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}
+
+.settings-window {
+	min-height: 700px;
 }
 
 .settings-window input{
@@ -122,4 +146,28 @@ input.check {
     visibility: visible;
     transition: .15s;
     box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12)
+}
+.settings-button:hover {
+	background: #00c2b2;
+}
+
+.close img {
+	cursor: pointer;
+	float: right;
+	margin: 5px;
+	transition: .2s;
+}
+.game {
+	color: black;
+    padding: 20px;
+    font-size: 2rem;
+    border-top: solid 1px gray;
+}
+
+.game:hover {
+	background-color: rgba(0, 173, 159, .15);
+}
+
+a {
+	text-decoration: none;
 }
