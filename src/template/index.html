@@ -6,6 +6,44 @@
   <title>Rs Lang</title>
 </head>
 <body>
-  <h1>HELLO WORLD</h1>
+	<div class="bg">
+		<header class="header">
+			<div class="wrapper w-header">
+				<div class="settings">
+					<img class="settings-img" alt="settings">
+				</div>
+				<h1>RS Lang</h1>
+			</div>
+		</header>
+		<section class="st hidden">
+			<div class="settings-window">
+				<form class="settings-form" method="post" action="" onsubmit="return false">
+					<p class="razd">План на день</p>
+					<label class="set" for="new-words">Число новых слов: </label>
+					<input type="number" name="new-words" id="new-words">
+					<br>
+					<label class="set" for="cards-words">Число карточек со словами: </label>
+					<input type="number" name="cards-words" id="cards-words">
+					<p class="razd">Информация на карточках</p>
+					<label class="set" for="translation" checked>Перевод слова: </label>
+					<input class="check" type="checkbox" name="translation" id="translation">
+					<br>
+					<label class="set" for="explanation">Предложение с объяснением значения слова: </label>
+					<input class="check" type="checkbox" name="explanation" id="explanation">
+					<br>
+					<label class="set" for="example">Предложение с примером использования слова: </label>
+					<input class="check" type="checkbox" name="example" id="example">
+					<p class="razd">Дополнительно</p>
+					<label class="set" for="transcription">Транскрипция: </label>
+					<input class="check" type="checkbox" name="transcription" id="transcription">
+					<br>
+					<label class="set" for="photo">Фото: </label>
+					<input class="check" type="checkbox" name="photo" id="photo">
+					<br>
+					<button class="settings-button">OK</button>
+				</form>
+			</div>
+		</section>
+	</div>
 </body>
 </html>
