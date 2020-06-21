@@ -1,0 +1,182 @@
+@import "./constants";
+@import "./base";
+
+.sprint_layout-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.sprint_start-screen {
+    padding-top: 30vh;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        $first-background-color,
+        $second-background-color 100%,
+        $text-color 0,
+        $text-color
+    );
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sprint_game-description {
+    margin-bottom: 60px;
+    @media (max-width: 425px) {
+        max-width: 300px;
+    }
+}
+
+.sprint_settings {
+    left: calc(50vw - 170px);
+    top: 40vh;
+    position: fixed;
+    background: $first-background-color;
+    padding: 40px;
+    box-shadow: 0 0 10px 100vh #38373780, 2px 2px 5px $shadow-color;
+    border-radius: 5px;
+    @media (max-width: 425px) {
+        padding: 40px 20px;
+        left: calc(50vw - 150px);
+    }
+}
+
+.sprint_close-button {
+    padding: 5px 0;
+    margin-top: 15px;
+}
+
+.sprint_words-in-game label {
+    display: block;
+    margin: 0 1px;
+    cursor: pointer;
+    &:first-child input {
+        border-radius: 10px 0 0 10px;
+    }
+    &:last-child input {
+        border-radius: 0 10px 10px 0;
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+}
+
+.sprint_words-in-game input {
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 7px 0;
+    transition: all 0.1s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: 0.5;
+    &:checked {
+        box-shadow: 1px 1px 3px $shadow-color;
+        opacity: 0.8;
+        & + span {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+    &:focus {
+        outline: transparent;
+    }
+    & + span {
+        opacity: 0.65;
+        transition: opacity 0.1s ease-in-out;
+        padding-left: 10px;
+    }
+}
+
+.sprint_game {
+    width: 100%;
+    height: 100%;
+    background: url("../img/background.jpg") center center / 2000px no-repeat;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    /* border: 2px solid transparent;
+    border-image: linear-gradient(#0B0E7F , #0B95DD);
+    border-image-slice: 1; */
+}
+
+.sprint_main-card {
+    background: #ffffff;
+    box-shadow: 2px 2px 5px $shadow-color;
+    border-radius: 4px;
+}
+
+.sprint_points-container {
+    padding: 3vh 22vw;
+    background: $first-background-color;
+}
+
+.sprint_timer-circle {
+    margin: 40px auto;
+    border: 6px solid $first-background-color;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+}
+
+.sprint_progress {
+    margin-top: 40px;
+}
+
+.sprint_progress svg {
+    transform: rotate(270deg);
+}
+
+.sprint_progress-background {
+    stroke: $shadow-color;
+    opacity: 0.5;
+}
+
+.sprint_progress-cover {
+    stroke: $first-background-color;
+}
+
+.sprint_timer-container {
+    margin: -93px 0 51px;
+}
+
+.sprint_timer {
+    font-size: 50px;
+    font-weight: 500;
+    color: $first-background-color;
+}
+
+.sprint_words {
+    margin: 0;
+    color: $header-color;
+}
+
+.sprint_cards-buttons {
+    margin: 30px 0;
+}
+
+.sprint_game-button {
+    padding: 10px 0;
+    min-width: 125px;
+    margin: 10px;
+    &.game-button__wrong {
+        background: $button-wrong-color;
+        &:hover {
+            background: $button-hover-wrong-color;
+        }
+    }
+}
+
+.wrong-answer_colored{
+    border: 3px solid red;
+}

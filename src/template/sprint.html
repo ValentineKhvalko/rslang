@@ -8,44 +8,63 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sprint-game">
-            <div class="start-screen">
-                <div class="settings layout-flex">
-                    <label for="time-duration">Длительность раунда:</label>
-                    <input type="number" min="30" max="300" value="30" id="time-duration" class="time-duration">
-                    <label for="difficulty">Уровень сложности:</label>
-                    <input type="number" min="1" max="6" value="1" id="difficulty" class="difficulty">
-                    <p>Использовать слова:</p>
-                    <div class="words-in-game">
-                        <input type="radio" id="all-words" name="words" value="text">
-                        <label for="all-words">все</label>
+    <div class="sprint_start-screen ">
+        <h1>Спринт</h1>
+        <p class="sprint_game-description">Нажмите на кнопку "Верно", если пара слово-перевод подобрана верно и
+            "Неверно" в противном случае.
+            <br>
+            Перед началом игры можно изменить <a class="sprint_settings-link" href="">Настройки</a>.
+        </p>
+        <div class="sprint_settings hidden">
+            <div>
+                <label for="sprint_time-duration">Длительность раунда:</label>
+                <input type="number" min="30" max="300" value="60" id="sprint_time-duration"
+                    class="sprint_time-duration">
+            </div>
+            <div>
+                <label for="sprint_difficulty">Уровень сложности:</label>
+                <input type="number" min="1" max="6" value="1" id="sprint_difficulty" class="sprint_difficulty">
+            </div>
+            <label for="sprint_words-in-game">В игре использовать слова:</label>
+            <div id="sprint_words-in-game" class="sprint_words-in-game sprint_layout-flex">
 
-                        <input type="radio" id="known-words" name="words" value="text" checked>
-                        <label for="known-words">выученные</label>
+                <label><input type="radio" id="sprint_all-words" name="words" value="all"><span>все</span></label>
+                <label><input type="radio" id="sprint_known-words" name="words" value="known"
+                        checked><span>выученные</span></label>
+                <label><input type="radio" id="sprint_unknown-words" name="words"
+                        value="unknown"><span>невыученные</span></label>
+            </div>
+            <button class="sprint_close-button">Ок</button>
+        </div>
 
-                        <input type="radio" id="unknown-words" name="words" value="text">
-                        <label for="unknown-words">невыученные</label>
-                    </div>
-                    <input type="button" id="start-game" class="game-action" value="start">
+        <button id="sprint_start-game" class="sprint_game-action">Начать игру</button>
+    </div>
+    <div class="sprint_game hidden sprint_layout-flex">
+        <div class="sprint_main-card">
+            <div class="sprint_points-container">
+                <h2 class="sprint_score">140</h2>
+                <p class="sprint_point-per-word">(+10 очков за слово)</p>
+                <div class="sprint_correct-answers-in-a-row">answers in a row</div>
+            </div>
+            <div class="sprint_progress">
+                <svg height="120" width="120">
+                    <circle class="sprint_progress-background" cx="60" cy="60" r="56" fill="transparent"
+                        stroke-width="7" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                    <circle class="sprint_progress-cover" cx="60" cy="60" r="56" fill="transparent" stroke-width="7"
+                        stroke-dasharray="0em" stroke-dashoffset="0"></circle>
+                </svg>
+                <div class="sprint_layout-flex sprint_timer-container">
+                    <span class="sprint_timer"></span>
                 </div>
             </div>
-            <div class="game hidden layout-flex">
-                <div class="correct-answers"> </div>
-                <div class="main-card">
-                    <div class="correct-answers-in-a-row">2</div>
-                    <div class="word">Mouse</div>
-                    <div class="translation">Мышь</div>
-                    <div class="cards-button">
-                        <input type="button" value="Верно">
-                        <input type="button" value="Неверно">
-                    </div>
-                </div>
-                <div>
-                    <div class="timer">30</div>
-                </div>
-                <input type="button" id="repeat-game" class="game-action" value="Начать сначала">
+            <h3 class="sprint_words">word - translation</h3>
+            <div class="sprint_cards-buttons">
+                <button class="sprint_game-button game-button__correct">Верно</button>
+                <button class="sprint_game-button game-button__wrong">Неверно</button>
             </div>
+        </div>
+        <div class="hidden">
+            <button id="sprint_restart-game" class="sprint_game-action">Начать сначала</button>
         </div>
     </div>
 </body>
