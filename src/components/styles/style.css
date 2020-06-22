@@ -4,7 +4,7 @@
 	margin: 0;
 }
 
-div.hidden, section.hidden {
+div.hidden, section.hidden, header.hidden {
 	display: none;
 }
 
@@ -80,7 +80,7 @@ div.hidden, section.hidden {
 }
 
 
-.settings-window, .games-window {
+.settings-window, .games-window, .enter, .play-window {
 	transition: .5s;
 	margin: 0 auto;
 	width: 95%;
@@ -90,6 +90,47 @@ div.hidden, section.hidden {
     vertical-align: middle;
     border-radius: 8px;
     box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}
+
+.enter-cont {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    transition: .5s;
+    background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+}
+
+.enter, .play-window {
+	padding: 20px 0;
+}
+
+.enter label {
+	cursor: pointer;
+	font-size: 1.6rem;
+}
+
+.enter input, .word {
+	cursor: pointer;
+	height: 30px;
+    border-radius: 5px;
+    background-color: #CFF2DF;
+    margin-bottom: 16px;
+    border: 0;
+    padding: 5px;
+    color: #757575;
+    font-size: 1.6rem;
+}
+
+.enter input[type=radio] {
+	height: 13px;
 }
 
 .settings-window {
@@ -130,7 +171,7 @@ input.check {
 	height: 13px;
 }
 
-.settings-button {
+.settings-button, .in, .next {
 	cursor: pointer;
 	display: inline-block;
     margin: 0 auto;
@@ -147,6 +188,7 @@ input.check {
     transition: .15s;
     box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12)
 }
+
 .settings-button:hover {
 	background: #00c2b2;
 }

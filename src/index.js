@@ -1,5 +1,58 @@
 import 'components/styles/style.css';
 
+let token, user;
+let page, group;
+
+if(localStorage.getItem('page'))
+	page = +localStorage.getItem('page');
+else
+	page = 0;
+
+if(localStorage.getItem('group'))
+	group = +localStorage.getItem('group');
+else
+	group = 0;
+
+const loginUser = async user => {
+	try {
+	  const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
+	    method: 'POST',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(user)
+	  });
+	  const content = await rawResponse.json();
+	  if(content.message === 'Authenticated') {
+	  	token = content.token;
+	  	user = content.userId;
+	  	document.querySelector('.enter-cont').classList.add('hidden');
+	  	document.querySelector('.header').classList.remove('hidden');
+	  }
+	}
+	catch {
+		console.log('Error!');
+	}
+};
+
+const createUser = async user => {
+	try {
+     const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/users', {
+       method: 'POST',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(user)
+     });
+     const content = await rawResponse.json();
+ 	}
+ 	catch {
+ 		console.log('Error!');
+ 	}
+   };
+
 document.querySelector('.settings-img').src = require('./components/img/settings.png').default;
 document.querySelector('.games-close-img').src = require('./components/img/close.png').default;
 document.querySelector('.settings-close-img').src = require('./components/img/close.png').default;
@@ -48,6 +101,15 @@ function equal() {
 
 document.querySelector('#new-words').addEventListener('change', equal);
 document.querySelector('#cards-words').addEventListener('change', equal);
+
+document.querySelector('.in').addEventListener('click', () => {
+	if(document.querySelector('.begin').checkValidity()) {
+		if(document.querySelector('#enter').checked === true)
+			loginUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
+		else if(document.querySelector('#reg').checked === true)
+			createUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
+	}
+})
 
 
 /*const getWords = async (page, group) => {
