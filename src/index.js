@@ -47,6 +47,7 @@ const createUser = async user => {
        body: JSON.stringify(user)
      });
      const content = await rawResponse.json();
+     loginUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
  	}
  	catch {
  		console.log('Error!');
@@ -64,6 +65,7 @@ document.querySelector('.settings').addEventListener('click', () => {
 	document.querySelector('.st').classList.toggle('hidden');
 	document.querySelector('#translation').checked = 'checked';
 	document.querySelector('.gm').classList.add('hidden');
+	document.querySelector('.pl').classList.toggle('hidden');
 })
 
 document.querySelector('.settings-button').addEventListener('click', () => {
@@ -75,15 +77,18 @@ document.querySelector('.settings-button').addEventListener('click', () => {
 
 document.querySelector('.games-close-img').addEventListener('click', () => {
 	document.querySelector('.gm').classList.add('hidden');
+	document.querySelector('.pl').classList.remove('hidden');
 })
 
 document.querySelector('.settings-close-img').addEventListener('click', () => {
 	document.querySelector('.st').classList.add('hidden');
+	document.querySelector('.pl').classList.remove('hidden');
 })
 
 document.querySelector('.games').addEventListener('click', () => {
 	document.querySelector('.gm').classList.toggle('hidden');
 	document.querySelector('.st').classList.add('hidden');
+	document.querySelector('.pl').classList.toggle('hidden');
 })
 
 function equal() {
