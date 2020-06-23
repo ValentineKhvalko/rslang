@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-.a-start {
+.a_start {
     padding-top: 20vw;
     width: 100%;
     height: 100%;
@@ -16,7 +16,7 @@
     top: 0;
 }
 
-.a-start h1 {
+.a_start h1 {
     font-size: 40px;
     margin-bottom: 40px;
     color: #ffa1e8;
@@ -26,7 +26,7 @@
     font-weight: 400;
 }
 
-.a-start p {
+.a_start p {
     max-width: 600px;
     margin: 0 auto 60px;
     font-size: 19px;
@@ -36,7 +36,8 @@
     opacity: 0.8;
 }
 
-.a-start-button {
+.a_close-button,
+.a_start-button {
     font-size: 24px;
     text-align: center;
     padding: 15px 25px;
@@ -49,13 +50,120 @@
     transition: 0.15s;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px 0 rgba(14, 30, 37, 0.12);
     border: 0;
-    cursor: pointer;
-}
-
-.a-start-button:hover {
-    background: #ffa1e8;
-}
-
-button {
     outline: none;
+    cursor: pointer;
+    &:hover {
+        background: #ffa1e8;
+        transform: scale(0.9, 0.9);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+//from sprint
+.a_settings {
+    left: calc(50vw - 170px);
+    top: 40vh;
+    position: fixed;
+    background: #8f3ab9fb;
+    padding: 40px;
+    box-shadow: 0 0 10px 100vh #38373780, 2px 2px 5px #026b7969;
+    border-radius: 5px;
+    @media (max-width: 425px) {
+        padding: 40px 20px;
+        left: calc(50vw - 120px);
+    }
+}
+
+.a_close-button {
+    padding: 5px 0;
+    margin-top: 15px;
+}
+
+.a_words-in-game label {
+    display: block;
+    margin: 0 1px;
+    cursor: pointer;
+    &:first-child input {
+        border-radius: 10px 0 0 10px;
+    }
+    &:last-child input {
+        border-radius: 0 10px 10px 0;
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+}
+
+.a_words-in-game input {
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 7px 0;
+    transition: all 0.1s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: 0.5;
+    &:checked {
+        box-shadow: 1px 1px 3px #026b7969;
+        opacity: 0.8;
+        & + span {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+    &:focus {
+        outline: transparent;
+    }
+    & + span {
+        opacity: 0.65;
+        transition: opacity 0.1s ease-in-out;
+        padding-left: 10px;
+    }
+}
+
+.a_layout-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.a_settings label {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.a_settings input {
+    outline: none;
+    border: 1px solid #707070;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+    background: #ffffff;
+    margin: 5px 0;
+}
+
+.a_words-in-game p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.a_settings-link {
+    color: #ffa1e8;
 }

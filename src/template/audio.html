@@ -8,11 +8,28 @@
 </head>
 
 <body>
-    <div class="a-start">
+    <div class="a_start">
         <h1>Аудиовызов</h1>
         <p>Тренировка Аудиовызов развивает понимание иностранных слов на слух.<br>
-           Используй кнопки 1,2,3,4 для ответа. Удачной игры!</p>
-        <button class="a-start-button">Начать</button>
+            Используй кнопки 1,2,3,4 для ответа. Удачной игры!
+            <br><br>
+            Перед началом игры можно изменить <a class="a_settings-link" href="">Настройки</a>.</p>
+        <div class="a_settings hidden">
+            <div>
+                <label for="a_difficulty">Уровень сложности:</label>
+                <input type="number" min="1" max="6" value="1" id="a_difficulty" class="a_difficulty">
+            </div>
+            <label for="a_words-in-game">В игре использовать слова:</label>
+            <div id="a_words-in-game" class="a_words-in-game a_layout-flex">
+
+                <label><input type="radio" id="a_all-words" name="words" value="all"><span>все</span></label>
+                <label><input type="radio" id="a_known-words" name="words" value="known"
+                        checked><span>изученные</span></label>
+                <label><input type="radio" id="a_unknown-words" name="words" value="unknown"><span>новые</span></label>
+            </div>
+            <button class="a_close-button">Ок</button>
+        </div>
+        <button class="a_start-button">Начать</button>
     </div>
 </body>
 
