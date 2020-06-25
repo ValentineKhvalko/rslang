@@ -5,7 +5,8 @@
     box-sizing: border-box;
 }
 
-.a_start {
+.a_start,
+.a_game {
     padding-top: 20vw;
     width: 100%;
     height: 100%;
@@ -14,6 +15,12 @@
     position: fixed;
     left: 0;
     top: 0;
+    animation: fadeIn ease 3s;
+}
+
+.a_game {
+    display: flex;
+    flex-direction: column;
 }
 
 .a_start h1 {
@@ -26,7 +33,9 @@
     font-weight: 400;
 }
 
-.a_start p {
+.a_start p,
+.a_item,
+.a_image p {
     max-width: 600px;
     margin: 0 auto 60px;
     font-size: 19px;
@@ -36,8 +45,17 @@
     opacity: 0.8;
 }
 
+.a_image p {
+    margin-bottom: 20px;
+}
+
+.a_item {
+    margin: 20px;
+}
+
 .a_close-button,
-.a_start-button {
+.a_start-button,
+.a_answer-button {
     font-size: 24px;
     text-align: center;
     padding: 15px 25px;
@@ -56,6 +74,35 @@
         background: #ffa1e8;
         transform: scale(0.9, 0.9);
     }
+}
+
+.a_items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.a_number {
+    opacity: 0.4;
+    margin-right: 10px;
+}
+
+.a_img {
+    height: 100px;
+    width: 100px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.a_wrong-answer {
+    text-decoration: line-through;
+}
+
+.a_correct-answer {
+    color: rgb(0, 245, 0);
+    font-weight: 900;
 }
 
 .hidden {
@@ -166,4 +213,13 @@
 
 .a_settings-link {
     color: #ffa1e8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
