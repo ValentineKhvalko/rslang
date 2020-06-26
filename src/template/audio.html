@@ -19,6 +19,10 @@
                 <label for="a_difficulty">Уровень сложности:</label>
                 <input type="number" min="1" max="6" value="1" id="a_difficulty" class="a_difficulty">
             </div>
+            <div>
+                <label for="a_round">Раунд:</label>
+                <input type="number" min="1" max="30" value="1" id="a_round" class="a_round">
+            </div>
             <label for="a_words-in-game">В игре использовать слова:</label>
             <div id="a_words-in-game" class="a_words-in-game a_layout-flex">
 
@@ -32,21 +36,22 @@
         <button class="a_start-button">Начать</button>
     </div>
     <div class="a_game hidden">
-		<div class="a_image">
-			<img class="a_img" src="./img/blank.jpg" alt="">
-          	<p class="a_word">word</p>
-		</div>
-		<div class="a_items">
+        <a class="a_game-settings-link" href=""> Изменить настройки</a>
+        <div class="a_image">
+            <img class="a_img" src="./img/blank.jpg" alt="">
+            <p class="a_word">word</p>
+        </div>
+        <div class="a_items">
             <p class="a_item a_wrong-answer"> <span class="a_number">1</span>answer</p>
             <p class="a_item"><span class="a_number">2</span>answer</p>
             <p class="a_item"><span class="a_number">3</span>answer</p>
             <p class="a_item"><span class="a_number a_correct-answer">4</span>answer</p>
             <p class="a_item"><span class="a_number">5</span>answer</p>
-		</div>
-		<div class="a_buttons">
-			<button class="a_answer-button">Не знаю</button>
-		</div>
-	</div>
+        </div>
+        <div class="a_buttons">
+            <button class="a_answer-button">Не знаю</button>
+        </div>
+    </div>
 </body>
 
 </html>
