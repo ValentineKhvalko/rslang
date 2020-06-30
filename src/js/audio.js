@@ -27,7 +27,11 @@ function startGame() {
   const group = document.getElementById('a_difficulty').value - 1;
   getWords(page, group)
     .then((data) => createWordsData(data))
-    .catch((reason) => console.log(reason.message))
+    .catch((reason) => console.log(reason.message));
+
+  // selectCurrentWord();
+  // renderAnswers();
+  // playAudio();
 }
 
 document.querySelector('.a_start-button').addEventListener('click', startGame);
@@ -36,4 +40,3 @@ const audioIcons = document.getElementsByClassName('a_audio');
 for (let i = 0; i < audioIcons.length; i++) {
   audioIcons[i].addEventListener('click', playAudio);
 }
-

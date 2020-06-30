@@ -22,3 +22,7 @@ export function findObjectByKey(array, key, value) {
   }
   return null;
 }
+
+export function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
