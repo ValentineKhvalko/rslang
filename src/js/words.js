@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable semi */
-import { playAudio } from './helpers';
+import { playAudio, selectRandomNumber, findObjectByKey } from './helpers';
 
 function createWord(response, i) {
   const word = {
@@ -26,6 +26,15 @@ export async function getWords(page, group) {
   return data;
 }
 
+export function selectCurrentWord() {
+  const mediaNumber = selectRandomNumber(JSON.parse(localStorage.getItem('a_mediaData')));
+  const words = JSON.parse(localStorage.getItem('a_words'));
+  const currentWord = findObjectByKey(words, 'mediaNumber', mediaNumber);
+  localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
+  console.log(mediaNumber, words, currentWord);
+  playAudio();
+}
+
 export function createWordsData(response) {
   console.log(response);
   const words = [];
@@ -34,9 +43,10 @@ export function createWordsData(response) {
     words.push(createWord(response, i));
     mediaData.push(getMediaNumber(response, i));
   }
-  localStorage.setItem('a_words', words);
+  localStorage.setItem('a_words', JSON.stringify(words));
   localStorage.setItem('a_mediaData', JSON.stringify(mediaData));
   console.log(JSON.parse(localStorage.getItem('a_mediaData')));
   console.log(localStorage.getItem('a_words'));
-  playAudio();
+
+  selectCurrentWord();
 }
