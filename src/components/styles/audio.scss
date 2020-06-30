@@ -58,6 +58,16 @@
     cursor: pointer;
 }
 
+.a_items.a_disabled {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+// .a_item .a_active{
+//     background-color: #fff;
+//     opacity: 0.3;
+// }
+
 .a_close-button,
 .a_start-button,
 .a_answer-button,
