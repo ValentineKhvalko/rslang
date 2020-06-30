@@ -1,4 +1,6 @@
 import '../components/styles/audio.scss';
+import { getWords, createWordsData } from './words.js';
+import { playAudio } from './helpers';
 
 document.querySelector('.a_settings-link').addEventListener('click', (e) => {
   e.preventDefault();
@@ -20,8 +22,13 @@ document.querySelector('.a_game-settings-link').addEventListener('click', (e) =>
   document.querySelector('.a_settings').classList.toggle('hidden');
 });
 
-// function Redirect() {
-//   window.location.href = '/audio.html';
-// }
+function startGame() {
+  const page = document.getElementById('a_round').value - 1;
+  const group = document.getElementById('a_difficulty').value - 1;
+  getWords(page, group)
+    .then((data) => createWordsData(data))
+    .catch((reason) => console.log(reason.message))
+}
 
-// document.getElementById('a-button').addEventListener('click', Redirect);
+document.querySelector('.a_start-button').addEventListener('click', startGame);
+document.querySelector('.a_img').addEventListener('click', playAudio);
