@@ -7,7 +7,9 @@ function createWord(response, i) {
     id: response[i].id,
     english: response[i].word,
     translation: response[i].wordTranslate,
+    mediaNumber: response[i].audio.substring(6, response[i].audio.length - 4),
   }
+  // console.log(word);
   return word;
 }
 

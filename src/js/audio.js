@@ -31,4 +31,9 @@ function startGame() {
 }
 
 document.querySelector('.a_start-button').addEventListener('click', startGame);
-document.querySelector('.a_img').addEventListener('click', playAudio);
+const audioIcons = document.getElementsByClassName('a_audio');
+
+for (let i = 0; i < audioIcons.length; i++) {
+  audioIcons[i].addEventListener('click', playAudio);
+}
+

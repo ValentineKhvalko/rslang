@@ -102,6 +102,16 @@
     display: inline-block;
     margin-bottom: 20px;
 }
+
+.a_img-small {
+    height: 40px;
+    width: 40px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+}
+
 .a_wrong-answer {
     text-decoration: line-through;
 }
@@ -219,6 +229,7 @@
 
 .a_word {
     font-size: 30px !important;
+    display: inline;
 }
 
 .a_settings-link {
