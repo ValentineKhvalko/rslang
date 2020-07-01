@@ -2,6 +2,13 @@ import 'components/styles/style.css';
 
 let token, user;
 let page, group;
+let mainObj;
+let numberWord = 0; // attantion!!!
+let maxWord;
+
+let nowDate = new Date(); // ????????
+
+//localStorage.clear();
 
 if(localStorage.getItem('page'))
 	page = +localStorage.getItem('page');
@@ -12,6 +19,41 @@ if(localStorage.getItem('group'))
 	group = +localStorage.getItem('group');
 else
 	group = 0;
+
+if(localStorage.getItem('max'))
+	maxWord = +localStorage.getItem('max');
+else
+	maxWord = 10;
+
+const getWords = async (page, group) => {
+  const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
+  const res = await fetch(url);
+  const obj = await res.json();
+  mainObj = obj.slice();
+  if(page === 29) {
+  	page = 0;
+  	group++;
+  }
+  else
+  	page++;
+  localStorage.setItem('page', page);
+  localStorage.setItem('group', group);
+};
+
+getWords(page, group);
+
+function play() {
+	if(numberWord < maxWord) {
+		document.querySelector('.translation').innerHTML = mainObj[numberWord].wordTranslate;
+		document.querySelector('.transcription').innerHTML = mainObj[numberWord].transcription;
+		document.querySelector('.meaning').innerHTML = mainObj[numberWord].textMeaning;
+		document.querySelector('.example').innerHTML = mainObj[numberWord].textExample;
+		const str = mainObj[numberWord].image.substring(6, mainObj[numberWord].audio.length - 4);
+		document.querySelector('.photo').src = `https://raw.githubusercontent.com/bobroden/rslang-data/master/data/${str}.jpg`;
+	}
+}
+
+setTimeout(play, 500);
 
 const loginUser = async user => {
 	try {
@@ -58,9 +100,6 @@ document.querySelector('.settings-img').src = require('./components/img/settings
 document.querySelector('.games-close-img').src = require('./components/img/close.png').default;
 document.querySelector('.settings-close-img').src = require('./components/img/close.png').default;
 
-document.querySelector('#new-words').value = '10';
-document.querySelector('#cards-words').value = '10';
-
 document.querySelector('.settings').addEventListener('click', () => {
 	document.querySelector('.st').classList.toggle('hidden');
 	document.querySelector('#translation').checked = 'checked';
@@ -72,6 +111,13 @@ document.querySelector('.settings-button').addEventListener('click', () => {
 	const len = document.querySelectorAll('.m-check:checked').length;
 	if(len < 1) {
 		alert('Выберите хотя бы один главный главный пункт информации на карточке!');
+	}
+	else {
+		if(document.querySelector('#new-words').value.trim() !== '') {
+			localStorage.setItem('max', +document.querySelector('#new-words').value);
+			document.querySelector('.st').classList.add('hidden');
+			document.querySelector('.pl').classList.remove('hidden');
+		}
 	}
 })
 
@@ -115,12 +161,3 @@ document.querySelector('.in').addEventListener('click', () => {
 			createUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
 	}
 })
-
-
-/*const getWords = async (page, group) => {
-  const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
-  const res = await fetch(url);
-  const obj = await res.json();
-  let words = +document.querySelector('#new-words').value;
-  let cards = +document.querySelector('#cards-words').value;
-};*/

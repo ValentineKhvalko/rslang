@@ -112,6 +112,10 @@ div.hidden, section.hidden, header.hidden {
 	padding: 20px 0;
 }
 
+.translation {
+	font-size: 1.6rem;
+}
+
 .enter label {
 	cursor: pointer;
 	font-size: 1.6rem;
