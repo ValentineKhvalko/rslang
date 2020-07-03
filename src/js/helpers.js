@@ -2,10 +2,16 @@ export function playAudio() {
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const sourceNumber = currentWord.mediaNumber;
   const audio = new Audio();
-  let str = '';
-  str = `https://raw.githubusercontent.com/tanya-kh/rslang-data/master/files/${sourceNumber}.mp3`;
-  audio.src = str;
+  const audioUrl = `https://raw.githubusercontent.com/tanya-kh/rslang-data/master/files/${sourceNumber}.mp3`;
+  audio.src = audioUrl;
   audio.play();
+}
+
+export function getImage() {
+  const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
+  const sourceNumber = currentWord.mediaNumber;
+  const imageUrl = `https://raw.githubusercontent.com/tanya-kh/rslang-data/master/files/${sourceNumber}.jpg`;
+  return imageUrl;
 }
 
 export function selectRandomNumber(array) {

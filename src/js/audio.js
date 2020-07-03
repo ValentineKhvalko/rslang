@@ -30,15 +30,6 @@ function startGame() {
   getWords(page, group)
     .then((data) => createWordsData(data))
     .catch((reason) => console.log(reason.message));
-
-  // selectCurrentWord();
-  // renderAnswers();
-  // playAudio();
 }
 nextButton.addEventListener('click', startGame);
 document.querySelector('.a_start-button').addEventListener('click', startGame);
-const audioIcons = document.getElementsByClassName('a_audio');
-
-for (let i = 0; i < audioIcons.length; i++) {
-  audioIcons[i].addEventListener('click', playAudio);
-}

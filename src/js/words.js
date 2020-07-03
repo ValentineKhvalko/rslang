@@ -1,10 +1,12 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable semi */
 import {
-  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText,
+  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage,
 } from './helpers.js';
 
-import { answerButton, nextButton, itemsContainer } from './consts.js';
+import {
+  answerButton, nextButton, itemsContainer, audioIcons,
+} from './consts.js';
 
 function createWord(response, i) {
   const word = {
@@ -82,6 +84,14 @@ export function checkAnswer() {
   renderCorrectAnswer(correct, clickedAnswer, currentTranslation);
 }
 
+function renderWordInfo() {
+  const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
+  const image = document.querySelector('.a_img');
+  const word = document.querySelector('.a_word');
+  image.src = getImage();
+  word.innerText = currentWord.english;
+}
+
 function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   const items = document.querySelectorAll('.a_item');
 
@@ -96,7 +106,7 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   if (correct !== true) {
     clickedAnswer.classList.add('a_wrong-answer');
   }
-
+  renderWordInfo()
   console.log(correct);
 }
 
@@ -120,6 +130,10 @@ function renderAnswers() {
   }
 
   answerButton.addEventListener('click', checkAnswer);
+
+  for (let i = 0; i < audioIcons.length; i++) {
+    audioIcons[i].addEventListener('click', playAudio);
+  }
 }
 
 export function selectCurrentWord() {
