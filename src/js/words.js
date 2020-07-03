@@ -5,7 +5,7 @@ import {
 } from './helpers.js';
 
 import {
-  answerButton, nextButton, itemsContainer, audioIcons,
+  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image,
 } from './consts.js';
 
 function createWord(response, i) {
@@ -86,10 +86,11 @@ export function checkAnswer() {
 
 function renderWordInfo() {
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
-  const image = document.querySelector('.a_img');
   const word = document.querySelector('.a_word');
   image.src = getImage();
   word.innerText = currentWord.english;
+  console.log(`One${currentWordInfo}`);
+  currentWordInfo.classList.remove('hidden');
 }
 
 function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
@@ -103,10 +104,17 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   const correctAnswer = findElementByText(currentTranslation, items);
   correctAnswer.classList.add('a_correct-answer');
 
-  if (correct !== true) {
+  // if (correct !== true) {
+  //   if (!clickedAnswer.classList.contains('a_answer-button')) {
+  //     clickedAnswer.classList.add('a_wrong-answer');
+  //   }
+  // }
+
+  if (correct !== true && !clickedAnswer.classList.contains('a_answer-button')) {
     clickedAnswer.classList.add('a_wrong-answer');
   }
-  renderWordInfo()
+
+  renderWordInfo();
   console.log(correct);
 }
 
@@ -116,6 +124,8 @@ function renderAnswers() {
   itemsContainer.innerHTML = '';
   answerButton.classList.toggle('hidden');
   nextButton.classList.toggle('hidden');
+  currentWordInfo.classList.add('hidden');
+  image.src = '';
 
   for (let i = 0; i < answers.length; i++) {
     const item = createItem(i + 1, answers[i]);
