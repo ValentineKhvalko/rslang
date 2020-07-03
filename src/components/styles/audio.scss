@@ -60,6 +60,9 @@
 
 .a_items.a_disabled {
     pointer-events: none;
+}
+
+.a_items.a_disabled > .a_item:not(.a_wrong-answer):not(.a_correct-answer) {
     opacity: 0.2;
 }
 
@@ -71,7 +74,8 @@
 .a_close-button,
 .a_start-button,
 .a_answer-button,
-.a_settings-button {
+.a_settings-button,
+.a_next-button {
     font-size: 24px;
     text-align: center;
     padding: 15px 25px;
@@ -126,7 +130,11 @@
     text-decoration: line-through;
 }
 
-.a_correct-answer {
+// .a_correct-answer {
+//     opacity: 1 !important;
+// }
+
+.a_correct-answer span{
     color: rgb(0, 245, 0);
     font-weight: 900;
 }

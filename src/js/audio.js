@@ -1,6 +1,7 @@
 import '../components/styles/audio.scss';
 import { getWords, createWordsData } from './words.js';
 import { playAudio } from './helpers';
+import { nextButton } from './consts'
 
 document.querySelector('.a_settings-link').addEventListener('click', (e) => {
   e.preventDefault();
@@ -23,6 +24,7 @@ document.querySelector('.a_game-settings-link').addEventListener('click', (e) =>
 });
 
 function startGame() {
+  localStorage.clear();
   const page = document.getElementById('a_round').value - 1;
   const group = document.getElementById('a_difficulty').value - 1;
   getWords(page, group)
@@ -33,7 +35,7 @@ function startGame() {
   // renderAnswers();
   // playAudio();
 }
-
+nextButton.addEventListener('click', startGame);
 document.querySelector('.a_start-button').addEventListener('click', startGame);
 const audioIcons = document.getElementsByClassName('a_audio');
 

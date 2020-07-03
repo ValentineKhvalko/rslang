@@ -26,3 +26,16 @@ export function findObjectByKey(array, key, value) {
 export function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
+
+export function findElementByText(searchedText, elementArray) {
+  let found;
+
+  for (let i = 0; i < elementArray.length; i++) {
+    if (elementArray[i].textContent.includes(searchedText)) {
+      found = elementArray[i];
+      break;
+    }
+  }
+  console.log(`Answer${found}`);
+  return found;
+}

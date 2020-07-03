@@ -1,8 +1,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable semi */
 import {
-  selectRandomNumber, findObjectByKey, shuffle, playAudio,
+  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText,
 } from './helpers.js';
+
+import { answerButton, nextButton, itemsContainer } from './consts.js';
 
 function createWord(response, i) {
   const word = {
@@ -58,30 +60,52 @@ export function selectAnswers() {
 }
 
 export function checkAnswer() {
+  let correct = true;
   const clickedAnswer = event.target;
+  const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
+  const chosenTranslation = clickedAnswer.innerText.substr(1);
+
+  answerButton.classList.toggle('hidden');
+  nextButton.classList.toggle('hidden');
+
   clickedAnswer.classList.add('a_active');
   console.log(clickedAnswer);
 
-  const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
-  const chosenTranslation = clickedAnswer.innerText.substr(1);
   console.log(currentTranslation);
 
   console.log(chosenTranslation);
 
-  if (currentTranslation === chosenTranslation) {
-    const correct = true;
-    renderCorrectAnswer(correct, clickedAnswer)
-  } else {
-    const correct = false;
-    renderCorrectAnswer(correct, clickedAnswer)
+  if (currentTranslation !== chosenTranslation) {
+    correct = false;
   }
+
+  renderCorrectAnswer(correct, clickedAnswer, currentTranslation);
+}
+
+function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
+  const items = document.querySelectorAll('.a_item');
+
+  itemsContainer.classList.add('a_disabled');
+
+  for (let i = 0; i < items.length; i++) {
+    items[i].removeEventListener('click', checkAnswer);
+  }
+  const correctAnswer = findElementByText(currentTranslation, items);
+  correctAnswer.classList.add('a_correct-answer');
+
+  if (correct !== true) {
+    clickedAnswer.classList.add('a_wrong-answer');
+  }
+
+  console.log(correct);
 }
 
 function renderAnswers() {
   const answers = selectAnswers();
-  const itemsContainer = document.querySelector('.a_items');
-  // console.log(items);
-  // console.log(itemsContainer);
+  itemsContainer.classList.remove('a_disabled');
+  itemsContainer.innerHTML = '';
+  answerButton.classList.toggle('hidden');
+  nextButton.classList.toggle('hidden');
 
   for (let i = 0; i < answers.length; i++) {
     const item = createItem(i + 1, answers[i]);
@@ -94,6 +118,8 @@ function renderAnswers() {
   for (let i = 0; i < items.length; i++) {
     items[i].addEventListener('click', checkAnswer);
   }
+
+  answerButton.addEventListener('click', checkAnswer);
 }
 
 export function selectCurrentWord() {
@@ -118,17 +144,4 @@ export function createWordsData(response) {
   console.log(JSON.parse(localStorage.getItem('a_mediaData')));
   console.log(localStorage.getItem('a_words'));
   selectCurrentWord();
-}
-
-function renderCorrectAnswer(correct, clickedAnswer) {
-  const items = document.querySelectorAll('.a_item');
-  const itemsContainer = document.querySelector('.a_items');
-
-  itemsContainer.classList.add('a_disabled');
-
-  for (let i = 0; i < items.length; i++) {
-    items[i].removeEventListener('click', checkAnswer);
-  }
-
-  (correct === true) ? console.log(true) : console.log(false);
 }
