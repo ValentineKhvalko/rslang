@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable semi */
 import {
-  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage, showSoundIcon,
+  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage, showSoundIcon, removeFromArray,
 } from './helpers.js';
 
 import {
@@ -64,9 +64,13 @@ export function selectAnswers() {
 export function checkAnswer() {
   let correct = true;
   const clickedAnswer = event.target;
-  const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
+  const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
+  const currentTranslation = currentWord.translation;
+  const currentMediaNumber = currentWord.mediaNumber;
   const chosenTranslation = clickedAnswer.innerText.substr(1);
+  const mediaNumbers = JSON.parse(localStorage.getItem('a_mediaData'));
 
+  removeFromArray(currentMediaNumber, mediaNumbers);
   image.removeEventListener('click', playAudio);
   image.style.cursor = 'default';
 
@@ -75,9 +79,7 @@ export function checkAnswer() {
 
   clickedAnswer.classList.add('a_active');
   console.log(clickedAnswer);
-
   console.log(currentTranslation);
-
   console.log(chosenTranslation);
 
   if (currentTranslation !== chosenTranslation) {

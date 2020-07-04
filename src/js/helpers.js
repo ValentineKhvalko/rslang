@@ -73,3 +73,10 @@ export function findElementByText(searchedText, elementArray) {
   console.log(`Answer${found}`);
   return found;
 }
+
+export function removeFromArray(searchedElement, array) {
+  const index = array.indexOf(searchedElement);
+  array.splice(index, 1);
+  localStorage.setItem('a_mediaData', JSON.stringify(array));
+  console.log(`Searched element is${index}. Array length: + ${array.length}`);
+}

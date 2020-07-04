@@ -1,5 +1,5 @@
 import '../components/styles/audio.scss';
-import { getWords, createWordsData, showSoundIcon } from './words.js';
+import { getWords, createWordsData, showSoundIcon, selectCurrentWord } from './words.js';
 import { playAudio } from './helpers';
 import { nextButton } from './consts'
 
@@ -31,5 +31,5 @@ function startGame() {
     .then((data) => createWordsData(data))
     .catch((reason) => console.log(reason.message));
 }
-nextButton.addEventListener('click', startGame);
+nextButton.addEventListener('click', selectCurrentWord);
 document.querySelector('.a_start-button').addEventListener('click', startGame);
