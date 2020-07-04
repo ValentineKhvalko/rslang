@@ -56,9 +56,12 @@
 .a_item {
     margin: 20px;
     cursor: pointer;
+    &:hover {
+        transform: scale(1.2, 1.2);
+    }
 }
 
-.a_items.a_disabled {
+.a_disabled {
     pointer-events: none;
 }
 
@@ -116,6 +119,9 @@
     display: inline-block;
     margin-bottom: 20px;
     border: 2px solid white;
+    &:hover {
+        transform: scale(0.9, 0.9);
+    }
 }
 
 .a_img-small {
@@ -125,6 +131,9 @@
     border-radius: 50%;
     display: inline-block;
     margin-right: 20px;
+    &:hover {
+        transform: scale(0.9, 0.9);
+    }
 }
 
 .a_wrong-answer {

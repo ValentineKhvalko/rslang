@@ -71,9 +71,7 @@ export function checkAnswer() {
   const mediaNumbers = JSON.parse(localStorage.getItem('a_mediaData'));
 
   removeFromArray(currentMediaNumber, mediaNumbers);
-  image.removeEventListener('click', playAudio);
-  image.style.cursor = 'default';
-
+  image.classList.add('a_disabled');
   answerButton.classList.toggle('hidden');
   nextButton.classList.toggle('hidden');
 
@@ -126,6 +124,7 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
 function renderAnswers() {
   const answers = selectAnswers();
   itemsContainer.classList.remove('a_disabled');
+  image.classList.remove('a_disabled');
   itemsContainer.innerHTML = '';
   answerButton.classList.toggle('hidden');
   nextButton.classList.toggle('hidden');
