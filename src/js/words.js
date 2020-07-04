@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable semi */
 import {
-  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage,
+  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage, showSoundIcon,
 } from './helpers.js';
 
 import {
@@ -67,6 +67,9 @@ export function checkAnswer() {
   const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
   const chosenTranslation = clickedAnswer.innerText.substr(1);
 
+  image.removeEventListener('click', playAudio);
+  image.style.cursor = 'default';
+
   answerButton.classList.toggle('hidden');
   nextButton.classList.toggle('hidden');
 
@@ -125,7 +128,7 @@ function renderAnswers() {
   answerButton.classList.toggle('hidden');
   nextButton.classList.toggle('hidden');
   currentWordInfo.classList.add('hidden');
-  image.src = '';
+  showSoundIcon();
 
   for (let i = 0; i < answers.length; i++) {
     const item = createItem(i + 1, answers[i]);
@@ -143,6 +146,7 @@ function renderAnswers() {
 
   for (let i = 0; i < audioIcons.length; i++) {
     audioIcons[i].addEventListener('click', playAudio);
+    audioIcons[i].style.cursor = 'pointer';
   }
 }
 

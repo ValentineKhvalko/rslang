@@ -1,5 +1,5 @@
 import '../components/styles/audio.scss';
-import { getWords, createWordsData } from './words.js';
+import { getWords, createWordsData, showSoundIcon } from './words.js';
 import { playAudio } from './helpers';
 import { nextButton } from './consts'
 
