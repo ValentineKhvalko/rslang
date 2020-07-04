@@ -72,8 +72,8 @@ export function checkAnswer() {
 
   removeFromArray(currentMediaNumber, mediaNumbers);
   image.classList.add('a_disabled');
-  answerButton.classList.toggle('hidden');
-  nextButton.classList.toggle('hidden');
+  answerButton.classList.toggle('a_hidden');
+  nextButton.classList.toggle('a_hidden');
 
   clickedAnswer.classList.add('a_active');
   console.log(clickedAnswer);
@@ -93,7 +93,7 @@ function renderWordInfo() {
   image.src = getImage();
   word.innerText = currentWord.english;
   console.log(`One${currentWordInfo}`);
-  currentWordInfo.classList.remove('hidden');
+  currentWordInfo.classList.remove('a_hidden');
 }
 
 function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
@@ -107,11 +107,6 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   const correctAnswer = findElementByText(currentTranslation, items);
   correctAnswer.classList.add('a_correct-answer');
 
-  // if (correct !== true) {
-  //   if (!clickedAnswer.classList.contains('a_answer-button')) {
-  //     clickedAnswer.classList.add('a_wrong-answer');
-  //   }
-  // }
 
   if (correct !== true && !clickedAnswer.classList.contains('a_answer-button')) {
     clickedAnswer.classList.add('a_wrong-answer');
@@ -126,9 +121,9 @@ function renderAnswers() {
   itemsContainer.classList.remove('a_disabled');
   image.classList.remove('a_disabled');
   itemsContainer.innerHTML = '';
-  answerButton.classList.toggle('hidden');
-  nextButton.classList.toggle('hidden');
-  currentWordInfo.classList.add('hidden');
+  answerButton.classList.toggle('a_hidden');
+  nextButton.classList.toggle('a_hidden');
+  currentWordInfo.classList.add('a_hidden');
   showSoundIcon();
 
   for (let i = 0; i < answers.length; i++) {
@@ -152,12 +147,19 @@ function renderAnswers() {
 }
 
 export function selectCurrentWord() {
-  const mediaNumber = selectRandomNumber(JSON.parse(localStorage.getItem('a_mediaData')));
-  const words = JSON.parse(localStorage.getItem('a_words'));
-  const currentWord = findObjectByKey(words, 'mediaNumber', mediaNumber);
-  localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
-  console.log(mediaNumber, words, currentWord);
-  renderAnswers();
+  const mediaNumbers = JSON.parse(localStorage.getItem('a_mediaData'));
+
+  if (mediaNumbers.length === 0) {
+    document.querySelector('.a_game').classList.toggle('a_hidden');
+    document.querySelector('.a_results').classList.toggle('a_hidden');
+  } else {
+    const mediaNumber = selectRandomNumber(JSON.parse(localStorage.getItem('a_mediaData')));
+    const words = JSON.parse(localStorage.getItem('a_words'));
+    const currentWord = findObjectByKey(words, 'mediaNumber', mediaNumber);
+    localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
+    console.log(mediaNumber, words, currentWord);
+    renderAnswers();
+  }
 }
 
 export function createWordsData(response) {

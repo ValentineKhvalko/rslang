@@ -15,7 +15,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    animation: fadeIn ease 3s;
+    animation: fadeIn ease 2s;
 }
 
 .a_game {
@@ -78,7 +78,9 @@
 .a_start-button,
 .a_answer-button,
 .a_settings-button,
-.a_next-button {
+.a_next-button,
+.a_restart_button,
+.a_home-button {
     font-size: 24px;
     text-align: center;
     padding: 15px 25px;
@@ -144,13 +146,13 @@
 //     opacity: 1 !important;
 // }
 
-.a_correct-answer span{
+.a_correct-answer span {
     color: rgb(0, 245, 0);
     font-weight: 900;
 }
 
-.hidden {
-    display: none;
+.a_hidden {
+    display: none !important;
 }
 
 //from sprint
@@ -275,6 +277,108 @@
         opacity: 1;
     }
 }
+
+//from speak-it
+.a_results {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 10px;
+    transition: 0.5s;
+    background: linear-gradient(180deg, #8f3ab9fb, #d579dafa 100%, #fff 0, #fff);
+    animation: fadeIn ease 2s;
+}
+
+.a_results-container {
+    padding: 10px;
+    width: 100%;
+    max-width: 780px;
+    height: auto;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px 0 rgba(14, 30, 37, 0.12);
+}
+
+.a_errors-num {
+    background-color: #da5b4c;
+    color: #fff;
+    padding: 0 14px;
+    border-radius: 21px;
+    margin-left: 5px;
+}
+
+.a_results-container .item {
+    flex-direction: row;
+    min-height: 50px;
+    border: 0;
+    margin: 0;
+    padding: 0 0 0 50px;
+    box-shadow: none;
+}
+
+.a_succes-num {
+    background-color: #01af61;
+    color: #fff;
+    padding: 0 14px;
+    border-radius: 21px;
+    margin-left: 5px;
+}
+
+.a_succes-item {
+    margin-bottom: 40px;
+}
+
+.a_result-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 10px;
+    max-width: 1360px;
+}
+
+.a_result-buttons>button {
+   margin: 5px;
+   font-size: 19px;
+   text-align: center;
+   padding: 10px 20px;
+   min-width: 100px !important;
+}
+
+// table {
+//     margin: 30px auto;
+//     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+//     font-size: 14px;
+//     border-collapse: collapse;
+//     text-align: center;
+// }
+// th,
+// td:first-child {
+//     background: #afcde7;
+//     color: white;
+//     padding: 10px 20px;
+// }
+// th,
+// td {
+//     border-style: solid;
+//     border-width: 0 1px 1px 0;
+//     border-color: white;
+// }
+// td {
+//     background: #d8e6f3;
+// }
+// th:first-child,
+// td:first-child {
+//     text-align: left;
+// }
 
 @keyframes fadeIn {
     from {

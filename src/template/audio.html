@@ -14,7 +14,7 @@
             Используй кнопки 1,2,3,4,5 или клик мыши для ответа. Удачной игры!
             <br><br>
             Перед началом игры можно изменить <a class="a_settings-link" href="">Настройки</a>.</p>
-        <div class="a_settings hidden">
+        <div class="a_settings a_hidden">
             <div>
                 <label for="a_difficulty">Уровень сложности:</label>
                 <input type="number" min="1" max="6" value="1" id="a_difficulty" class="a_difficulty">
@@ -27,15 +27,15 @@
             <div id="a_words-in-game" class="a_words-in-game a_layout-flex">
 
                 <label><input type="radio" id="a_all-words" name="words" value="all"><span>все</span></label>
-                <label><input type="radio" id="a_known-words" name="words" value="known"
-                        checked><span>изученные</span></label>
-                <label><input type="radio" id="a_unknown-words" name="words" value="unknown"><span>новые</span></label>
+                <label><input type="radio" id="a_known-words" name="words" value="known"><span>изученные</span></label>
+                <label><input type="radio" id="a_unknown-words" name="words" value="unknown"
+                        checked><span>новые</span></label>
             </div>
             <button class="a_close-button">Ок</button>
         </div>
         <button class="a_start-button">Начать</button>
     </div>
-    <div class="a_game hidden">
+    <div class="a_game a_hidden">
         <a class="a_game-settings-link" href=""> Вернуться на старт </a>
         <div class="a_image">
             <img class="a_img a_audio" src="" alt="">
@@ -47,8 +47,26 @@
         <div class="a_items">
         </div>
         <div class="a_buttons">
-            <button class="a_answer-button hidden">Не знаю</button>
+            <button class="a_answer-button a_hidden">Не знаю</button>
             <button class="a_next-button">Дальше &rarr; </button>
+        </div>
+    </div>
+    <div class="a_results a_hidden">
+        <div class="a_results-container">
+            <p class="a_errors">Ошибок
+                <span class="a_errors-num">10</span>
+            </p>
+            <div class="a_error-list">
+                <div class="item"></div>
+            </div>
+            <p class="a_succes">Знаю
+                <span class="a_succes-num">0</span>
+            </p>
+            <div class="a_succes-list"></div>
+            <div class="a_result-buttons">
+                <button class="a_restart_button">Повторить игру</button>
+                <button class="a_home-button">На главную</button>
+            </div>
         </div>
     </div>
 </body>

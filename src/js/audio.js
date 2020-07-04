@@ -5,21 +5,26 @@ import { nextButton } from './consts'
 
 document.querySelector('.a_settings-link').addEventListener('click', (e) => {
   e.preventDefault();
-  document.querySelector('.a_settings').classList.toggle('hidden');
+  document.querySelector('.a_settings').classList.toggle('a_hidden');
 });
 
 document.querySelector('.a_close-button').addEventListener('click', () => {
-  document.querySelector('.a_settings').classList.toggle('hidden');
+  document.querySelector('.a_settings').classList.toggle('a_hidden');
 });
 
 document.querySelector('.a_start-button').addEventListener('click', () => {
-  document.querySelector('.a_start').classList.toggle('hidden');
-  document.querySelector('.a_game').classList.toggle('hidden');
+  document.querySelector('.a_start').classList.toggle('a_hidden');
+  document.querySelector('.a_game').classList.toggle('a_hidden');
 });
 
 document.querySelector('.a_game-settings-link').addEventListener('click', (e) => {
-  document.querySelector('.a_start').classList.toggle('hidden');
-  document.querySelector('.a_game').classList.toggle('hidden');
+  document.querySelector('.a_start').classList.toggle('a_hidden');
+  document.querySelector('.a_game').classList.toggle('a_hidden');
+});
+
+document.querySelector('.a_restart_button').addEventListener('click', (e) => {
+  document.querySelector('.a_start').classList.toggle('a_hidden');
+  document.querySelector('.a_results').classList.toggle('a_hidden');
 });
 
 function startGame() {
