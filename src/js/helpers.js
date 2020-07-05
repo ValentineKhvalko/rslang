@@ -61,12 +61,12 @@ export function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
-export function findElementByText(searchedText, elementArray) {
+export function findElementByText(searchedText, array) {
   let found;
 
-  for (let i = 0; i < elementArray.length; i++) {
-    if (elementArray[i].textContent.includes(searchedText)) {
-      found = elementArray[i];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].textContent.includes(searchedText)) {
+      found = array[i];
       break;
     }
   }

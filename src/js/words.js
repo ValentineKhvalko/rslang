@@ -5,7 +5,7 @@ import {
 } from './helpers.js';
 
 import {
-  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image,
+  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image, errorList, successList, successNumber, errorNumber,
 } from './consts.js';
 
 function createWord(response, i) {
@@ -32,12 +32,34 @@ export async function getWords(page, group) {
   return data;
 }
 
-function createItem(number, answer) {
+function createItem(paragClass, spanClass, number, answer) {
   const p = document.createElement('p');
-  p.classList.add('a_item');
-  p.innerHTML = `<span class="a_number">${number}</span>${answer}`;
+  p.classList.add(paragClass);
+  p.innerHTML = `<span class="${spanClass}">${number}</span> ${answer}`;
 
   return p;
+}
+
+function changeNumber(list) {
+  const number = parseInt(list.innerText, 10);
+  list.innerText = number + 1;
+}
+
+function addWordToResults(word, correct) {
+  const div = document.createElement('div');
+  const paragClass = 'a_word';
+  const list = (correct === true) ? successList : errorList;
+  const numberToChange = (correct === true) ? successNumber : errorNumber;
+  const spanClass = 'a_result-english';
+  const img = document.createElement('img');
+
+  div.classList.add('a_result-item');
+  img.classList.add('a_img-result');
+  img.src = require('../components/img/sound.jpg').default;
+  div.appendChild(img);
+  div.appendChild(createItem(paragClass, spanClass, word.english, word.translation));
+  list.appendChild(div);
+  changeNumber(numberToChange);
 }
 
 export function selectAnswers() {
@@ -67,7 +89,7 @@ export function checkAnswer() {
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const currentTranslation = currentWord.translation;
   const currentMediaNumber = currentWord.mediaNumber;
-  const chosenTranslation = clickedAnswer.innerText.substr(1);
+  const chosenTranslation = clickedAnswer.innerText.substr(2);
   const mediaNumbers = JSON.parse(localStorage.getItem('a_mediaData'));
 
   removeFromArray(currentMediaNumber, mediaNumbers);
@@ -87,13 +109,14 @@ export function checkAnswer() {
   renderCorrectAnswer(correct, clickedAnswer, currentTranslation);
 }
 
-function renderWordInfo() {
+function renderWordInfo(correct) {
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const word = document.querySelector('.a_word');
   image.src = getImage();
   word.innerText = currentWord.english;
   console.log(`One${currentWordInfo}`);
   currentWordInfo.classList.remove('a_hidden');
+  addWordToResults(currentWord, correct);
 }
 
 function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
@@ -107,12 +130,11 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   const correctAnswer = findElementByText(currentTranslation, items);
   correctAnswer.classList.add('a_correct-answer');
 
-
   if (correct !== true && !clickedAnswer.classList.contains('a_answer-button')) {
     clickedAnswer.classList.add('a_wrong-answer');
   }
 
-  renderWordInfo();
+  renderWordInfo(correct);
   console.log(correct);
 }
 
@@ -127,7 +149,9 @@ function renderAnswers() {
   showSoundIcon();
 
   for (let i = 0; i < answers.length; i++) {
-    const item = createItem(i + 1, answers[i]);
+    const spanClass = 'a_number';
+    const paragClass = 'a_item';
+    const item = createItem(paragClass, spanClass, i + 1, answers[i]);
     itemsContainer.appendChild(item);
   }
 
@@ -162,6 +186,13 @@ export function selectCurrentWord() {
   }
 }
 
+function clearResults() {
+  errorList.innerHTML = '';
+  successList.innerHTML = '';
+  successNumber.innerHTML = 0;
+  errorNumber.innerHTML = 0;
+}
+
 export function createWordsData(response) {
   console.log(response);
   const words = [];
@@ -174,5 +205,6 @@ export function createWordsData(response) {
   localStorage.setItem('a_mediaData', JSON.stringify(mediaData));
   console.log(JSON.parse(localStorage.getItem('a_mediaData')));
   console.log(localStorage.getItem('a_words'));
+  clearResults();
   selectCurrentWord();
 }
