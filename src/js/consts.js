@@ -8,3 +8,4 @@ export const errorList = document.getElementById('a_error-list');
 export const successList = document.getElementById('a_success-list');
 export const successNumber = document.getElementById('a_success-num');
 export const errorNumber = document.getElementById('a_errors-num');
+export const numbers = [1, 2, 3, 4, 5];

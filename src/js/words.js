@@ -5,7 +5,7 @@ import {
 } from './helpers.js';
 
 import {
-  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image, errorList, successList, successNumber, errorNumber,
+  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image, errorList, successList, successNumber, errorNumber, numbers,
 } from './consts.js';
 
 function createWord(response, i) {
@@ -105,7 +105,17 @@ export function selectAnswers() {
 
 export function checkAnswer() {
   let correct = true;
-  const clickedAnswer = event.target;
+  let clickedAnswer;
+  const pressedKey = localStorage.getItem('a_pressedKey');
+
+  if (pressedKey) {
+    // console.log(pressedKey);
+    clickedAnswer = itemsContainer.children[parseInt(pressedKey, 10) - 1];
+  } else {
+    clickedAnswer = event.target;
+  }
+  // console.log(`event.target${clickedAnswer}`)
+
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const currentTranslation = currentWord.translation;
   const currentMediaNumber = currentWord.mediaNumber;
@@ -125,8 +135,19 @@ export function checkAnswer() {
   if (currentTranslation !== chosenTranslation) {
     correct = false;
   }
-
+  localStorage.removeItem('a_pressedKey');
   renderCorrectAnswer(correct, clickedAnswer, currentTranslation);
+}
+
+function getKey(event) {
+  const pressedKey = event.key;
+  // console.log(numbers);
+  localStorage.setItem('a_pressedKey', pressedKey);
+
+  if (numbers.includes(parseInt(pressedKey, 10))) {
+    checkAnswer();
+    // console.log(pressedKey);
+  }
 }
 
 function renderWordInfo(correct) {
@@ -155,11 +176,13 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   }
 
   renderWordInfo(correct);
+  document.removeEventListener('keyup', getKey);
   // console.log(correct);
 }
 
 function renderAnswers() {
   const answers = selectAnswers();
+
   itemsContainer.classList.remove('a_disabled');
   image.classList.remove('a_disabled');
   itemsContainer.innerHTML = '';
@@ -167,6 +190,8 @@ function renderAnswers() {
   nextButton.classList.toggle('a_hidden');
   currentWordInfo.classList.add('a_hidden');
   showSoundIcon();
+
+  document.addEventListener('keyup', getKey);
 
   for (let i = 0; i < answers.length; i++) {
     const spanClass = 'a_number';
