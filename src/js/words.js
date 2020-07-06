@@ -45,6 +45,19 @@ function changeNumber(list) {
   list.innerText = number + 1;
 }
 
+function playResultAudio() {
+  const clickedIcon = event.target.parentElement.querySelector('p span');
+  const clickedWord = clickedIcon.innerText;
+  const words = JSON.parse(localStorage.getItem('a_words'));
+  const currentWord = findObjectByKey(words, 'english', clickedWord);
+  localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
+
+  // console.log(clickedIcon);
+  // console.log(clickedWord);
+  // console.log(currentWord);
+  playAudio();
+}
+
 function addWordToResults(word, correct) {
   const div = document.createElement('div');
   const paragClass = 'a_word';
@@ -53,24 +66,31 @@ function addWordToResults(word, correct) {
   const spanClass = 'a_result-english';
   const img = document.createElement('img');
 
+  const soundIcons = document.getElementsByClassName('a_img-result');
+
   div.classList.add('a_result-item');
   img.classList.add('a_img-result');
   img.src = require('../components/img/sound.jpg').default;
   div.appendChild(img);
   div.appendChild(createItem(paragClass, spanClass, word.english, word.translation));
   list.appendChild(div);
+
+  for (let i = 0; i < soundIcons.length; i++) {
+    soundIcons[i].addEventListener('click', playResultAudio);
+  }
+
   changeNumber(numberToChange);
 }
 
 export function selectAnswers() {
   const answers = [];
   const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
-  console.log(currentTranslation);
+  // console.log(currentTranslation);
   answers.push(currentTranslation);
 
   while (answers.length < 5) {
     const randomWord = selectRandomNumber(JSON.parse(localStorage.getItem('a_words')));
-    console.log(randomWord);
+    // console.log(randomWord);
     const randomAnswer = randomWord.translation;
     if (answers.indexOf(randomAnswer) === -1) {
       answers.push(randomAnswer);
@@ -78,7 +98,7 @@ export function selectAnswers() {
   }
 
   shuffle(answers);
-  console.log(answers);
+  // console.log(answers);
 
   return answers;
 }
@@ -98,9 +118,9 @@ export function checkAnswer() {
   nextButton.classList.toggle('a_hidden');
 
   clickedAnswer.classList.add('a_active');
-  console.log(clickedAnswer);
-  console.log(currentTranslation);
-  console.log(chosenTranslation);
+  // console.log(clickedAnswer);
+  // console.log(currentTranslation);
+  // console.log(chosenTranslation);
 
   if (currentTranslation !== chosenTranslation) {
     correct = false;
@@ -114,7 +134,7 @@ function renderWordInfo(correct) {
   const word = document.querySelector('.a_word');
   image.src = getImage();
   word.innerText = currentWord.english;
-  console.log(`One${currentWordInfo}`);
+  // console.log(`One${currentWordInfo}`);
   currentWordInfo.classList.remove('a_hidden');
   addWordToResults(currentWord, correct);
 }
@@ -135,7 +155,7 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   }
 
   renderWordInfo(correct);
-  console.log(correct);
+  // console.log(correct);
 }
 
 function renderAnswers() {
@@ -181,7 +201,7 @@ export function selectCurrentWord() {
     const words = JSON.parse(localStorage.getItem('a_words'));
     const currentWord = findObjectByKey(words, 'mediaNumber', mediaNumber);
     localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
-    console.log(mediaNumber, words, currentWord);
+    // console.log(mediaNumber, words, currentWord);
     renderAnswers();
   }
 }
@@ -194,7 +214,7 @@ function clearResults() {
 }
 
 export function createWordsData(response) {
-  console.log(response);
+  // console.log(response);
   const words = [];
   const mediaData = [];
   for (let i = 0; i < 10; i++) {
@@ -203,8 +223,8 @@ export function createWordsData(response) {
   }
   localStorage.setItem('a_words', JSON.stringify(words));
   localStorage.setItem('a_mediaData', JSON.stringify(mediaData));
-  console.log(JSON.parse(localStorage.getItem('a_mediaData')));
-  console.log(localStorage.getItem('a_words'));
+  // console.log(JSON.parse(localStorage.getItem('a_mediaData')));
+  // console.log(localStorage.getItem('a_words'));
   clearResults();
   selectCurrentWord();
 }
