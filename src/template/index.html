@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div class="bg">
+	</div>
 		<header class="header">
 			<h1>RS Lang</h1>
 			<div class="wrapper w-header">
@@ -15,9 +16,14 @@
 				</div>
 				<span class="games">Игры</span>
 				<span class="static">Статистика</span>
+				<select class="dict">
+				    <option value="0">Словарь</option>
+				    <option value="deleted">Удалённые</option>
+				    <option value="difficult">Сложные</option>
+				</select>
 			</div>
 		</header>
-		<section class="enter-cont hidden">
+		<section class="enter-cont">
 			<div class="enter">
 				<form class="begin" method="post" action="" onsubmit="return false">
 					<label for="enter">Войти</label>
@@ -33,18 +39,28 @@
 		<section class="pl">
 			<div class="play-window">
 				<div class="gigh-buttons"></div>
+				<div class="pr-win">
+					<progress class="progress" value="0" max="100"></progress>
+					<div class="points"></div>
+				</div>
 				<hr><br>
 				<div class="main-input">
-					<input type="text" name="word" class="word">
+					<input type="text" name="word" class="word" autofocus>
+					<div class="error hidden"></div>
 				</div>
 				<hr><br>
 				<p class="translation"></p>
 				<p class="meaning"></p>
 				<p class="example"></p>
+				<p class="meaning-en hidden"></p>
+				<p class="example-en hidden"></p>
 				<p class="transcription"></p>
 				<img class="photo">
 				<div class="bottom-buttons">
-					<button class="next">Далее</button>
+					<button class="button next">Далее</button>
+					<button class="button answer hidden">Ответ</button>
+					<button class="button delete hidden">Удалить</button>
+					<button class="button sloj hidden">К сложным</button>
 				</div>
 			</div>
 		</section>
@@ -54,6 +70,18 @@
 					<img class="settings-close-img" alt="close">
 				</div>
 				<form class="settings-form" method="post" action="" onsubmit="return false">
+					<label class="set" for="voice">Произношение: </label>
+					<input class="check" type="checkbox" name="voice" id="voice">
+					<br>
+					<label class="set" for="answ">Кнопка показа ответа: </label>
+					<input class="check" type="checkbox" name="answ" id="answ">
+					<br>
+					<label class="set" for="del">Кнопка удаления: </label>
+					<input class="check" type="checkbox" name="del" id="del">
+					<br>
+					<label class="set" for="slo">Кнопка "К Сложным": </label>
+					<input class="check" type="checkbox" name="slo" id="slo">
+					<br>
 					<p class="razd">План на день</p>
 					<label class="set" for="new-words">Число новых слов: </label>
 					<input type="number" name="new-words" id="new-words">
@@ -64,11 +92,18 @@
 					<label class="set" for="translation" checked>Перевод слова: </label>
 					<input class="check m-check" type="checkbox" name="translation" id="translation">
 					<br>
-					<label class="set" for="explanation">Предложение с объяснением значения слова: </label>
+					<label class="set" for="explanation">Перевод предложения с объяснением значения слова: </label>
 					<input class="check m-check" type="checkbox" name="explanation" id="explanation">
 					<br>
-					<label class="set" for="example">Предложение с примером использования слова: </label>
+					<label class="set" for="example">Перевод предложения с примером использования слова: </label>
 					<input class="check m-check" type="checkbox" name="example" id="example">
+					<br>
+					<label class="set" for="explanation-en">Предложение с объяснением значения слова: </label>
+					<input class="check" type="checkbox" name="explanation-en" id="explanation-en">
+					<br>
+					<label class="set" for="example-en">Предложение с примером использования слова: </label>
+					<input class="check" type="checkbox" name="example-en" id="example-en">
+					<br>
 					<p class="razd">Дополнительно</p>
 					<label class="set" for="transcription">Транскрипция: </label>
 					<input class="check" type="checkbox" name="transcription" id="transcription">
@@ -93,6 +128,19 @@
 				<a href="#"><div class="game our-game">Своя игра</div></a>
 			</div>
 		</section>
-	</div>
+		<section class="dl hidden">
+			<div class="delete-window">
+				<div class="close delete-close">
+					<img class="delete-close-img" alt="close">
+				</div>
+			</div>
+		</section>
+		<section class="df hidden">
+			<div class="diff-window">
+				<div class="close diff-close">
+					<img class="diff-close-img" alt="close">
+				</div>
+			</div>
+		</section>
 </body>
 </html>
