@@ -1,5 +1,5 @@
 #app {
-  background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+  background: linear-gradient(180deg,#bf9200,#ae3100 100%,#fff 0,#fff);
   position: relative;
   min-height: 100vh;
   color: rgb(255, 255, 255);
@@ -8,27 +8,6 @@
 li {
   list-style-type: none;
 }
-
-.header {
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(252, 195, 8);
-  padding: 10px 0;
-
-  h1 {
-    font-size: 48px;
-  }
-
-  nav {
-    display: flex;
-    font-size: 20px;
-
-    li {
-      margin: 10px;
-    }
-  }
-}
-
 .main {
   display: flex;
   padding: 100px 60px;
@@ -62,6 +41,32 @@ li {
       border-radius: 20px;
       border: 2px solid black;
       cursor: pointer;
+    }
+  }
+
+  .savannah_result {
+    color: #fff;
+    padding: 20px;
+    font-size: 32px;
+
+    li {
+      font-size: 20px;
+      padding: 10px;
+      list-style: square outside;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .main {
+    padding: 40px 20px;
+  }
+
+  .savannah_game {
+
+    .currentWord {
+      margin: 20px 0;
+      padding: 10px;
     }
   }
 }

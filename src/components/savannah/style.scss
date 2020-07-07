@@ -1,0 +1,124 @@
+.savannah {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .startButton {
+    font-size: 32px;
+    padding: 20px;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: #0099ae;
+    border: solid 1px #fff;
+    border-radius: 5px;
+  }
+
+  .rulesOfGame {
+    color: white;
+    padding: 50px 20px 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .difficultyBlock {
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 50px;
+    text-align: center;
+
+    .select {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba($color: #0099ae, $alpha: .9);
+      font-size: 16px;
+      color: white;
+    }
+  }
+}
+
+.savannah_game {
+  display: block;
+
+  .oneHp {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stateOfGame {
+    display: flex;
+    justify-content: space-between;
+    font-size: 32px;
+    color: #fff;
+  }
+
+  .currentImg {
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .currentWord {
+    position: relative;
+    font-size: 32px;
+    margin: 70px auto;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: 400;
+    border: 1px solid white;
+    background-color: #fff;
+    border-radius: 5px;
+
+    .shadowBlock {
+      position: absolute;
+      display: block;
+      height: 100%;
+      left: 0;
+      width: 0;
+      transition: none;
+      background-color: rgba(119, 119, 119, 0.4);
+      // z-index: 9999;
+    }
+
+    .animationShadowBlock {
+      transition: all 3s;
+      width: 100%;
+    
+      // animation: anim 3s;
+    }
+  }
+
+  .options {
+    display: flex;
+    font-size: 20px;
+    color: #fff;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .list {
+      margin: 5px;
+      padding: 15px 20px;
+      border: 1px solid rgb(75, 74, 74);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .correct {
+      background-color: rgb(65, 197, 61);
+    }
+
+    .fail {
+      background-color: rgb(212, 92, 92);
+    }
+  }
+} 
+
+@keyframes anim {
+  0% {width: 0;}
+  100% {width: 100%;}
+}
