@@ -2,6 +2,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 15vw 60px 0;
 
   .startButton {
     font-size: 32px;
@@ -10,9 +12,15 @@
     cursor: pointer;
     letter-spacing: 4px;
     text-transform: uppercase;
-    background: #0099ae;
-    border: solid 1px #fff;
+    background: #e48a03;
+    border: 0;
     border-radius: 5px;
+    transition: 0.15s;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px 0 rgba(14, 30, 37, 0.12);
+    &:hover {
+      background: #dba226;
+      transform: scale(0.9, 0.9);
+    }
   }
 
   .rulesOfGame {
@@ -22,6 +30,14 @@
     font-weight: 400;
     line-height: 40px;
     text-align: center;
+  }
+
+  .countdown {
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: calc(50% - 30px);
+    left: calc(50% - 10px);
   }
 
   .difficultyBlock {
@@ -34,15 +50,18 @@
       margin: 10px;
       padding: 10px;
       border-radius: 5px;
-      background-color: rgba($color: #0099ae, $alpha: .9);
+      background-color: rgba($color: #e48a03, $alpha: .9);
       font-size: 16px;
       color: white;
+      cursor: pointer;
     }
   }
 }
 
 .savannah_game {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  padding: 15vw 60px 0;
 
   .oneHp {
     width: 40px;
@@ -56,13 +75,6 @@
     color: #fff;
   }
 
-  .currentImg {
-    margin-top: 30px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .currentWord {
     position: relative;
     font-size: 32px;
@@ -70,7 +82,7 @@
     padding: 10px 20px;
     text-align: center;
     font-weight: 400;
-    border: 1px solid white;
+    color: #000;
     background-color: #fff;
     border-radius: 5px;
 
@@ -79,17 +91,15 @@
       display: block;
       height: 100%;
       left: 0;
+      top: 0;
       width: 0;
       transition: none;
       background-color: rgba(119, 119, 119, 0.4);
-      // z-index: 9999;
     }
 
     .animationShadowBlock {
-      transition: all 3s;
       width: 100%;
-    
-      // animation: anim 3s;
+      animation: anim 5s;
     }
   }
 

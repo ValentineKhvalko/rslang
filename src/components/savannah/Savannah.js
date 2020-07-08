@@ -1,7 +1,8 @@
 import './style.scss';
+import { createCoords, animate } from '../Statistics';
 
 const groupsOfDifficulty = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-// const scrImg = 'https://raw.githubusercontent.com/ValentineKhvalko/rslang-data/master/';
+const scrSound = 'https://raw.githubusercontent.com/ValentineKhvalko/rslang-data/master/';
 
 const shuffle = (arr) => {
   const arrCopy = [...arr];
@@ -17,6 +18,23 @@ const shuffle = (arr) => {
   return arrCopy;
 };
 
+const points = [{ x: 0, y: 100 }];
+
+const createSelectedAnswerBlock = (infoAboutWord) => {
+  const li = document.createElement('li');
+  const p = document.createElement('p');
+  const voice = document.createElement('img');
+  voice.src = require('@assets/img/voice.jpg').default;
+  voice.classList.add('voice');
+  voice.addEventListener('click', () => new Audio(scrSound + infoAboutWord.audio).play());
+  p.innerHTML = infoAboutWord.word;
+
+  li.append(voice);
+  li.append(p);
+
+  return li;
+};
+
 const randomPage = () => Math.floor(Math.random() * 30);
 
 class Savannah {
@@ -25,9 +43,9 @@ class Savannah {
     this.getWords = getWords;
     this.isFinish = false;
     this.groupOfDifficulty = 0;
-    this.difficulty = 5;
+    this.difficulty = 4;
     this.arrOfObjWords = [];
-    this.word = '';
+    this.infoAboutWord = '';
     this.entererdWords = [];
     this.hp = 5;
     this.correctAnswers = [];
@@ -54,12 +72,25 @@ class Savannah {
     startButton.classList.add('startButton');
     difficultyBlock.classList.add('difficultyBlock');
 
-    rulesOfGame.innerText = 'Выбирайте правильные слова и не теряйте очки здоровья. Раунд длится 60 секунд.';
+    rulesOfGame.innerHTML = 'После отчета стартовых секунд перед тобой появится слово на английском и четыре варианта перевода. <br /> Выбирай правильные слова и не теряй очки здоровья. <br /> Раунд длится 60 секунд.';
     startButton.innerText = 'Start';
+
+    let countdown = 4;
+    const countdownBlock = document.createElement('div');
+    countdownBlock.classList.add('countdown');
 
     startButton.addEventListener('click', () => {
       this.elem.innerHTML = '';
-      this.start();
+      this.elem.append(countdownBlock);
+      const countdownInterval = setInterval(() => {
+        countdown -= 1;
+        countdownBlock.innerHTML = countdown;
+      }, 1000);
+      setTimeout(() => {
+        clearInterval(countdownInterval);
+        this.elem.innerHTML = '';
+        this.start();
+      }, 4000);
     });
 
     const select = document.createElement('select');
@@ -120,23 +151,17 @@ class Savannah {
     stateOfGame.append(timerBlock);
     stateOfGame.append(hp);
     this.elem.append(stateOfGame);
-    let translationRandomWord = [];
+    let randomWord = '';
 
     const ul = document.createElement('ul');
     ul.classList.add('options');
     const currentWord = document.createElement('div');
     currentWord.classList.add('currentWord');
-
-    const shadowBlock = document.createElement('div');
-    shadowBlock.classList.add('shadowBlock');
-    currentWord.append(shadowBlock);
     const p = document.createElement('p');
     currentWord.append(p);
+    const shadowBlock = document.createElement('div');
+    shadowBlock.classList.add('shadowBlock');
 
-    // const currentWordImg = document.createElement('img');
-    // currentWordImg.classList.add('currentImg');
-
-    // this.elem.append(currentWordImg);
     this.elem.append(currentWord);
     this.elem.append(ul);
 
@@ -149,11 +174,12 @@ class Savannah {
       clearTimeout(this.nextWordTimeout);
       if (this.isClicked) return false;
       this.isClicked = true;
+      shadowBlock.remove();
 
-      if (e.target.innerHTML === this.word) {
+      if (e.target.innerHTML === this.infoAboutWord.wordTranslate) {
         new Audio(require('@assets/audio/correct.mp3').default).play();
         e.target.classList.add('correct');
-        this.correctAnswers.push(this.word);
+        this.correctAnswers.push(this.infoAboutWord);
         setTimeout(() => {
           this.isClicked = false;
           initialGame();
@@ -162,11 +188,11 @@ class Savannah {
         new Audio(require('@assets/audio/error.mp3').default).play();
         e.target.classList.add('fail');
         arrOfElementsLi.forEach((el) => {
-          if (el.innerHTML === this.word) el.classList.add('correct');
+          if (el.innerHTML === this.infoAboutWord.wordTranslate) el.classList.add('correct');
         });
-        this.failureAnswers.push(this.word);
+        this.failureAnswers.push(this.infoAboutWord);
         this.hp -= 1;
-        document.querySelectorAll('.oneHp')[0].parentElement.removeChild(document.querySelectorAll('.oneHp')[0]);
+        document.querySelectorAll('.oneHp')[0].remove();
         setTimeout(() => {
           this.isClicked = false;
           initialGame();
@@ -191,18 +217,8 @@ class Savannah {
     const arrOfElementsLi = document.querySelectorAll('.list');
 
     const initialGame = async () => {
-      console.log('add class');
-      // console.log('inital game');
-      const shadowBlock = document.querySelectorAll('.shadowBlock')[0]; 
-
-      // console.log(shadowBlock, 'shadowBlock')
-      // if (shadowBlock) {
-        // setTimeout(() => {
-          shadowBlock.classList.add('animationShadowBlock');
-        // }, 0)
-      
-      // }
-  
+      currentWord.append(shadowBlock);
+      shadowBlock.classList.add('animationShadowBlock');
       if (this.hp === 0) {
         this.finish();
       } else {
@@ -213,33 +229,32 @@ class Savannah {
         }
 
         this.nextWordTimeout = setTimeout(() => {
-      
-          shadowBlock.offsetWidth;
-          shadowBlock.classList.remove('animationShadowBlock');
+          new Audio(require('@assets/audio/error.mp3').default).play();
+          this.failureAnswers.push(this.infoAboutWord);
+          this.hp -= 1;
+          document.querySelectorAll('.oneHp')[0].remove();
+          shadowBlock.remove();
           initialGame();
-        }, 3000);
-        this.arrOfObjWords = shuffle(this.arrOfObjWords);
-        const currentObj = this.arrOfObjWords.pop();
+        }, 5000);
 
-        this.word = currentObj.word;
-        translationRandomWord = currentObj.wordTranslate;
-        p.innerHTML = translationRandomWord;
-        // currentWordImg.src = scrImg + currentObj.image;
-        this.entererdWords.push(this.word);
+        this.arrOfObjWords = shuffle(this.arrOfObjWords);
+        this.infoAboutWord = this.arrOfObjWords.pop();
+        console.log(this.infoAboutWord);
+
+        randomWord = this.infoAboutWord.word;
+        p.innerHTML = randomWord;
+        this.entererdWords.push(this.infoAboutWord);
 
         for (let i = 0; i < this.difficulty - 1; i += 1) {
-          this.entererdWords.push(this.arrOfObjWords.pop().word);
+          this.entererdWords.push(this.arrOfObjWords.pop());
         }
 
         console.log(this.entererdWords, 'entered');
-        console.log(this.word, 'word');
+        console.log(this.infoAboutWord, 'word');
 
         shuffle(this.entererdWords).forEach((word, i) => {
-          arrOfElementsLi[i].innerHTML = word;
+          arrOfElementsLi[i].innerHTML = word.wordTranslate;
         });
-
-        // currentWordImg.onload = () => {
-        // };
       }
     };
 
@@ -248,11 +263,13 @@ class Savannah {
 
   finish() {
     clearInterval(this.oneSecInterval);
-    clearTimeout(this.roundDuration);
+    clearTimeout(this.timer);
     clearTimeout(this.nextWordTimeout);
 
     this.elem.innerHTML = '';
     this.elem.classList.remove('savannah_game');
+    const results = document.createElement('div');
+    results.classList.add('results');
     const correctAnswersList = document.createElement('ul');
     correctAnswersList.innerHTML = 'Correct Answers';
     const failureAnswersList = document.createElement('ul');
@@ -260,6 +277,9 @@ class Savannah {
     const toStartPageButton = document.createElement('button');
     toStartPageButton.classList.add('toStartPageButton');
     toStartPageButton.innerText = 'Перейти в начало';
+    const toStatistics = document.createElement('button');
+    toStatistics.classList.add('toStatistics');
+    toStatistics.innerText = 'toStatistics';
 
     toStartPageButton.addEventListener('click', () => {
       this.elem.innerHTML = '';
@@ -271,21 +291,45 @@ class Savannah {
 
     this.hp = this.difficulty;
 
-    this.correctAnswers.forEach((word) => {
-      const li = document.createElement('li');
-      li.innerHTML = word;
-      correctAnswersList.append(li);
+    this.correctAnswers.forEach((infoAboutWord) => {
+      correctAnswersList.append(createSelectedAnswerBlock(infoAboutWord));
     });
 
-    this.failureAnswers.forEach((word) => {
-      const li = document.createElement('li');
-      li.innerHTML = word;
-      failureAnswersList.append(li);
+    if (localStorage.getItem('savannah')) {
+      localStorage.setItem('savannah', `${localStorage.getItem('savannah') + this.correctAnswers.length},`);
+    } else {
+      localStorage.setItem('savannah', `${this.correctAnswers.length},`);
+    }
+
+    console.log(localStorage.getItem('savannah').substring(0, ishodnatyaStroka.length-1).split(','));
+
+    toStatistics.addEventListener('click', () => {
+      const correctAnswers =  localStorage.getItem('savannah').substring(0, ishodnatyaStroka.length-1)
+      localStorage.getItem('savannah').split(',').forEach((el, i) => {
+        points.push({
+          x: points[i].x + 25,
+          y: 100 - el * 3,
+        });
+      });
+      this.elem.innerHTML = '';
+      const example = document.createElement('canvas');
+      // example.id = 'example';
+      this.elem.append(example);
+      const ctx = example.getContext('2d');
+      example.width = 400;
+      example.height = 400;
+      animate(createCoords(points), 1, ctx);
     });
 
-    this.elem.append(correctAnswersList);
-    this.elem.append(failureAnswersList);
+    this.failureAnswers.forEach((infoAboutWord) => {
+      failureAnswersList.append(createSelectedAnswerBlock(infoAboutWord));
+    });
+
+    results.append(correctAnswersList);
+    results.append(failureAnswersList);
+    this.elem.append(results);
     this.elem.append(toStartPageButton);
+    this.elem.append(toStatistics);
 
     this.correctAnswers = [];
     this.failureAnswers = [];

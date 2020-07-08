@@ -1,48 +1,20 @@
 #app {
+  font-family: Calibri;
   background: linear-gradient(180deg,#bf9200,#ae3100 100%,#fff 0,#fff);
   position: relative;
   min-height: 100vh;
   color: rgb(255, 255, 255);
+  animation: fadeIn ease 2s;
 }
 
 li {
   list-style-type: none;
 }
-.main {
+
+.results {
+  padding: 10vw 60px 0;
   display: flex;
-  padding: 100px 60px;
-  color: black;
-  align-items: flex-start;
-
-  .newWords {
-    padding: 60px 40px;
-    width: 70vw;
-    background-color:white;
-    font-size: 52px;
-    border: 2px solid black;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-
-  .games {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-
-    .game {
-      width: 150px;
-      height: 150px;
-      margin: 0 20px 20px;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: white;
-      border-radius: 20px;
-      border: 2px solid black;
-      cursor: pointer;
-    }
-  }
+  justify-content: space-around;
 
   .savannah_result {
     color: #fff;
@@ -52,7 +24,19 @@ li {
     li {
       font-size: 20px;
       padding: 10px;
-      list-style: square outside;
+      display: flex;
+      align-items: center;
+
+      p {
+        padding: 0 20px;
+      }
+      
+      .voice {
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
     }
   }
 }
@@ -68,6 +52,15 @@ li {
       margin: 20px 0;
       padding: 10px;
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
   }
 }
 
