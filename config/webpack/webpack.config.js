@@ -10,7 +10,10 @@ const pathResolve = (...args) => path.resolve(rootPath, ...args);
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
-  entry: './src/index.js',
+  entry: {
+    'page1':'./src/index.js',
+    'page2': './src/savannah.js'
+  },
   output: {
     filename: isProduction ? 'js/[name].[contenthash:8].bundle.js' : '[name].bundle.js',
     path: pathResolve('dist'),
@@ -38,7 +41,14 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/template/index.html'
-    })
+      chunks: ['page1'],
+      template: 'src/template/index.html',
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['page2'],
+      template: 'src/template/savannah.html',
+      filename: 'savannah.html'
+    }),
   ]
 };
