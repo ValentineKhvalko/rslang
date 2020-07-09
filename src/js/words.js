@@ -1,11 +1,11 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable semi */
 import {
-  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage, showSoundIcon, removeFromArray,
+  selectRandomNumber, findObjectByKey, shuffle, playAudio, findElementByText, getImage,
+  showSoundIcon, removeFromArray,
 } from './helpers.js';
 
 import {
-  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image, errorList, successList, successNumber, errorNumber, numbers,
+  answerButton, nextButton, itemsContainer, audioIcons, currentWordInfo, image, errorList,
+  successList, successNumber, errorNumber, numbers,
 } from './consts.js';
 
 function createWord(response, i) {
@@ -15,12 +15,13 @@ function createWord(response, i) {
     translation: response[i].wordTranslate,
     mediaNumber: response[i].audio.substring(6, response[i].audio.length - 4),
   }
-  // console.log(word);
+
   return word;
 }
 
 function getMediaNumber(response, i) {
   const mediaNumber = response[i].audio.substring(6, response[i].audio.length - 4);
+
   return mediaNumber;
 }
 
@@ -28,12 +29,13 @@ export async function getWords(page, group) {
   const url = `https://afternoon-falls-25894.herokuapp.com/words?page=${page}&group=${group}`;
   const response = await fetch(url);
   const data = await response.json();
-  //   console.log(data);
+
   return data;
 }
 
 function createItem(paragClass, spanClass, number, answer) {
   const p = document.createElement('p');
+
   p.classList.add(paragClass);
   p.innerHTML = `<span class="${spanClass}">${number}</span> ${answer}`;
 
@@ -50,11 +52,9 @@ function playResultAudio() {
   const clickedWord = clickedIcon.innerText;
   const words = JSON.parse(localStorage.getItem('a_words'));
   const currentWord = findObjectByKey(words, 'english', clickedWord);
+
   localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
 
-  // console.log(clickedIcon);
-  // console.log(clickedWord);
-  // console.log(currentWord);
   playAudio();
 }
 
@@ -65,7 +65,6 @@ function addWordToResults(word, correct) {
   const numberToChange = (correct === true) ? successNumber : errorNumber;
   const spanClass = 'a_result-english';
   const img = document.createElement('img');
-
   const soundIcons = document.getElementsByClassName('a_img-result');
 
   div.classList.add('a_result-item');
@@ -85,20 +84,19 @@ function addWordToResults(word, correct) {
 export function selectAnswers() {
   const answers = [];
   const currentTranslation = JSON.parse(localStorage.getItem('a_currentWord')).translation;
-  // console.log(currentTranslation);
+
   answers.push(currentTranslation);
 
   while (answers.length < 5) {
     const randomWord = selectRandomNumber(JSON.parse(localStorage.getItem('a_words')));
-    // console.log(randomWord);
     const randomAnswer = randomWord.translation;
+
     if (answers.indexOf(randomAnswer) === -1) {
       answers.push(randomAnswer);
     }
   }
 
   shuffle(answers);
-  // console.log(answers);
 
   return answers;
 }
@@ -109,12 +107,10 @@ export function checkAnswer() {
   const pressedKey = localStorage.getItem('a_pressedKey');
 
   if (pressedKey) {
-    // console.log(pressedKey);
     clickedAnswer = itemsContainer.children[parseInt(pressedKey, 10) - 1];
   } else {
     clickedAnswer = event.target;
   }
-  // console.log(`event.target${clickedAnswer}`)
 
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const currentTranslation = currentWord.translation;
@@ -126,11 +122,7 @@ export function checkAnswer() {
   image.classList.add('a_disabled');
   answerButton.classList.toggle('a_hidden');
   nextButton.classList.toggle('a_hidden');
-
   clickedAnswer.classList.add('a_active');
-  // console.log(clickedAnswer);
-  // console.log(currentTranslation);
-  // console.log(chosenTranslation);
 
   if (currentTranslation !== chosenTranslation) {
     correct = false;
@@ -141,21 +133,20 @@ export function checkAnswer() {
 
 function getKey(event) {
   const pressedKey = event.key;
-  // console.log(numbers);
+
   localStorage.setItem('a_pressedKey', pressedKey);
 
   if (numbers.includes(parseInt(pressedKey, 10))) {
     checkAnswer();
-    // console.log(pressedKey);
   }
 }
 
 function renderWordInfo(correct) {
   const currentWord = JSON.parse(localStorage.getItem('a_currentWord'));
   const word = document.querySelector('.a_word');
+
   image.src = getImage();
   word.innerText = currentWord.english;
-  // console.log(`One${currentWordInfo}`);
   currentWordInfo.classList.remove('a_hidden');
   addWordToResults(currentWord, correct);
 }
@@ -168,6 +159,7 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
   for (let i = 0; i < items.length; i++) {
     items[i].removeEventListener('click', checkAnswer);
   }
+
   const correctAnswer = findElementByText(currentTranslation, items);
   correctAnswer.classList.add('a_correct-answer');
 
@@ -177,7 +169,6 @@ function renderCorrectAnswer(correct, clickedAnswer, currentTranslation) {
 
   renderWordInfo(correct);
   document.removeEventListener('keyup', getKey);
-  // console.log(correct);
 }
 
 function renderAnswers() {
@@ -190,7 +181,6 @@ function renderAnswers() {
   nextButton.classList.toggle('a_hidden');
   currentWordInfo.classList.add('a_hidden');
   showSoundIcon();
-
   document.addEventListener('keyup', getKey);
 
   for (let i = 0; i < answers.length; i++) {
@@ -225,8 +215,8 @@ export function selectCurrentWord() {
     const mediaNumber = selectRandomNumber(JSON.parse(localStorage.getItem('a_mediaData')));
     const words = JSON.parse(localStorage.getItem('a_words'));
     const currentWord = findObjectByKey(words, 'mediaNumber', mediaNumber);
+
     localStorage.setItem('a_currentWord', JSON.stringify(currentWord));
-    // console.log(mediaNumber, words, currentWord);
     renderAnswers();
   }
 }
@@ -239,17 +229,16 @@ function clearResults() {
 }
 
 export function createWordsData(response) {
-  // console.log(response);
   const words = [];
   const mediaData = [];
+
   for (let i = 0; i < 10; i++) {
     words.push(createWord(response, i));
     mediaData.push(getMediaNumber(response, i));
   }
+
   localStorage.setItem('a_words', JSON.stringify(words));
   localStorage.setItem('a_mediaData', JSON.stringify(mediaData));
-  // console.log(JSON.parse(localStorage.getItem('a_mediaData')));
-  // console.log(localStorage.getItem('a_words'));
   clearResults();
   selectCurrentWord();
 }

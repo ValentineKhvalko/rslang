@@ -1,6 +1,5 @@
 import '../components/styles/audio.scss';
-import { getWords, createWordsData, showSoundIcon, selectCurrentWord } from './words.js';
-import { playAudio } from './helpers';
+import { getWords, createWordsData, selectCurrentWord } from './words.js';
 import { nextButton } from './consts'
 
 document.querySelector('.a_settings-link').addEventListener('click', (e) => {
