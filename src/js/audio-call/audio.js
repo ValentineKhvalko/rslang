@@ -1,4 +1,4 @@
-import '../components/styles/audio.scss';
+import '../../components/styles/audio.scss';
 import { getWords, createWordsData, selectCurrentWord } from './words.js';
 import { nextButton } from './consts'
 

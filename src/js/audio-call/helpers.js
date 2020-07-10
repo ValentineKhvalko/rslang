@@ -2,7 +2,7 @@ import { audioIcons } from './consts.js';
 
 export function showSoundIcon() {
   for (let i = 0; i < audioIcons.length; i++) {
-    audioIcons[i].src = require('../components/img/sound.jpg').default;
+    audioIcons[i].src = require('../../components/a_assets/sound.jpg').default;
   }
 }
 

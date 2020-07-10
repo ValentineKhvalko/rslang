@@ -69,7 +69,7 @@ function addWordToResults(word, correct) {
 
   div.classList.add('a_result-item');
   img.classList.add('a_img-result');
-  img.src = require('../components/img/sound.jpg').default;
+  img.src = require('../../components/a_assets/sound.jpg').default;
   div.appendChild(img);
   div.appendChild(createItem(paragClass, spanClass, word.english, word.translation));
   list.appendChild(div);
