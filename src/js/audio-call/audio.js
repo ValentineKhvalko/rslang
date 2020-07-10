@@ -1,6 +1,7 @@
 import '../../components/styles/audio.scss';
 import { getWords, createWordsData, selectCurrentWord } from './words.js';
-import { nextButton } from './consts'
+import { nextButton } from './consts';
+import { clearAudioCallLocalStorage } from './helpers';
 
 document.querySelector('.a_settings-link').addEventListener('click', (e) => {
   e.preventDefault();
@@ -27,7 +28,7 @@ document.querySelector('.a_restart_button').addEventListener('click', (e) => {
 });
 
 function startGame() {
-  localStorage.clear();
+  clearAudioCallLocalStorage();
   const page = document.getElementById('a_round').value - 1;
   const group = document.getElementById('a_difficulty').value - 1;
   getWords(page, group)

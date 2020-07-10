@@ -63,3 +63,9 @@ export function removeFromArray(searchedElement, array) {
   array.splice(index, 1);
   localStorage.setItem('a_mediaData', JSON.stringify(array));
 }
+
+export function clearAudioCallLocalStorage() {
+  localStorage.removeItem('a_currentWord');
+  localStorage.removeItem('a_mediaData');
+  localStorage.removeItem('a_words');
+}
