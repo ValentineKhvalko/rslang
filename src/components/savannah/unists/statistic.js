@@ -2,11 +2,11 @@ export const createCoords = (points) => {
   const coords = [];
 
   for (let i = 1; i < points.length; i += 1) {
-    const p0 = points[i - 1],
-      p1 = points[i],
-      dx = p1.x - p0.x,
-      dy = p1.y - p0.y,
-      steps = Math.max(Math.abs(dx), Math.abs(dy)) / 2;
+    const p0 = points[i - 1];
+    const p1 = points[i];
+    const dx = p1.x - p0.x;
+    const dy = p1.y - p0.y;
+    const steps = Math.max(Math.abs(dx), Math.abs(dy)) / 2;
 
     for (let j = 0; j < steps; j += 1) {
       coords.push({
@@ -89,6 +89,7 @@ export const createStatisticBlock = (results, toStatistics) => {
 
   // массив значений из localStorage
   const correctAnswers = localStorage.getItem('savannah').slice(0, -1).split(',');
+  console.log(correctAnswers);
 
   // перебор массива из localStorage и добаление элементов в массив для графика
   correctAnswers.forEach((el, i) => {
@@ -101,6 +102,7 @@ export const createStatisticBlock = (results, toStatistics) => {
   // анимирование канваса
   animate(createCoords(points), 1, ctx);
   if (correctAnswers.length > 10) localStorage.removeItem('savannah');
+
   statisticScale.append(buttonToResult);
   statisticScale.append(canvasScale);
   statisticScale.append(yAxisScale);

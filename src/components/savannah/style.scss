@@ -101,24 +101,32 @@ li {
   .options {
     display: flex;
     font-size: 20px;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.7);
     justify-content: center;
     flex-wrap: wrap;
 
     .list {
       margin: 5px;
       padding: 15px 20px;
-      border: 1px solid rgb(75, 74, 74);
-      border-radius: 3px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 5px;
       cursor: pointer;
+      &:hover {
+        color: rgb(255, 255, 255);
+        border-color: rgb(255, 255, 255);
+      }
     }
 
     .correct {
-      background-color: rgb(93, 230, 89);
+      color: rgb(255, 255, 255);
+      border-color: rgb(255, 255, 255);
+      background-color: green;
     }
 
     .fail {
-      background-color: rgb(212, 26, 26);
+      color: rgb(255, 255, 255);
+      border-color: rgb(255, 255, 255);
+      background-color: red;
     }
   }
 } 
@@ -168,6 +176,10 @@ li {
     padding: 40px 20px;
     font-size: 32px;
 
+    p {
+      padding: 20px 0;
+    }
+
     li {
       font-size: 20px;
       padding: 10px;
@@ -177,7 +189,7 @@ li {
       p {
         padding: 0 20px;
       }
-      
+    
       .voice {
         cursor: pointer;
         width: 35px;

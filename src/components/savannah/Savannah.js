@@ -1,82 +1,67 @@
 import './style.scss';
-import { createCoords, animate, createStatisticBlock } from '../Statistics';
-
-const groupsOfDifficulty = ['I', 'II', 'III', 'IV', 'V', 'VI'];
-const scrSound = 'https://raw.githubusercontent.com/ValentineKhvalko/rslang-data/master/';
-
-const shuffle = (arr) => {
-  const arrCopy = [...arr];
-  let j;
-  let temp;
-  for (let i = 0; i < arrCopy.length; i += 1) {
-    j = Math.floor(Math.random() * (i + 1));
-    temp = arrCopy[j];
-    arrCopy[j] = arrCopy[i];
-    arrCopy[i] = temp;
-  }
-
-  return arrCopy;
-};
-
-const createSelectedAnswerBlock = (infoAboutWord) => {
-  const li = document.createElement('li');
-  const p = document.createElement('p');
-  const voice = document.createElement('img');
-  voice.src = require('@assets/img/voice.jpg').default;
-  voice.classList.add('voice');
-  voice.addEventListener('click', () => new Audio(scrSound + infoAboutWord.audio).play());
-  p.innerHTML = infoAboutWord.word;
-
-  li.append(voice);
-  li.append(p);
-
-  return li;
-};
+import { createStatisticBlock } from './unists/statistic';
+import shuffle from './unists/shuffle';
+import createSelectedAnswerLi from './unists/createSelectedAnswerLi';
 
 const randomPage = () => Math.floor(Math.random() * 30);
 
 class Savannah {
-  constructor(elem, getWords, settings, user) {
+  constructor(elem, getWords) {
     this.elem = elem;
     this.getWords = getWords;
-    this.isFinish = false;
-    this.groupOfDifficulty = 0;
-    this.difficulty = 4;
-    this.arrOfObjWords = [];
-    this.infoAboutWord = '';
-    this.entererdWords = [];
     this.hp = 5;
-    this.correctAnswers = [];
-    this.failureAnswers = [];
+    this.difficulty = 4;
     this.roundDuration = 60;
+    this.groupOfDifficulty = 0;
+    this.arrOfObjWords = [];
+    this.entererdWords = [];
+    this.correctAnswers = [];
+    this.incorrectAnswers = [];
+    this.groupsOfDifficulty = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    this.isFinish = false;
     this.isClicked = false;
-
-    this.timer = '';
+    this.timerOfGame = '';
+    this.infoAboutWord = '';
     this.oneSecInterval = '';
     this.nextWordTimeout = '';
-
-    this.settings = settings;
-    this.user = user;
   }
 
   mount() {
     this.elem.classList.add('savannah');
 
-    const rulesOfGame = document.createElement('div');
-    const startButton = document.createElement('button');
+    // Сложность игры
     const difficultyBlock = document.createElement('div');
-
-    rulesOfGame.classList.add('rulesOfGame');
-    startButton.classList.add('Button');
     difficultyBlock.classList.add('difficultyBlock');
+    difficultyBlock.innerHTML = 'Выберете сложность игры:';
 
-    rulesOfGame.innerHTML = 'После отчета стартовых секунд перед тобой появится слово на английском и четыре варианта перевода. <br /> Выбирай правильные слова и не теряй очки здоровья. <br /> Раунд длится 60 секунд.';
+    const select = document.createElement('select');
+    select.classList.add('select');
+
+    this.groupsOfDifficulty.forEach((difficulty) => {
+      const option = document.createElement('option');
+      option.value = difficulty;
+      option.innerText = difficulty;
+      select.append(option);
+    });
+
+    select.value = this.groupsOfDifficulty[this.groupOfDifficulty];
+
+    select.addEventListener('click', (e) => {
+      const newGroupDifficulty = this.groupsOfDifficulty.indexOf(e.target.value);
+      if (this.groupOfDifficulty !== newGroupDifficulty) {
+        this.groupOfDifficulty = newGroupDifficulty;
+      }
+    });
+
+    difficultyBlock.append(select);
+
+    // Кнопка старта игры и отсчет таймера
+    const startButton = document.createElement('button');
     startButton.innerText = 'Start';
-
+    startButton.classList.add('Button');
     let countdown = 4;
     const countdownBlock = document.createElement('div');
     countdownBlock.classList.add('countdown');
-
     startButton.addEventListener('click', () => {
       this.elem.innerHTML = '';
       this.elem.append(countdownBlock);
@@ -91,28 +76,17 @@ class Savannah {
       }, 4000);
     });
 
-    const select = document.createElement('select');
-    select.classList.add('select');
+    // Правила игры
+    const rulesOfGame = document.createElement('div');
+    rulesOfGame.classList.add('rulesOfGame');
+    rulesOfGame.innerHTML = `
+    После отсчета стартовых секунд перед тобой появится слово на английском и четыре варианта перевода.<br />
+    Каждое слово показывается лишь 5 секунд.<br /> 
+    Выбирай правильные слова и не теряй очки здоровья.<br /> 
+    Раунд длится 60 секунд.
+  `;
 
-    groupsOfDifficulty.forEach((difficulty) => {
-      const option = document.createElement('option');
-      option.value = difficulty;
-      option.innerText = difficulty;
-      select.append(option);
-    });
-
-    difficultyBlock.innerHTML = 'Выберете сложность игры:';
-
-    select.value = groupsOfDifficulty[this.groupOfDifficulty];
-
-    select.addEventListener('click', (e) => {
-      const newGroupDifficulty = groupsOfDifficulty.indexOf(e.target.value);
-      if (this.groupOfDifficulty !== newGroupDifficulty) {
-        this.groupOfDifficulty = newGroupDifficulty;
-      }
-    });
-
-    difficultyBlock.append(select);
+    // Вставка элементов
     this.elem.append(difficultyBlock);
     this.elem.append(startButton);
     this.elem.append(rulesOfGame);
@@ -122,8 +96,10 @@ class Savannah {
     this.elem.classList.remove('savannah');
     this.elem.classList.add('savannah_game');
 
+    // Очки здоровья
     const hp = document.createElement('div');
     hp.classList.add('hp');
+
     for (let i = 0; i < this.hp; i += 1) {
       const oneHp = document.createElement('img');
       oneHp.src = require('@assets/img/hp.png').default;
@@ -131,6 +107,7 @@ class Savannah {
       hp.append(oneHp);
     }
 
+    // Таймер игры
     const timerBlock = document.createElement('div');
     timerBlock.classList.add('timer');
     timerBlock.innerHTML = `00:${this.roundDuration}`;
@@ -149,8 +126,8 @@ class Savannah {
     stateOfGame.append(timerBlock);
     stateOfGame.append(hp);
     this.elem.append(stateOfGame);
-    let randomWord = '';
 
+    // Блоки для слов
     const ul = document.createElement('ul');
     ul.classList.add('options');
     const currentWord = document.createElement('div');
@@ -163,56 +140,23 @@ class Savannah {
     this.elem.append(currentWord);
     this.elem.append(ul);
 
-    this.timer = setTimeout(() => {
+    // Запуск таймера игры
+    this.timerOfGame = setTimeout(() => {
       clearInterval(this.oneSecInterval);
       this.finish();
     }, this.roundDuration * 1000);
 
-    async function checkAnswer(e) {
-      clearTimeout(this.nextWordTimeout);
-      if (this.isClicked) return false;
-      this.isClicked = true;
-      shadowBlock.remove();
-
-      if (e.target.innerHTML === this.infoAboutWord.wordTranslate) {
-        new Audio(require('@assets/audio/correct.mp3').default).play();
-        e.target.classList.add('correct');
-        this.correctAnswers.push(this.infoAboutWord);
-        setTimeout(() => {
-          initialGame();
-        }, 700);
-      } else {
-        new Audio(require('@assets/audio/error.mp3').default).play();
-        e.target.classList.add('fail');
-        arrOfElementsLi.forEach((el) => {
-          if (el.innerHTML === this.infoAboutWord.wordTranslate) el.classList.add('correct');
-        });
-        this.failureAnswers.push(this.infoAboutWord);
-        this.hp -= 1;
-        document.querySelectorAll('.oneHp')[0].remove();
-        setTimeout(() => {
-          initialGame();
-        }, 700);
-      }
-
-      setTimeout(() => {
-        arrOfElementsLi.forEach((el) => {
-          el.classList.remove('correct');
-          el.classList.remove('fail');
-        });
-      }, 700);
-    }
-
+    // Добавления слуаштеля нажатия на слово
     for (let i = 0; i < this.difficulty; i += 1) {
       const li = document.createElement('li');
       li.classList.add('list');
       li.addEventListener('click', checkAnswer.bind(this));
       ul.append(li);
     }
-
     const arrOfElementsLi = document.querySelectorAll('.list');
 
-    const initialGame = async () => {
+    // Показать угадываемое слово и варианты ответа
+    const showWordAndOptions = async () => {
       currentWord.append(shadowBlock);
       shadowBlock.classList.add('animationShadowBlock');
       if (this.hp === 0) {
@@ -228,18 +172,17 @@ class Savannah {
 
         this.nextWordTimeout = setTimeout(() => {
           new Audio(require('@assets/audio/error.mp3').default).play();
-          this.failureAnswers.push(this.infoAboutWord);
+          this.incorrectAnswers.push(this.infoAboutWord);
           this.hp -= 1;
           document.querySelectorAll('.oneHp')[0].remove();
           shadowBlock.remove();
-          initialGame();
+          showWordAndOptions();
         }, 5000);
 
         this.arrOfObjWords = shuffle(this.arrOfObjWords);
         this.infoAboutWord = this.arrOfObjWords.pop();
 
-        randomWord = this.infoAboutWord.word;
-        p.innerHTML = randomWord;
+        p.innerHTML = this.infoAboutWord.word;
         this.entererdWords.push(this.infoAboutWord);
 
         for (let i = 0; i < this.difficulty - 1; i += 1) {
@@ -252,23 +195,74 @@ class Savannah {
       }
     };
 
-    initialGame();
+    // Проверка ответа
+    function checkAnswer(e) {
+      clearTimeout(this.nextWordTimeout);
+      if (this.isClicked) return;
+      this.isClicked = true;
+      shadowBlock.remove();
+
+      if (e.target.innerHTML === this.infoAboutWord.wordTranslate) {
+        new Audio(require('@assets/audio/correct.mp3').default).play();
+        e.target.classList.add('correct');
+        this.correctAnswers.push(this.infoAboutWord);
+        setTimeout(() => {
+          showWordAndOptions();
+        }, 700);
+      } else {
+        new Audio(require('@assets/audio/error.mp3').default).play();
+        e.target.classList.add('fail');
+        arrOfElementsLi.forEach((el) => {
+          if (el.innerHTML === this.infoAboutWord.wordTranslate) el.classList.add('correct');
+        });
+        this.incorrectAnswers.push(this.infoAboutWord);
+        this.hp -= 1;
+        document.querySelectorAll('.oneHp')[0].remove();
+        setTimeout(() => {
+          showWordAndOptions();
+        }, 700);
+      }
+
+      setTimeout(() => {
+        arrOfElementsLi.forEach((el) => {
+          el.classList.remove('correct');
+          el.classList.remove('fail');
+        });
+      }, 700);
+    }
+
+    showWordAndOptions();
   }
 
   finish() {
     clearInterval(this.oneSecInterval);
-    clearTimeout(this.timer);
+    clearTimeout(this.timerOfGame);
     clearTimeout(this.nextWordTimeout);
 
     this.elem.innerHTML = '';
     this.elem.classList.remove('savannah_game');
 
+    // Блок для результатов
     const results = document.createElement('div');
     results.classList.add('s_results');
+
+    // Ul для правельных ответов
     const correctAnswersList = document.createElement('ul');
-    correctAnswersList.innerHTML = 'Correct Answers';
+    correctAnswersList.innerHTML = '<p>Correct Answers</p>';
+    correctAnswersList.classList.add('savannah_result');
+    this.correctAnswers.forEach((infoAboutWord) => {
+      correctAnswersList.append(createSelectedAnswerLi(infoAboutWord));
+    });
+    results.append(correctAnswersList);
+
+    // Ul для неправельных ответов
     const incorrectAnswersList = document.createElement('ul');
-    incorrectAnswersList.innerHTML = 'Incorrect Answers';
+    incorrectAnswersList.innerHTML = '<p>Incorrect Answers</p>';
+    incorrectAnswersList.classList.add('savannah_result');
+    this.incorrectAnswers.forEach((infoAboutWord) => {
+      incorrectAnswersList.append(createSelectedAnswerLi(infoAboutWord));
+    });
+    results.append(incorrectAnswersList);
 
     const toStartPageButton = document.createElement('button');
     toStartPageButton.classList.add('toStartPageButton');
@@ -289,16 +283,9 @@ class Savannah {
       localStorage.setItem('savannah', `${this.correctAnswers.length},`);
     }
 
-    correctAnswersList.classList.add('savannah_result');
-    incorrectAnswersList.classList.add('savannah_result');
-
-    this.hp = this.difficulty;
-
-    this.correctAnswers.forEach((infoAboutWord) => {
-      correctAnswersList.append(createSelectedAnswerBlock(infoAboutWord));
-    });
-
+    // Блок с канвасом и статистикой
     const statistic = createStatisticBlock(results, toStatistics);
+    statistic.classList.toggle('displayNone');
 
     // переход на график статистики
     toStatistics.addEventListener('click', () => {
@@ -307,24 +294,16 @@ class Savannah {
       toStatistics.classList.toggle('displayNone');
     });
 
-    this.failureAnswers.forEach((infoAboutWord) => {
-      incorrectAnswersList.append(createSelectedAnswerBlock(infoAboutWord));
-    });
-
-    statistic.classList.toggle('displayNone');
-
+    // Вставка элементов
     this.elem.append(toStartPageButton);
     this.elem.append(toStatistics);
-
-    // вставка канваса
     this.elem.append(statistic);
-    //
-    results.append(correctAnswersList);
-    results.append(incorrectAnswersList);
     this.elem.append(results);
 
+    // Перевод игры в стартовое состояние
+    this.hp = this.difficulty + 1;
     this.correctAnswers = [];
-    this.failureAnswers = [];
+    this.incorrectAnswers = [];
     this.roundDuration = 60;
   }
 
@@ -335,9 +314,10 @@ class Savannah {
     clearTimeout(this.roundDuration);
     clearTimeout(this.nextWordTimeout);
 
-    this.hp = this.difficulty;
+    // Перевод игры в стартовое состояние
+    this.hp = this.difficulty + 1;
     this.correctAnswers = [];
-    this.failureAnswers = [];
+    this.incorrectAnswers = [];
     this.roundDuration = 60;
   }
 }
