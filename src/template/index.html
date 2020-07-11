@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rs Lang</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-  <h1>HELLO WORLD</h1>
+    <div class="sprint_start-screen ">
+        <h1>Спринт</h1>
+        <p class="sprint_game-description">Нажмите на кнопку "Верно", если пара слово-перевод подобрана верно и
+            "Неверно" в противном случае.
+            <br>
+            Перед началом игры можно изменить <a class="sprint_settings-link" href="">Настройки</a>.
+        </p>
+        <button id="sprint_start-game" class="sprint_game-action">Начать игру</button>
+    </div>
+    <div class="sprint_settings hidden">
+        <div>
+            <label for="sprint_time-duration">Длительность раунда:</label>
+            <input type="number" min="30" max="300" value="60" id="sprint_time-duration" class="sprint_time-duration">
+        </div>
+        <div>
+            <label for="sprint_difficulty">Уровень сложности:</label>
+            <input type="number" min="1" max="6" value="1" id="sprint_difficulty" class="sprint_difficulty">
+        </div>
+        <label for="sprint_words-in-game">В игре использовать слова:</label>
+        <div id="sprint_words-in-game" class="sprint_words-in-game sprint_layout-flex">
+
+            <label><input type="radio" id="sprint_all-words" name="words" value="all"><span>все</span></label>
+            <label><input type="radio" id="sprint_known-words" name="words" value="known"
+                    checked><span>выученные</span></label>
+            <label><input type="radio" id="sprint_new-words" name="words" value="new"><span>новые</span></label>
+        </div>
+        <button class="sprint_close-button">Ок</button>
+    </div>
+    <div class="sprint_countdown hidden"><span class="sprint_layout-flex">5</span></div>
+    <div class="sprint_game hidden ">
+        <div class="sprint_main-card">
+            <div class="sprint_points-container sprint_first-level">
+                <h2 class="sprint_score">0</h2>
+                <p class="sprint_point-per-word">(+10 очков за слово)</p>
+                <div class="sprint_correct-answers-in-a-row sprint_layout-flex"></div>
+            </div>
+            <div class="sprint_progress">
+                <svg height="120" width="120">
+                    <circle class="sprint_progress-background" cx="60" cy="60" r="56" fill="transparent"
+                        stroke-width="7" stroke-dasharray="351.85837720205683" stroke-dashoffset="0"></circle>
+                    <circle class="sprint_progress-cover sprint_first-level" cx="60" cy="60" r="56" fill="transparent"
+                        stroke-width="7" stroke-dasharray="351.85837720205683" stroke-dashoffset="351.85837720205683">
+                    </circle>
+                </svg>
+                <div class="sprint_layout-flex sprint_timer-container">
+                    <span class="sprint_timer sprint_first-level"></span>
+                </div>
+            </div>
+            <div class="sprint_words sprint_layout-flex">
+                <span class="sprint_audio sprint_first-level"></span>
+                <h3 class="sprint_first-level"></h3>
+            </div>
+            <div class="sprint_cards-buttons">
+                <button class="sprint_game-button game-button__correct">Верно</button>
+                <button class="sprint_game-button game-button__wrong">Неверно</button>
+            </div>
+        </div>
+        <div class="sprint_action-buttons sprint_layout-flex">
+            <button id="sprint_restart-game" class="sprint_game-action sprint_restart-game">Начать сначала</button>
+            <button id="sprint_settings" class="sprint_game-action sprint_settings__btn">Настройки</button>
+            <button id="sprint_statistics" class="sprint_game-action sprint_statistics__btn">Статистика</button>
+        </div>
+    </div>
+    <div class="sprint_statistics hidden">
+        <section class="sprint_game-result">
+            <p class="game-errors">Ошибок
+                <span class="errors-number"></span>
+            </p>
+            <div class="error-list">
+            </div>
+            <p class="game-success">Знаю
+                <span class="success-number"></span>
+            </p>
+            <div class="success-list">
+            </div>
+        </section>
+        <div class="sprint_result-buttons sprint_layout-flex">
+            <button class="sprint_back-button">Назад</button>
+            <button class="sprint_home-button">На главную</button>
+        </div>
+    </div>
 </body>
+
 </html>
