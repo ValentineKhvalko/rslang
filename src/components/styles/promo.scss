@@ -83,7 +83,7 @@
 .a_team-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     max-width: 1000px;
     margin: 50px auto 0;
     padding-left: 12px;
@@ -127,3 +127,8 @@
     font-size: 18px !important;
     color: rgb(83, 80, 80) !important;
 }
+
+.a_memberLast{
+    display: none;
+}
+ 
