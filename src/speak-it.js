@@ -1,6 +1,7 @@
-import './components/styles/style.scss';
+import './components/styles/speak-it.scss';
 
 document.querySelector('.img').src = require('./components/img/blank.jpg').default;
+localStorage.setItem('isFirst', '1');
 
 let page = Math.round(-0.5 + Math.random() * (29 + 1));
 let group = 0;
