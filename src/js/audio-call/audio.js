@@ -22,7 +22,7 @@ document.querySelector('.a_game-settings-link').addEventListener('click', (e) =>
   document.querySelector('.a_game').classList.toggle('a_hidden');
 });
 
-document.querySelector('.a_restart_button').addEventListener('click', (e) => {
+document.querySelector('.a_restart-button').addEventListener('click', (e) => {
   document.querySelector('.a_start').classList.toggle('a_hidden');
   document.querySelector('.a_results').classList.toggle('a_hidden');
 });

@@ -77,7 +77,7 @@
 .a_answer-button,
 .a_settings-button,
 .a_next-button,
-.a_restart_button,
+.a_restart-button,
 .a_home-button {
     font-size: 24px;
     text-align: center;
@@ -97,6 +97,15 @@
         background: #ffa1e8;
         transform: scale(0.9, 0.9);
     }
+}
+
+.a_home-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 19px;
+    text-align: center;
+    padding: 10px 20px;
+    min-width: 100px !important;
 }
 
 .a_items {
@@ -326,7 +335,6 @@
     margin-left: 5px;
 }
 
-
 #a_success-num {
     background-color: #01af61;
     color: #fff;
@@ -368,12 +376,12 @@
     max-width: 1360px;
 }
 
-.a_result-buttons>button {
-   margin: 5px;
-   font-size: 19px;
-   text-align: center;
-   padding: 10px 20px;
-   min-width: 100px !important;
+.a_result-buttons > button {
+    margin: 5px;
+    font-size: 19px;
+    text-align: center;
+    padding: 10px 20px;
+    min-width: 100px !important;
 }
 
 @keyframes fadeIn {
