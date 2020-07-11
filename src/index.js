@@ -1,4 +1,5 @@
 import 'components/styles/style.css';
+import 'template/speak-it.html';
 
 let token, userI;
 let page, group;
@@ -17,6 +18,7 @@ let numberCard;
 let err;
 let seria;
 let maxSeria;
+let isFirst;
 
 const synth = window.speechSynthesis;
 const voices = synth.getVoices();
@@ -25,6 +27,65 @@ let sound = 0.5;
 document.querySelector('#translation').checked = 'checked';
 
 //localStorage.clear();
+
+const loginUser = async user => {
+	try {
+	  const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
+	    method: 'POST',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(user)
+	  });
+	  const content = await rawResponse.json();
+	  if(content.message === 'Authenticated') {
+	  	token = content.token;
+	  	userI = content.userId;
+	  	localStorage.setItem('token', token);
+	  	localStorage.setItem('userId', userI);
+	  	document.querySelector('.enter-cont').classList.add('hidden');
+	  	document.querySelector('.header').classList.remove('hidden');
+	  	getDeletedWords();
+	  	getDiffWords();
+	  	studiedWord--;
+	  	setTimeout(play, 1000);
+	  	localStorage.setItem('email', document.querySelector('.email'));
+	  	localStorage.setItem('password', document.querySelector('.password'));
+	  }
+	}
+	catch {
+		console.log('Error!');
+	}
+};
+
+const createUser = async user => {
+	try {
+     const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/users', {
+       method: 'POST',
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(user)
+     });
+     const content = await rawResponse.json();
+     loginUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
+ 	}
+ 	catch {
+ 		console.log('Error!');
+ 	}
+   };
+
+if(localStorage.getItem('isFirst')) {
+	document.querySelector('.enter-cont').classList.add('hidden');
+	  	document.querySelector('.header').classList.remove('hidden');
+	  	getDeletedWords();
+	  	getDiffWords();
+	  	studiedWord--;
+	  	setTimeout(play, 1000);
+}
+localStorage.removeItem('isFirst');
 
 if(localStorage.getItem('page'))
 	page = +localStorage.getItem('page');
@@ -194,52 +255,7 @@ if(nowWord !== 0) {
 	nowWord--;
 }
 
-const loginUser = async user => {
-	try {
-	  const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/signin', {
-	    method: 'POST',
-	    headers: {
-	      'Accept': 'application/json',
-	      'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify(user)
-	  });
-	  const content = await rawResponse.json();
-	  if(content.message === 'Authenticated') {
-	  	token = content.token;
-	  	userI = content.userId;
-	  	localStorage.setItem('token', token);
-	  	localStorage.setItem('userId', userI);
-	  	document.querySelector('.enter-cont').classList.add('hidden');
-	  	document.querySelector('.header').classList.remove('hidden');
-	  	getDeletedWords();
-	  	getDiffWords();
-	  	studiedWord--;
-	  	setTimeout(play, 1000);
-	  }
-	}
-	catch {
-		console.log('Error!');
-	}
-};
 
-const createUser = async user => {
-	try {
-     const rawResponse = await fetch('https://afternoon-falls-25894.herokuapp.com/users', {
-       method: 'POST',
-       headers: {
-         'Accept': 'application/json',
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify(user)
-     });
-     const content = await rawResponse.json();
-     loginUser({ "email": document.querySelector('.email').value, "password": document.querySelector('.password').value });
- 	}
- 	catch {
- 		console.log('Error!');
- 	}
-   };
 
 const createUserWord = async ({ userId, wordId, word }) => {
 	try {
