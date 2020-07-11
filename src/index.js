@@ -1,5 +1,4 @@
 import 'components/styles/style.css';
-import 'template/speak-it.html';
 
 let token, userI;
 let page, group;
@@ -50,8 +49,10 @@ const loginUser = async user => {
 	  	getDiffWords();
 	  	studiedWord--;
 	  	setTimeout(play, 1000);
-	  	localStorage.setItem('email', document.querySelector('.email'));
-	  	localStorage.setItem('password', document.querySelector('.password'));
+	  	if(document.querySelector('.email').value.trim() !== '') {
+		  	localStorage.setItem('email', document.querySelector('.email').value);
+		  	localStorage.setItem('password', document.querySelector('.password').value);
+		}
 	  }
 	}
 	catch {
@@ -78,12 +79,7 @@ const createUser = async user => {
    };
 
 if(localStorage.getItem('isFirst')) {
-	document.querySelector('.enter-cont').classList.add('hidden');
-	  	document.querySelector('.header').classList.remove('hidden');
-	  	getDeletedWords();
-	  	getDiffWords();
-	  	studiedWord--;
-	  	setTimeout(play, 1000);
+	loginUser({ "email": localStorage.getItem('email'), "password": localStorage.getItem('password') });
 }
 localStorage.removeItem('isFirst');
 
