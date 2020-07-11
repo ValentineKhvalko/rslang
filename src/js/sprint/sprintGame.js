@@ -1,4 +1,4 @@
-import RestAPI from '../restAPI';
+import RestAPI from './restAPI';
 
 class SprintGame {
   constructor(timeDuration, difficulty, wordsInGame) {
@@ -19,6 +19,14 @@ class SprintGame {
   async start() {
     document.querySelector('.sprint_progress-cover').setAttribute('stroke-dashoffset', 0);
     const result = await RestAPI.getAllWords(this.difficulty);
+    /* let result = {};
+    if (this.wordsInGame === 'all') {
+      result = await RestAPI.getAllWords(this.difficulty);
+    } else if (this.wordsInGame === 'known') {
+      result = await RestAPI.getKnownWords(this.difficulty);
+    } else {
+      result = await RestAPI.getNewWords(this.difficulty);
+    } */
     this.fillWordsDataAndTranslations(result);
     this.startCountdown();
   }
@@ -109,12 +117,12 @@ class SprintGame {
       if (this.pointsPerWord !== 80) {
         this.changeAndShowPointsPerWord(true);
       }
-      this.refreshPoints();
       this.addWordToStatistics(true);
     } else {
       this.changeAndShowPointsPerWord(false);
       this.addWordToStatistics(false);
     }
+    this.refreshPoints();
     document.querySelector('.sprint_main-card').classList.add(className);
     setTimeout(() => {
       document.querySelector('.sprint_main-card').classList.remove(className);

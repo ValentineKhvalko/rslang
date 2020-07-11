@@ -3,6 +3,8 @@ import SprintGame from './sprintGame';
 
 class SprintApp {
   static init() {
+    localStorage.setItem('isFirst', '1');
+
     document.querySelector('.sprint_timer').textContent = document.getElementById('sprint_time-duration').value;
 
     document.getElementById('sprint_start-game').addEventListener('click', () => {
@@ -14,7 +16,7 @@ class SprintApp {
       this.sprintGame = new SprintGame(
         document.querySelector('.sprint_time-duration').value,
         document.querySelector('.sprint_difficulty').value - 1,
-        'all',
+        document.querySelector('.sprint_words-in-game input[type="radio"]:checked').value,
       );
       this.sprintGame.start();
     });
@@ -26,7 +28,7 @@ class SprintApp {
       this.sprintGame = new SprintGame(
         document.querySelector('.sprint_time-duration').value,
         document.querySelector('.sprint_difficulty').value - 1,
-        'all',
+        document.querySelector('.sprint_words-in-game input[type="radio"]:checked').value,
       );
       this.sprintGame.start();
     });

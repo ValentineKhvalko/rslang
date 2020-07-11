@@ -345,12 +345,12 @@
 .success-list {
     margin-left: 50px;
     padding-bottom: 20px;
-    & .sprint_audio{
+    & .sprint_audio {
         width: 15px;
         height: 15px;
         background-size: 15px;
     }
-    & .sprint_layout-flex{
+    & .sprint_layout-flex {
         justify-content: left;
     }
 }
@@ -364,6 +364,9 @@
     background: white;
     & button {
         margin: 10px;
+        & a {
+            text-decoration: none;
+        }
     }
 }
 
