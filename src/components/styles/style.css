@@ -92,7 +92,7 @@ input.hidden {
 	width: 100%;
 }
 
-.settings-window, .games-window, .enter, .play-window, .delete-window, .diff-window {
+.settings-window, .games-window, .enter, .play-window, .delete-window, .diff-window, .diff-play-window, .stat-window {
 	transition: .5s;
 	margin: 0 auto;
 	width: 95%;
@@ -134,7 +134,7 @@ input.hidden {
 	font-size: 1.6rem;
 }
 
-.enter input, .word, .error {
+.enter input, .word, .diff-word .error {
 	transition: .5s;
 	cursor: pointer;
 	height: 30px;
@@ -188,7 +188,7 @@ input.hidden {
 	opacity: .5;
 }
 
-.word {
+.word, .diff-word {
 	font-size: 2rem;
 }
 
@@ -249,7 +249,6 @@ input.check {
     text-align: center;
     padding: 15px 25px;
     text-decoration: none;
-    min-width: 200px;
     color: #fff;
     background: #00c49d;
     border-radius: 4px;
@@ -264,7 +263,7 @@ input.check {
 	border: 1px;
 }
 
-.settings-button, .in, .next {
+.settings-button, .in, .next, .diff-next {
 	cursor: pointer;
 	display: inline-block;
     margin: 0 auto;
@@ -280,6 +279,10 @@ input.check {
     visibility: visible;
     transition: .15s;
     box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12)
+}
+
+.diff-next {
+	margin: 10px auto;
 }
 
 .settings-button:hover {
@@ -327,10 +330,14 @@ a {
 	text-decoration: none;
 }
 
-.translation, .meaning, .example, .transcription, .meaning-en, .example-en, .error {
+.translation, .meaning, .example, .transcription, .meaning-en, .example-en, .error, .diff-translation {
 	font-size: 2rem;
 }
 
 .meaning i, .example b, .meaning-en i, .example-en b, .error font {
+	font-size: 2rem;
+}
+
+.pro, .pro span {
 	font-size: 2rem;
 }

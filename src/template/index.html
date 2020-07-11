@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link href="https://discourse.disneyheroesgame.com/uploads/default/original/2X/0/07eed98242213b10b42fee60d7a84d04bc2f7259.jpeg" rel="shortcut icon" type="image/vnd.microsoft.icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Lang</title>
 </head>
@@ -21,6 +22,7 @@
 				    <option value="deleted">Удалённые</option>
 				    <option value="difficult">Сложные</option>
 				</select>
+				<span class="promo">Промо-страница</span>
 			</div>
 		</header>
 		<section class="enter-cont">
@@ -56,6 +58,12 @@
 				<p class="example-en hidden"></p>
 				<p class="transcription"></p>
 				<img class="photo">
+				<div class="price hidden">
+					<button class="button again">Снова</button>
+					<button class="button easy">Легко</button>
+					<button class="button middle">Средне</button>
+					<button class="button complex">Сложно</button>
+				</div>
 				<div class="bottom-buttons">
 					<button class="button next">Далее</button>
 					<button class="button answer hidden">Ответ</button>
@@ -81,6 +89,16 @@
 					<br>
 					<label class="set" for="slo">Кнопка "К Сложным": </label>
 					<input class="check" type="checkbox" name="slo" id="slo">
+					<br>
+					<label class="set" for="complexity">Кнопки сложности: </label>
+					<input class="check" type="checkbox" name="complexity" id="complexity">
+					<br>
+					<p class="razd">Слова</p>
+					<label class="set" for="new">Только новые: </label>
+					<input class="check" type="radio" name="nom" id="new" checked>
+					<br>
+					<label class="set" for="old">Только изученные: </label>
+					<input class="check" type="radio" name="nom" id="old">
 					<br>
 					<p class="razd">План на день</p>
 					<label class="set" for="new-words">Число новых слов: </label>
@@ -140,6 +158,33 @@
 				<div class="close diff-close">
 					<img class="diff-close-img" alt="close">
 				</div>
+				<button class="button diff-repeat">Повторить</button>
+				<div class="cards"></div>
+			</div>
+		</section>
+		<section class="df-pl hidden">
+			<div class="diff-play-window">
+				<div class="close diff-play-close">
+					<button class="diff-play-close-img button">На главную</button>
+				</div>
+				<br>
+				<input type="text" name="word" class="diff-word" autofocus>
+
+				<br>
+				<p class="diff-translation"></p>
+				<br>
+				<button class="button diff-next">Далее</button>
+			</div>
+		</section>
+		<section class="stat hidden">
+			<div class="stat-window">
+				<div class="close stat-close">
+					<img class="stat-close-img" alt="close">
+				</div>
+				<p class="pro">Количество пройденных карточек: <span class="cards-quantity"></span></p>
+				<p class="pro">Процент правильных ответов: <span class="proc"></span>%</p>
+				<p class="pro">Количество новых слов: <span class="newwords-quantity"></span></p>
+				<p class="pro">Самая длинная серия правильных ответов: <span class="seria"></span></p>
 			</div>
 		</section>
 </body>
