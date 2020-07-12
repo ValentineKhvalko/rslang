@@ -10,15 +10,19 @@ const ownGameLives = document.querySelector('.own_game_lives');
 const ownGameOkButton = document.querySelector('.own_game_change_type');
 const secondsOwnGame = document.querySelector('.own_game_sec');
 const thisScoreOwnGame = document.querySelector('.this-time-score');
-const ownGameCorrectAnswer = document.querySelector('.own_game_correct_sound');
-const ownGameIncorrectAnswer = document.querySelector('.own_game_incorrect_sound');
-const ownGameVictory = document.querySelector('.own_game_victory_sound');
+const ownGameCorrectAnswer = new Audio();
+const ownGameIncorrectAnswer = new Audio();
+const ownGameVictory = new Audio();
+ownGameCorrectAnswer.src = './sounds/correct.mp3';
+ownGameIncorrectAnswer.src = './sounds/incorrect.mp3';
+ownGameVictory.src = './sounds/victory.mp3';
 let ownGameAllAnswers;
 let ownGameAllSentences;
 let bestStatisticsOwnGame;
 let chosenAnswer;
 let timerOwnGame;
 localStorage.setItem('isFirst', '1');
+
 
 
 startOwnGameButton.addEventListener('click', () => {
@@ -134,8 +138,8 @@ function endOwnGame() {
     levelNamesContainerOwnGame.setAttribute('class', 'names_score_own_game');
     levelStatsContainerOwnGame.setAttribute('class', 'stats_score_own_game');
     scoreOwnGame.setAttribute('class', 'p_score_own_game');
-    scoreOwnGame.innerText = `Игра окнончена. Ваш счет: ${controllerOwnGame.score}, на уровне: ${controllerOwnGame.level + 1},
-     что-бы попробовать снова нажмете ОК, либо измените параметры игры и нажмите ОК. Список ваших лучших игр вы можете увидеть ниже.`;
+    scoreOwnGame.innerText = `Игра окончена. Ваш счет: ${controllerOwnGame.score}, на уровне: ${controllerOwnGame.level + 1},
+     что-бы попробовать снова нажмите ОК, либо измените параметры игры и нажмите ОК. Список ваших лучших игр вы можете увидеть ниже.`;
     if (bestStatisticsOwnGame[controllerOwnGame.level] < controllerOwnGame.score) {
         bestStatisticsOwnGame[controllerOwnGame.level] = controllerOwnGame.score;
         localStorage.setItem('ownGameBestStats', JSON.stringify(bestStatisticsOwnGame))

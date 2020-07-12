@@ -51,9 +51,12 @@ body {
     padding: 0 4px;
     font-size: 20px;
     padding-top: 3px;
+    border-radius: 5px;
+    background-color: rgba(129, 170, 154, 0.808);
+    border: 1px solid green;
 }
 .own_game_a:hover {
-    color: rgb(117, 76, 155);
+    background-color: rgb(156, 209, 189);
 }
 .own_game_container {
     width: 100vw;
@@ -69,9 +72,18 @@ body {
     background-color: rgba(99, 141, 124, 0.74);
     border-radius: 5px 5px 0 0;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 5px 0;
 }
 .own_game_select_level {
     font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba(129, 170, 154, 0.808);
+    border: 1px solid green;
+}
+.own_game_select_level:hover {
+    background-color: rgb(156, 209, 189);
 }
 .own_game_header_controls {
     display: flex;
@@ -158,9 +170,25 @@ body {
 }
 .own_game_select_type_game {
     font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba(129, 170, 154, 0.808);
+    border: 1px solid green;
+}
+.own_game_select_type_game:hover {
+    background-color: rgb(156, 209, 189);
 }
 .own_game_change_type {
     font-size: 20px;
+    border-radius: 5px;
+    background-color: rgba(129, 170, 154, 0.808);
+    border: 1px solid green;
+    outline: none;
+}
+.own_game_change_type:hover {
+    background-color: rgb(156, 209, 189);
+    cursor: pointer;
 }
 @keyframes this_score {
     from {
