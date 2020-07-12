@@ -14,7 +14,7 @@ function createWord(response, i) {
     english: response[i].word,
     translation: response[i].wordTranslate,
     mediaNumber: response[i].audio.substring(6, response[i].audio.length - 4),
-  }
+  };
 
   return word;
 }

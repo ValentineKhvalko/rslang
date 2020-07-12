@@ -1,6 +1,7 @@
 import './components/styles/speak-it.scss';
 
 document.querySelector('.img').src = require('../assets/img/blank.jpg').default;
+
 localStorage.setItem('isFirst', '1');
 
 let page = Math.round(-0.5 + Math.random() * (29 + 1));
@@ -11,6 +12,7 @@ const audio_icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                     </svg>`;
 const img = document.querySelector('.img');
 img.src = require('../assets/img/blank.jpg').default;
+
 const trans = document.querySelector('.trans');
 const input = document.querySelector('.input');
 const table = document.querySelector('.table');
@@ -38,12 +40,10 @@ if (!localStorage.getItem('dates')) {
 }
 
 function maxOfArr(arr) {
-  if(arr.length === 0)
-    return 0;
-  var t = arr[0];
-  for(var i = 0; i < arr.length; i += 1) {
-    if(t < arr[i])
-      t = arr[i];
+  if (arr.length === 0) return 0;
+  let t = arr[0];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (t < arr[i]) t = arr[i];
   }
   return t;
 }
@@ -169,7 +169,7 @@ recognizer.addEventListener('result', (event) => {
         }
       }
     }
-    if(t === maxNum) {
+    if (t === maxNum) {
       maxArr.push(maxNum);
       maxNum = 0;
     }
@@ -331,7 +331,7 @@ function locale(s = 0) {
       table.rows[i + 1].cells[0].innerHTML = dates[i];
       table.rows[i + 1].cells[1].innerHTML = suc[i];
       table.rows[i + 1].cells[2].innerHTML = err[i];
-      table.rows[i + 1].cells[3].innerHTML = +suc[i] * 10 + '%';
+      table.rows[i + 1].cells[3].innerHTML = `${+suc[i] * 10}%`;
       table.rows[i + 1].cells[4].innerHTML = mx[i];
     }
   } else {
@@ -351,7 +351,7 @@ function locale(s = 0) {
     table.rows[suc.length].cells[0].innerHTML = dates[suc.length - 1];
     table.rows[suc.length].cells[1].innerHTML = suc[suc.length - 1];
     table.rows[suc.length].cells[2].innerHTML = err[suc.length - 1];
-    table.rows[suc.length].cells[3].innerHTML = +suc[suc.length - 1] * 10 + '%';
+    table.rows[suc.length].cells[3].innerHTML = `${+suc[suc.length - 1] * 10}%`;
     table.rows[suc.length].cells[4].innerHTML = mx[suc.length - 1];
   }
   localStorage.setItem('dates', dates);
