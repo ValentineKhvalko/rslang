@@ -16,7 +16,8 @@ module.exports = {
     'page3': './src/sprint.js',
     'page4': './src/speak-it.js',
     'page5': './src/audio-call.js',
-    'page6': './src/promo.js'
+    'page6': './src/promo.js',
+    'page7': './src/ownGame.js'
   },
   output: {
     filename: isProduction ? 'js/[name].[contenthash:8].bundle.js' : '[name].bundle.js',
@@ -73,6 +74,11 @@ module.exports = {
       chunks: ['page6'],
       template: 'src/template/promo.html',
       filename: 'promo.html'
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['page7'],
+      template: 'src/template/ownGame.html',
+      filename: 'ownGame.html'
     }),
   ]
 };
