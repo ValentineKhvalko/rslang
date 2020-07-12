@@ -96,6 +96,12 @@ class Savannah {
     this.elem.classList.remove('savannah');
     this.elem.classList.add('savannah_game');
 
+    // Кнопка остановки игры
+    const stopGame = document.createElement('button');
+    stopGame.classList.add('stopGame');
+    stopGame.innerHTML = '<p>Остановите игру мне страшно</p>';
+    stopGame.addEventListener('click', () => this.stop());
+
     // Очки здоровья
     const hp = document.createElement('div');
     hp.classList.add('hp');
@@ -123,6 +129,7 @@ class Savannah {
       else timerBlock.innerHTML = `00:${this.roundDuration}`;
     }, 1000);
 
+    stateOfGame.append(stopGame);
     stateOfGame.append(timerBlock);
     stateOfGame.append(hp);
     this.elem.append(stateOfGame);
@@ -248,7 +255,7 @@ class Savannah {
 
     // Ul для правильных ответов
     const correctAnswersList = document.createElement('ul');
-    correctAnswersList.innerHTML = '<p>Правильные ответы</p>';
+    correctAnswersList.innerHTML = `<p>Правильных ответов: ${this.correctAnswers.length}</p>`;
     correctAnswersList.classList.add('savannah_result');
     this.correctAnswers.forEach((infoAboutWord) => {
       correctAnswersList.append(createSelectedAnswerLi(infoAboutWord));
@@ -257,7 +264,7 @@ class Savannah {
 
     // Ul для неправильных ответов
     const incorrectAnswersList = document.createElement('ul');
-    incorrectAnswersList.innerHTML = '<p>Неправильные ответы</p>';
+    incorrectAnswersList.innerHTML = `<p>Неправильных ответов: ${this.incorrectAnswers.length}</p>`;
     incorrectAnswersList.classList.add('savannah_result');
     this.incorrectAnswers.forEach((infoAboutWord) => {
       incorrectAnswersList.append(createSelectedAnswerLi(infoAboutWord));
@@ -307,8 +314,9 @@ class Savannah {
     this.roundDuration = 60;
   }
 
-  unmount() {
+  stop() {
     this.elem.innerHTML = '';
+    this.elem.classList.remove('savannah_game');
 
     clearInterval(this.oneSecInterval);
     clearTimeout(this.roundDuration);
@@ -319,6 +327,7 @@ class Savannah {
     this.correctAnswers = [];
     this.incorrectAnswers = [];
     this.roundDuration = 60;
+    this.mount();
   }
 }
 

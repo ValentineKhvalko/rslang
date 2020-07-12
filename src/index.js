@@ -554,7 +554,7 @@ function error() {
   if (arr1.length < arr2.length) s = arr1.length;
   else s = arr2.length;
 
-  for (let i = 0; i < s; i) {
+  for (let i = 0; i < s; i += 1) {
     if (arr1[i] !== arr2[i]) arr2[i] = `<font color=red>${arr2[i]}</font>`;
   }
   p2.innerHTML = arr2.join('');
@@ -659,7 +659,7 @@ const getDeletedWords = async () => {
   		},
   };
   	delObj = await getAgrWords(userI, token);
-  	for (let i = 0; i < delObj[0].paginatedResults.length; i) {
+  	for (let i = 0; i < delObj[0].paginatedResults.length; i += 1) {
   		const card = document.createElement('div');
 	    card.classList.add('card');
 	    const wid = document.createElement('div');
@@ -748,7 +748,7 @@ const getDiffWords = async () => {
   		},
   };
   	difObj = await getAgrWords(userI, token);
-  	for (let i = 0; i < difObj[0].paginatedResults.length; i) {
+  	for (let i = 0; i < difObj[0].paginatedResults.length; i += 1) {
   		const card = document.createElement('div');
 	    card.classList.add('card1');
 	    const wid = document.createElement('div');

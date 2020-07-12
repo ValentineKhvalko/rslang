@@ -7,7 +7,7 @@ const createSelectedAnswerLi = (infoAboutWord) => {
   voice.src = require('@assets/img/voice.jpg').default;
   voice.classList.add('voice');
   voice.addEventListener('click', () => new Audio(scrSound + infoAboutWord.audio).play());
-  p.innerHTML = infoAboutWord.word;
+  p.innerHTML = `${infoAboutWord.word} - ${infoAboutWord.wordTranslate} `;
 
   li.append(voice);
   li.append(p);
