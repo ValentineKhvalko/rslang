@@ -1,3 +1,343 @@
+* {
+	font-family: 'Calibri';
+	font-size: 10px;
+	margin: 0;
+}
 
+div.hidden, section.hidden, header.hidden, p.hidden, img.hidden, button.hidden {
+	display: none;
+}
 
+input.hidden {
+	opacity: 0;
+}
 
+.header {
+	background: #2C9090;
+	margin-bottom: 40px;
+}
+
+.header h1 {
+	font-size: 40px;
+	padding-top: 20px;
+    color: #6cffde;
+    opacity: .8;
+    text-transform: uppercase;
+    letter-spacing: 13px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.wrapper {
+	max-width: 940px;
+	padding: 0 40px;
+    margin: 0 auto;
+}
+
+.w-header {
+	padding: 40px 40px;
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.w-header span {
+	transition: .5s;
+	cursor: pointer;
+	font-size: 2rem;
+	vertical-align: middle;
+	color: #fff;
+	padding: 2px;
+}
+
+.w-header span:hover {
+	border-radius: 5px;
+	background: #00bf82;
+}
+
+.settings {
+	transition: .5s;
+	height: 24px;
+	margin: auto 0;
+	cursor: pointer;
+}
+
+.settings:hover {
+	color: #666D89;
+	transform: rotate(90deg);
+}
+
+/*.st {
+	padding-top: 40px;
+	transition: .5s;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+}*/
+
+.bg {
+	z-index: -5;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+}
+
+.st {
+	padding-bottom: 30px;
+}
+
+.photo {
+	width: 100%;
+}
+
+.settings-window, .games-window, .enter, .play-window, .delete-window, .diff-window, .diff-play-window, .stat-window {
+	transition: .5s;
+	margin: 0 auto;
+	width: 95%;
+    max-width: 780px;
+    background-color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}
+
+.enter-cont {
+	z-index: 1;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    transition: .5s;
+    background: linear-gradient(180deg,#0099ae,#00bf82 100%,#fff 0,#fff);
+}
+
+.enter, .play-window {
+	padding: 20px 0;
+}
+
+.translation {
+	font-size: 1.6rem;
+}
+
+.enter label {
+	cursor: pointer;
+	font-size: 1.6rem;
+}
+
+.enter input, .word, .diff-word .error {
+	transition: .5s;
+	cursor: pointer;
+	height: 30px;
+    border-radius: 5px;
+    background-color: #CFF2DF;
+    margin-bottom: 16px;
+    border: 0;
+    padding: 5px;
+    color: #757575;
+    font-size: 1.6rem;
+}
+
+.main-input {
+	position: relative;
+}
+
+.error {
+	transition: .5s;
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+    left: 46.5%;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.points {
+	margin-right: 5px;
+}
+
+.delete-window, .diff-window {
+	padding: 5px;
+}
+
+.card, .card1 {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5px;
+	width: 100%;
+}
+
+/*.card:first-child {
+	margin-top: 20px;
+}*/
+
+.card-item {
+	font-size: 1.2rem;
+}
+
+.inactive {
+	opacity: .5;
+}
+
+.word, .diff-word {
+	font-size: 2rem;
+}
+
+.enter input[type=radio] {
+	height: 13px;
+}
+
+.settings-window {
+	padding-bottom: 30px;
+}
+
+.settings-window input{
+	cursor: pointer;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #CFF2DF;
+    margin-bottom: 16px;
+    border: 0;
+    padding: 5px;
+    color: #757575;
+    font-size: 1.6rem;
+}
+
+.settings-form {
+	padding-top: 10%;
+}
+
+.settings-window input[type=number] {
+	width: 50px;
+}
+
+.set {
+	font-size: 2rem;
+}
+
+.razd {
+	font-size: 3rem;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+input.check {
+	height: 13px;
+}
+
+.bottom-buttons {
+	margin-top: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.button {
+	cursor: pointer;
+	display: inline-block;
+    margin: 10px auto;
+    appearance: none;
+    font-size: 24px;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #fff;
+    background: #00c49d;
+    border-radius: 4px;
+    visibility: visible;
+    transition: .15s;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}
+
+.delete {
+	border-radius: 30px;
+	background: red;
+	border: 1px;
+}
+
+.settings-button, .in, .next, .diff-next {
+	cursor: pointer;
+	display: inline-block;
+    margin: 0 auto;
+    appearance: none;
+    font-size: 24px;
+    text-align: center;
+    padding: 15px 25px;
+    text-decoration: none;
+    min-width: 200px;
+    color: #fff;
+    background: #00c49d;
+    border-radius: 4px;
+    visibility: visible;
+    transition: .15s;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12)
+}
+
+.diff-next {
+	margin: 10px auto;
+}
+
+.settings-button:hover {
+	background: #00c2b2;
+}
+
+.dict, .dict option {
+	font-size: 2rem;
+}
+
+.dict {
+	border-radius: 5px;
+}
+
+.pr-win {
+	display: flex;
+	justify-content: space-between;
+}
+
+.progress {
+	height: 15px;
+    width: 45%;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.close img {
+	cursor: pointer;
+	float: right;
+	margin: 5px;
+	transition: .2s;
+}
+.game {
+	color: black;
+    padding: 20px;
+    font-size: 2rem;
+    border-top: solid 1px gray;
+}
+
+.game:hover {
+	background-color: rgba(0, 173, 159, .15);
+}
+
+a {
+	text-decoration: none;
+}
+
+.translation, .meaning, .example, .transcription, .meaning-en, .example-en, .error, .diff-translation {
+	font-size: 2rem;
+}
+
+.meaning i, .example b, .meaning-en i, .example-en b, .error font {
+	font-size: 2rem;
+}
+
+.pro, .pro span {
+	font-size: 2rem;
+}

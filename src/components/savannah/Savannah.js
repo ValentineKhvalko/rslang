@@ -1,4 +1,4 @@
-import './style.scss';
+import '../styles/savannah.scss';
 import { createStatisticBlock } from './unists/statistic';
 import shuffle from './unists/shuffle';
 import createSelectedAnswerLi from './unists/createSelectedAnswerLi';
@@ -146,7 +146,7 @@ class Savannah {
       this.finish();
     }, this.roundDuration * 1000);
 
-    // Добавления слуаштеля нажатия на слово
+    // Добавления слуаштеля нажатия на вариант ответа
     for (let i = 0; i < this.difficulty; i += 1) {
       const li = document.createElement('li');
       li.classList.add('list');
@@ -246,18 +246,18 @@ class Savannah {
     const results = document.createElement('div');
     results.classList.add('s_results');
 
-    // Ul для правельных ответов
+    // Ul для правильных ответов
     const correctAnswersList = document.createElement('ul');
-    correctAnswersList.innerHTML = '<p>Correct Answers</p>';
+    correctAnswersList.innerHTML = '<p>Правильные ответы</p>';
     correctAnswersList.classList.add('savannah_result');
     this.correctAnswers.forEach((infoAboutWord) => {
       correctAnswersList.append(createSelectedAnswerLi(infoAboutWord));
     });
     results.append(correctAnswersList);
 
-    // Ul для неправельных ответов
+    // Ul для неправильных ответов
     const incorrectAnswersList = document.createElement('ul');
-    incorrectAnswersList.innerHTML = '<p>Incorrect Answers</p>';
+    incorrectAnswersList.innerHTML = '<p>Неправильные ответы</p>';
     incorrectAnswersList.classList.add('savannah_result');
     this.incorrectAnswers.forEach((infoAboutWord) => {
       incorrectAnswersList.append(createSelectedAnswerLi(infoAboutWord));

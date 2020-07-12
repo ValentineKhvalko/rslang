@@ -1,0 +1,93 @@
+@import "./constants";
+
+body {
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: $header-color;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 13px;
+    font-weight: 300;
+}
+
+h2 {
+    margin: 0;
+    font-size: 50px;
+    color: white;
+    opacity: 0.9;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 30px;
+    color: $header-color;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 25px;
+    color: $header-color;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+label {
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: $text-color;
+    opacity: 0.8;
+}
+
+input {
+    border: 1px solid #707070;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 32px;
+    opacity: 0.8;
+    background: $text-color;
+    margin: 5px 0;
+}
+
+p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 300;
+    color: $text-color;
+    opacity: 0.8;
+}
+
+button {
+    font-size: 24px;
+    padding: 15px 25px;
+    min-width: 200px;
+    color: $text-color;
+    background: $button-color;
+    border-radius: 4px;
+    transition: 0.3s;
+    box-shadow: 1px 1px 5px $shadow-color;
+    border: 0;
+    cursor: pointer;
+    &:hover {
+        background: $button-hover-color;
+        transform: scale(0.9, 0.9);
+    }
+}
+
+a {
+    color: $text-color;
+}
