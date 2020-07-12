@@ -47,7 +47,7 @@ const loginUser = async (user) => {
 	  	document.querySelector('.header').classList.remove('hidden');
 	  	getDeletedWords();
 	  	getDiffWords();
-	  	studiedWord--;
+	  	studiedWord -= 1;
 	  	setTimeout(play, 1000);
 	  	if (document.querySelector('.email').value.trim() !== '') {
 		  	localStorage.setItem('email', document.querySelector('.email').value);
@@ -156,7 +156,7 @@ const getStudiedWords = async () => {
   const str = studObj[0].paginatedResults[studIndex].image.substring(6, studObj[0].paginatedResults[studIndex].audio.length - 4);
   document.querySelector('.photo').src = `https://raw.githubusercontent.com/bobroden/rslang-data/master/data/${str}.jpg`;
   check();
-  studIndex;
+  studIndex += 1;
 };
 
 function play() {
@@ -165,8 +165,8 @@ function play() {
       nowWord = 0;
       if (page === 29) {
   				page = 0;
-  				group;
-  			} else page;
+  				group += 1;
+  			} else page += 1;
   			localStorage.setItem('page', page);
   			localStorage.setItem('group', group);
       getWords(page, group);
@@ -191,9 +191,9 @@ function play() {
         document.querySelector('.photo').src = `https://raw.githubusercontent.com/bobroden/rslang-data/master/data/${str}.jpg`;
         check();
         console.log(mainObj[nowWord].word);
-        numberWord;
-        nowWord;
-        studiedWord;
+        numberWord += 1;
+        nowWord += 1;
+        studiedWord += 1;
         localStorage.setItem('numberWord', numberWord);
         localStorage.setItem('studiedWord', studiedWord);
       } else if (document.querySelector('#old').checked) {
@@ -207,7 +207,7 @@ function play() {
         document.querySelector('.photo').src = `https://raw.githubusercontent.com/bobroden/rslang-data/master/data/${str}.jpg`;
         check();
         console.log(studObj[0].paginatedResults[studIndex].word);
-        studIndex;
+        studIndex += 1;
       }
     }
     document.querySelector('.meaning-en').classList.add('hidden');
@@ -222,8 +222,8 @@ function play() {
 }
 
 if (nowWord !== 0) {
-  numberWord--;
-  nowWord--;
+  numberWord -= 1;
+  nowWord -= 1;
 }
 
 const createUserWord = async ({ userId, wordId, word }) => {
@@ -464,8 +464,8 @@ document.querySelector('.next').addEventListener('click', () => {
 	  			wordId: mainObj[nowWord - 1].id,
 	  			word: { difficulty: 'studied' },
 	  		});
-	  		numberCard;
-	  		seria;
+	  		numberCard += 1;
+	  		seria += 1;
 	  		maxSer(maxSeria, seria);
 	  		localStorage.setItem('maxSeria', maxSeria);
 	  		localStorage.setItem('seria', seria);
@@ -476,8 +476,8 @@ document.querySelector('.next').addEventListener('click', () => {
   } else if (document.querySelector('#old').checked) {
     if (document.querySelector('.word').value === studObj[0].paginatedResults[studIndex - 1].word) {
       right();
-      numberCard;
-      seria;
+      numberCard += 1;
+      seria += 1;
 	  		maxSer(maxSeria, seria);
 	  		localStorage.setItem('maxSeria', maxSeria);
 	  		localStorage.setItem('seria', seria);
@@ -498,8 +498,8 @@ document.addEventListener('keydown', (e) => {
 		  			wordId: mainObj[nowWord - 1].id,
 		  			word: { difficulty: 'studied' },
 		  		});
-		  		numberCard;
-		  		seria;
+		  		numberCard += 1;
+		  		seria += 1;
 	  			maxSer(maxSeria, seria);
 	  			localStorage.setItem('maxSeria', maxSeria);
 	  			localStorage.setItem('seria', seria);
@@ -510,8 +510,8 @@ document.addEventListener('keydown', (e) => {
     } else if (document.querySelector('#old').checked) {
       if (document.querySelector('.word').value === studObj[0].paginatedResults[studIndex - 1].word) {
         right();
-        numberCard;
-        seria;
+        numberCard += 1;
+        seria += 1;
 	  			maxSer(maxSeria, seria);
 	  			localStorage.setItem('maxSeria', maxSeria);
 	  			localStorage.setItem('seria', seria);
@@ -561,7 +561,7 @@ function error() {
 
   document.querySelector('.word').classList.add('hidden');
   document.querySelector('.error').classList.remove('hidden');
-  err;
+  err += 1;
   seria = 0;
   localStorage.setItem('err', err);
   setTimeout(opacity, 1000);
@@ -591,7 +591,7 @@ document.querySelector('.answer').addEventListener('click', () => {
   else document.querySelector('.price').classList.add('hidden');
 
   if (document.querySelector('#voice').checked) audio();
-  studiedWord--;
+  studiedWord -= 1;
   setTimeout(play, 2000);
 });
 
@@ -647,7 +647,7 @@ document.querySelector('.delete').addEventListener('click', () => {
   		wordId: mainObj[nowWord - 1].id,
   		word: { difficulty: 'deleted' },
   	});
-  	studiedWord--;
+  	studiedWord -= 1;
   	play();
 });
 
@@ -736,7 +736,7 @@ document.querySelector('.sloj').addEventListener('click', () => {
   		wordId: mainObj[nowWord - 1].id,
   		word: { difficulty: 'difficult' },
   	});
-  	studiedWord--;
+  	studiedWord -= 1;
   	play();
 });
 
@@ -793,7 +793,7 @@ document.querySelector('.diff-repeat').addEventListener('click', () => {
 
 document.querySelector('.diff-next').addEventListener('click', () => {
   if (document.querySelector('.diff-word').value === difObj[0].paginatedResults[diffIndex].word) {
-    diffIndex;
+    diffIndex += 1;
     if (diffIndex === difObj[0].paginatedResults.length) {
       alert('Вы прошли все изученные слова!');
       document.querySelector('.df-pl').classList.add('hidden');
