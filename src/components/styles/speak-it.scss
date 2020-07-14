@@ -91,6 +91,30 @@ section.hidden {
 .image {
   text-align: center;
 }
+
+.onMainPage {
+  position: absolute;
+  top: 20px;
+	left: 20px;
+  z-index: 9999;
+  appearance: none;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+  background: #00c49d;
+  display: block;
+  border-radius: 4px;
+  transition: .15s;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 2px 4px 0 rgba(14,30,37,.12);
+}
+
+.onMainPage:hover {
+    background: #00c2b2;
+    transform: scale(0.9, 0.9);
+}
+
 .img {
   width: 100%;
   max-width: 790px;
@@ -188,6 +212,7 @@ section.hidden {
 }
 .button {
     display: inline-block;
+    cursor: pointer;
     margin: 10px auto;
     appearance: none;
     font-size: 24px;
@@ -204,6 +229,7 @@ section.hidden {
 }
 .button:hover {
     background: #00c2b2;
+    transform: scale(0.9, 0.9);
 }
 .score {
   display: flex;

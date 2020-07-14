@@ -94,6 +94,7 @@ getWords(page, group);
 
 document.querySelector('.start-button').addEventListener('click', () => {
   document.querySelector('.start').classList.add('hidden');
+  document.querySelector('.onMainPage').style.display = 'none';
   document.querySelector('.main').classList.remove('hidden');
 });
 
