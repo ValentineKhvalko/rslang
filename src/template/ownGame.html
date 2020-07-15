@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://discourse.disneyheroesgame.com/uploads/default/original/2X/0/07eed98242213b10b42fee60d7a84d04bc2f7259.jpeg" rel="shortcut icon" type="image/vnd.microsoft.icon">
+  <title>Own Game</title>
+</head>
+<body class="body_own_game">
+  <div class="start_screen_own">
+    <h1 class="own_game_h1">Our Own Game</h1>
+    <p class="start_screen_own_p">Привет, в этой игре вам нужно перевести слова в предложениях которые будут даны.</p>
+    <p class="start_screen_own_p">Что-бы это сделать нужно выбрать слово из списка слов и кликнуть на подходящее предложение.</p>
+    <p class="start_screen_own_p">Есть 2 режима игры, предложения на русском или английском, и есть рандом.</p>
+    <button class="start_screen_own_button">Start Game</button>
+  </div>
+  <div class="own_game_container display_none">
+    <div class="this-time-score">100</div>
+    <div class="own_game_header">
+      <div class="own_game_header_controls">
+        <select class="own_game_select_level">
+          <option value="0">Уровень 1</option>
+          <option value="1">Уровень 2</option>
+          <option value="2">Уровень 3</option>
+          <option value="3">Уровень 4</option>
+          <option value="4">Уровень 5</option>
+          <option value="5">Уровень 6</option> 
+        </select>
+        <select class="own_game_select_type_game">
+          <option value="0">English</option>
+          <option value="1">Russian</option>
+        </select>
+        <button class="own_game_change_type">OK</button>
+      </div>
+      <div class="own_game_header_values">
+        <a href="./index.html" rel="noopener noreferrer" class="own_game_a">На главную</a>
+        <div class="own_game_lives_container"><span class="own_game_lives">5</span><div class="heart"></div></div>
+        <div class="own_game_timer"><span class="own_game_sec">60</span></div>
+      </div>   
+    </div>
+    <div class="own_game_body"></div>
+    <div class="own_game_answer_container"></div>
+  </div>
+</body>
+</html>

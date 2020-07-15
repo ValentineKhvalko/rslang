@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://discourse.disneyheroesgame.com/uploads/default/original/2X/0/07eed98242213b10b42fee60d7a84d04bc2f7259.jpeg" rel="shortcut icon" type="image/vnd.microsoft.icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS Lang</title>
+</head>
+<body>
+	<div class="bg">
+	</div>
+		<header class="header">
+			<h1>RS Lang</h1>
+			<div class="wrapper w-header">
+				<span class="card-settings settings">
+					<p>Настройки карточек</p>
+					<img class="settings-img" alt="settings">
+				</span>
+				<span class="games">Игры</span>
+				<span class="static">Статистика</span>
+				<select class="dict">
+				    <option value="0">Словарь</option>
+				    <option value="deleted">Удалённые</option>
+				    <option value="difficult">Сложные</option>
+				</select>
+				<span><a href="promo.html" class="promo">Промо-страница</a></span>
+			</div>
+		</header>
+		<section class="enter-cont">
+			<div class="enter">
+				<form class="begin" method="post" action="" onsubmit="return false">
+					<label for="enter">Войти</label>
+					<input type="radio" name="ent" id="enter" checked>
+					<label for="reg">Зарегистрироваться</label>
+					<input type="radio" name="ent" id="reg"><br>
+					<input class="email" type="email" name="email" placeholder="Email" required><br>
+					<input class="password" type="password" name="password" placeholder="Password" required><br>
+					<p>	* Пароль должен быть на английском языке и содержать не менее 8 символов, как минимум одну прописную букву, заглавную букву, цифру и спецсимвол. <br>Пример - Pass_123</p>
+					<br>
+					<button class="in">OK</button>
+				</form>
+			</div>
+		</section>
+		<section class="pl">
+			<div class="play-window">
+				<div class="gigh-buttons"></div>
+				<div class="pr-win">
+					<progress class="progress" value="0" max="100"></progress>
+					<div class="completed-card">
+						<p>Количество выполненных карточек</p>
+						<div class="points"></div>
+					</div>
+				</div>
+				<hr><br>
+				<div class="main-input">
+					<input type="text" name="word" class="word" autofocus>
+					<div class="error hidden"></div>
+				</div>
+				<hr><br>
+				<p class="translation"></p>
+				<p class="meaning"></p>
+				<p class="example"></p>
+				<p class="meaning-en hidden"></p>
+				<p class="example-en hidden"></p>
+				<p class="transcription"></p>
+				<img class="photo">
+				<div class="price hidden">
+					<button class="button again">Снова</button>
+					<button class="button easy">Легко</button>
+					<button class="button middle">Средне</button>
+					<button class="button complex">Сложно</button>
+				</div>
+				<div class="bottom-buttons">
+					<button class="button next">Далее</button>
+					<button class="button answer hidden">Ответ</button>
+					<button class="button delete hidden">Удалить</button>
+					<button class="button sloj hidden">К сложным</button>
+				</div>
+			</div>
+		</section>
+		<section class="st hidden">
+			<div class="settings-window">
+				<div class="close settings-close">
+					<img class="settings-close-img" alt="close">
+				</div>
+				<form class="settings-form" method="post" action="" onsubmit="return false">
+					<label class="set" for="voice">Произношение: </label>
+					<input class="check" type="checkbox" name="voice" id="voice">
+					<br>
+					<label class="set" for="answ">Кнопка показа ответа: </label>
+					<input class="check" type="checkbox" name="answ" id="answ">
+					<br>
+					<label class="set" for="del">Кнопка удаления: </label>
+					<input class="check" type="checkbox" name="del" id="del">
+					<br>
+					<label class="set" for="slo">Кнопка "К Сложным": </label>
+					<input class="check" type="checkbox" name="slo" id="slo">
+					<br>
+					<label class="set" for="complexity">Кнопки сложности: </label>
+					<input class="check" type="checkbox" name="complexity" id="complexity">
+					<br>
+					<p class="razd">Слова</p>
+					<label class="set" for="new">Только новые: </label>
+					<input class="check" type="radio" name="nom" id="new" checked>
+					<br>
+					<label class="set" for="old">Только изученные: </label>
+					<input class="check" type="radio" name="nom" id="old">
+					<br>
+					<p class="razd">План на день</p>
+					<label class="set" for="new-words">Число новых слов: </label>
+					<input type="number" name="new-words" id="new-words">
+					<br>
+					<label class="set" for="cards-words">Число карточек со словами: </label>
+					<input type="number" name="cards-words" id="cards-words">
+					<p class="razd">Главная информация на карточках</p>
+					<label class="set" for="translation" checked>Перевод слова: </label>
+					<input class="check m-check" type="checkbox" name="translation" id="translation">
+					<br>
+					<label class="set" for="explanation">Перевод предложения с объяснением значения слова: </label>
+					<input class="check m-check" type="checkbox" name="explanation" id="explanation">
+					<br>
+					<label class="set" for="example">Перевод предложения с примером использования слова: </label>
+					<input class="check m-check" type="checkbox" name="example" id="example">
+					<br>
+					<label class="set" for="explanation-en">Предложение с объяснением значения слова: </label>
+					<input class="check" type="checkbox" name="explanation-en" id="explanation-en">
+					<br>
+					<label class="set" for="example-en">Предложение с примером использования слова: </label>
+					<input class="check" type="checkbox" name="example-en" id="example-en">
+					<br>
+					<p class="razd">Дополнительно</p>
+					<label class="set" for="transcription">Транскрипция: </label>
+					<input class="check" type="checkbox" name="transcription" id="transcription">
+					<br>
+					<label class="set" for="photo">Фото: </label>
+					<input class="check" type="checkbox" name="photo" id="photo">
+					<br>
+					<button class="settings-button">OK</button>
+				</form>
+			</div>
+		</section>
+		<section class="gm hidden">
+			<div class="games-window">
+				<div class="close games-close">
+					<img class="games-close-img" alt="close">
+				</div>
+				<a href="speak-it.html"><div class="game speak-it">SpeakIt</div></a>
+				<a href="savannah.html"><div class="game savanna">Саванна</div></a>
+				<a href="audio-call.html"><div class="game audiocall">Аудиовызов</div></a>
+				<a href="sprint.html"><div class="game sprint">Спринт</div></a>
+				<a href="ownGame.html"><div class="game our-game">Своя игра</div></a>
+			</div>
+		</section>
+		<section class="dl hidden">
+			<div class="delete-window">
+				<div class="close delete-close">
+					<img class="delete-close-img" alt="close">
+				</div>
+			</div>
+		</section>
+		<section class="df hidden">
+			<div class="diff-window">
+				<div class="close diff-close">
+					<img class="diff-close-img" alt="close">
+				</div>
+				<button class="button diff-repeat">Повторить</button>
+				<div class="cards"></div>
+			</div>
+		</section>
+		<section class="df-pl hidden">
+			<div class="diff-play-window">
+				<div class="close diff-play-close">
+					<button class="diff-play-close-img button">На главную</button>
+				</div>
+				<br>
+				<input type="text" name="word" class="diff-word" autofocus>
+
+				<br>
+				<p class="diff-translation"></p>
+				<br>
+				<button class="button diff-next">Далее</button>
+			</div>
+		</section>
+		<section class="stat hidden">
+			<div class="stat-window">
+				<div class="close stat-close">
+					<img class="stat-close-img" alt="close">
+				</div>
+				<p class="pro">Количество пройденных карточек: <span class="cards-quantity"></span></p>
+				<p class="pro">Процент правильных ответов: <span class="proc"></span>%</p>
+				<p class="pro">Количество новых слов: <span class="newwords-quantity"></span></p>
+				<p class="pro">Самая длинная серия правильных ответов: <span class="seria"></span></p>
+			</div>
+		</section>
+</body>
+</html>

@@ -1,0 +1,313 @@
+#app_savannah {
+  font-family: Calibri;
+  background: linear-gradient(180deg,#bf7300,#ae1400 100%,#fff 0,#fff);
+  position: relative;
+  min-height: 100vh;
+  color: rgb(255, 255, 255);
+  animation: appearance ease 2s;
+}
+
+li {
+  list-style-type: none;
+}
+
+.savannah {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10vw 0 0;
+
+  .rulesOfGame {
+    color: white;
+    padding: 50px 20px 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+  }
+
+  .countdown {
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: calc(50% - 30px);
+    left: calc(50% - 10px);
+  }
+
+  .difficultyBlock {
+    color: #fff;
+    font-size: 20px;
+    padding-bottom: 50px;
+    text-align: center;
+
+    .select {
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba($color: #e48a03, $alpha: .9);
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.savannah_game {
+  display: flex;
+  flex-direction: column;
+  padding: 10vw 20px 0;
+
+  .oneHp {
+    width: 40px;
+    height: 40px;
+  }
+
+  .stateOfGame {
+    display: flex;
+    justify-content: space-between;
+    font-size: 32px;
+    color: #fff;
+
+    .timer {
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .hp {
+      width: 300px;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+  }
+
+  .currentWord {
+    position: relative;
+    font-size: 32px;
+    margin: 70px auto;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: 400;
+    color: #000;
+    background-color: #fff;
+    border-radius: 5px;
+
+    .shadowBlock {
+      position: absolute;
+      display: block;
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 0;
+      transition: none;
+      background-color: rgba(119, 119, 119, 0.4);
+    }
+
+    .animationShadowBlock {
+      width: 100%;
+      animation: anim 5s;
+    }
+  }
+
+  .options {
+    display: flex;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .list {
+      margin: 5px;
+      padding: 15px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        color: rgb(255, 255, 255);
+        border-color: rgb(255, 255, 255);
+      }
+    }
+
+    .correct {
+      color: rgb(255, 255, 255);
+      border-color: rgb(255, 255, 255);
+      background-color: green;
+    }
+
+    .fail {
+      color: rgb(255, 255, 255);
+      border-color: rgb(255, 255, 255);
+      background-color: red;
+    }
+  }
+} 
+
+.statisticBlock {
+  margin-top: 40px;
+  justify-content: center;
+  display: flex;
+
+  .statisticScale {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .yAxisScale {
+      position: absolute;
+      display: flex;
+      flex-direction: column-reverse;
+      bottom: 10px;
+      left: 0;
+
+      .numeralsY {
+        padding-bottom: 34px;
+      }
+    }
+
+    .xAxisScale {
+      position: absolute;
+      display: flex;
+      bottom: 0;
+      left: 15px;
+
+      .numeralsX{
+        padding-right: 17px;
+      }
+    }
+  }
+}
+
+.s_results {
+  display: flex;
+  justify-content: space-around;
+
+  .savannah_result {
+    color: #fff;
+    padding: 40px 20px;
+    font-size: 32px;
+
+    p {
+      padding: 20px 0;
+    }
+
+    li {
+      font-size: 20px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+
+      p {
+        padding: 0 20px;
+      }
+    
+      .voice {
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+
+.Button {
+  font-size: 32px;
+  padding: 20px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: #e48a03;
+  border: 0;
+  border-radius: 5px;
+  transition: 0.15s;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px 0 rgba(14, 30, 37, 0.12);
+  &:hover {
+    background: #dba226;
+    transform: scale(0.9, 0.9);
+  }
+}
+
+.toStartPageButton, .toStatistics, .buttonToResult, .beginning, .stopGame {
+  margin: 60px 20px 0;
+  font-size: 20px;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 2px;
+  background: #e48a03;
+  border: 0;
+  border-radius: 5px;
+  transition: 0.15s;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 4px 0 rgba(14, 30, 37, 0.12);
+  &:hover {
+    background: #dba226;
+    transform: scale(0.9, 0.9);
+  }
+}
+
+.buttonToResult {
+  margin: 20px 20px;
+}
+
+.beginning {
+  background: #cc410a;
+  margin: 20px 20px 0;
+  &:hover {
+    background: #e41515;
+    transform: scale(0.9, 0.9);
+  }
+}
+
+.stopGame {
+  margin: 0;
+  letter-spacing: 0;
+  padding: 10px;
+}
+
+.canvas {
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  margin: 20px;
+}
+
+.displayNone {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .savannah_game {
+
+    .currentWord {
+      margin: 20px 0;
+      padding: 10px;
+    }
+
+    .stateOfGame {
+      display: block;
+    }
+  }
+
+  .s_results {
+    flex-direction: column;
+  }
+}
+
+@keyframes anim {
+  0% {width: 0;}
+  100% {width: 100%;}
+}
+
+@keyframes appearance {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
