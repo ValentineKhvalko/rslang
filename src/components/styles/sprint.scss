@@ -1,0 +1,375 @@
+@import "./constants";
+@import "./base";
+
+.sprint_layout-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.sprint_start-screen {
+    padding-top: 30vh;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        $first-background-color,
+        $second-background-color 100%,
+        $text-color 0,
+        $text-color
+    );
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sprint_game-description {
+    margin-bottom: 60px;
+    @media (max-width: 425px) {
+        max-width: 300px;
+    }
+}
+
+.sprint_settings {
+    left: calc(50vw - 170px);
+    top: 35vh;
+    position: fixed;
+    z-index: 1;
+    background: $first-background-color;
+    padding: 40px;
+    box-shadow: 0 0 10px 100vh #3a313180, 2px 2px 5px $shadow-color;
+    border-radius: 5px;
+    @media (max-width: 425px) {
+        padding: 40px 20px;
+        left: calc(50vw - 150px);
+    }
+}
+
+.sprint_close-button {
+    padding: 5px 0;
+    margin-top: 15px;
+}
+
+.sprint_words-in-game label {
+    display: block;
+    margin: 0 1px;
+    cursor: pointer;
+    &:first-child input {
+        border-radius: 10px 0 0 10px;
+    }
+    &:last-child input {
+        border-radius: 0 10px 10px 0;
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+}
+
+.sprint_words-in-game input {
+    border-radius: 0;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 7px 0;
+    transition: all 0.1s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: 0.5;
+    &:checked {
+        box-shadow: 1px 1px 3px $shadow-color;
+        opacity: 0.8;
+        & + span {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        transform: scale(0.95, 0.95);
+    }
+    &:focus {
+        outline: transparent;
+    }
+    & + span {
+        opacity: 0.65;
+        transition: opacity 0.1s ease-in-out;
+        padding-left: 10px;
+    }
+}
+
+.sprint_countdown {
+    background: $shadow-color;
+    margin: calc(64vh - 350px) calc(50vw - 87px);
+    position: fixed;
+    z-index: 1;
+    box-shadow: 0 0 10px 100vh $shadow-color;
+    & span {
+        color: $text-color;
+        font-size: 350px;
+    }
+}
+
+.sprint_game {
+    width: 100%;
+    height: 100%;
+    background: url("../../../assets/img/background.jpg") no-repeat right center fixed;
+    background-size: cover;
+    text-align: center;
+    position: absolute;
+}
+
+.sprint_main-card {
+    margin: 20vh 20vw 0;
+    background: #ffffff;
+    box-shadow: 2px 2px 5px $shadow-color;
+    border-radius: 4px;
+    @media (max-width: 768px) {
+        margin: 15vh 20vw 0;
+    }
+    @media (max-width: 425px) {
+        margin: 5vh 20vw 0;
+    }
+}
+
+.wrong-answer_colored {
+    outline: 3px solid red;
+}
+
+.correct-answer_colored {
+    outline: 3px solid green;
+}
+
+.sprint_points-container {
+    padding: 3vh 0;
+    &.sprint_first-level {
+        background: $sprint-first-level;
+    }
+    &.sprint_second-level {
+        background: $sprint-second-level;
+    }
+    &.sprint_third-level {
+        background: $sprint-third-level;
+    }
+    &.sprint_fourth-level {
+        background: $sprint-fourth-level;
+    }
+    opacity: 0.9;
+}
+
+.sprint_correct-answers-in-a-row {
+    height: 40px;
+}
+
+.sprint_success-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 0 10px;
+    background: url("../../../assets/img/success.png") center center no-repeat;
+}
+
+.sprint_checkmark-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url("../../../assets/img/checkmark.png") center center no-repeat;
+}
+
+.sprint_timer-circle {
+    margin: 40px auto;
+    border: 6px solid $first-background-color;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+}
+
+.sprint_progress {
+    margin-top: 40px;
+}
+
+.sprint_progress svg {
+    transform: rotate(270deg);
+}
+
+.sprint_progress-background {
+    stroke: $shadow-color;
+    opacity: 0.5;
+}
+
+.sprint_progress-cover {
+    &.sprint_first-level {
+        stroke: $sprint-first-level;
+    }
+    &.sprint_second-level {
+        stroke: $sprint-second-level;
+    }
+    &.sprint_third-level {
+        stroke: $sprint-third-level;
+    }
+    &.sprint_fourth-level {
+        stroke: $sprint-fourth-level;
+    }
+}
+
+.sprint_timer-container {
+    margin: -93px 0 51px;
+}
+
+.sprint_timer {
+    font-size: 50px;
+    font-weight: 500;
+    &.sprint_first-level {
+        color: $sprint-first-level;
+    }
+    &.sprint_second-level {
+        color: $sprint-second-level;
+    }
+    &.sprint_third-level {
+        color: $sprint-third-level;
+    }
+    &.sprint_fourth-level {
+        color: $sprint-fourth-level;
+    }
+}
+
+.sprint_audio {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: url("../../../assets/img/audio.png") center center no-repeat;
+    margin-right: 10px;
+    &.sprint_first-level {
+        filter: invert(49%) sepia(81%) saturate(2456%) hue-rotate(129deg) brightness(99%) contrast(104%);
+    }
+    &.sprint_second-level {
+        filter: invert(59%) sepia(66%) saturate(2260%) hue-rotate(333deg) brightness(88%) contrast(94%);
+    }
+    &.sprint_third-level {
+        filter: invert(58%) sepia(19%) saturate(4924%) hue-rotate(288deg) brightness(83%) contrast(86%);
+    }
+    &.sprint_fourth-level {
+        filter: invert(52%) sepia(21%) saturate(2444%) hue-rotate(180deg) brightness(99%) contrast(89%);
+    }
+}
+
+.sprint_words h3 {
+    margin: 0;
+    &.sprint_first-level {
+        color: $sprint-first-level;
+    }
+    &.sprint_second-level {
+        color: $sprint-second-level;
+    }
+    &.sprint_third-level {
+        color: $sprint-third-level;
+    }
+    &.sprint_fourth-level {
+        color: $sprint-fourth-level;
+    }
+}
+
+.sprint_cards-buttons {
+    margin: 30px 0;
+}
+
+.sprint_game-button {
+    padding: 10px 0;
+    min-width: 125px;
+    margin: 10px;
+    &.game-button__wrong {
+        background: $button-wrong-color;
+        &:hover {
+            background: $button-hover-wrong-color;
+        }
+    }
+}
+
+.sprint_action-buttons {
+    margin: 0 20vw;
+}
+
+.sprint_game-action {
+    margin: 15px;
+}
+
+.sprint_statistics {
+    top: 15vh;
+    max-width: 800px;
+    max-height: 70vh;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    background: #3a313180;
+    box-shadow: 0 0 10px 100vh #3a313180, 2px 2px 5px #026b7969;
+    border-radius: 5px;
+}
+
+.sprint_game-content {
+    overflow: overlay;
+}
+
+.sprint_game-result {
+    display: block;
+    padding: 15px;
+    background: white;
+    border-radius: 4px;
+    overflow: overlay;
+    max-width: 800px;
+    max-height: 70vh;
+}
+
+.game-errors,
+.game-success {
+    color: black;
+}
+
+.errors-number {
+    background-color: $sprint-second-level;
+    color: #fff;
+    padding: 0 14px;
+    border-radius: 21px;
+    margin-left: 5px;
+}
+
+.success-number {
+    background-color: $sprint-first-level;
+    color: #fff;
+    padding: 0 14px;
+    border-radius: 21px;
+    margin-left: 5px;
+}
+
+.error-list,
+.success-list {
+    margin-left: 50px;
+    padding-bottom: 20px;
+    & .sprint_audio {
+        width: 15px;
+        height: 15px;
+        background-size: 15px;
+    }
+    & .sprint_layout-flex {
+        justify-content: left;
+    }
+}
+
+.error-list p,
+.success-list p {
+    color: black;
+}
+
+.sprint_result-buttons {
+    background: white;
+    & button {
+        margin: 10px;
+        & a {
+            text-decoration: none;
+        }
+    }
+}
+
+.disabled {
+    pointer-events: none;
+}

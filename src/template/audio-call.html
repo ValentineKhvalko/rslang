@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://discourse.disneyheroesgame.com/uploads/default/original/2X/0/07eed98242213b10b42fee60d7a84d04bc2f7259.jpeg" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <title>Rs Lang - Audio</title>
+</head>
+
+<body>
+    <div class="a_start">
+        <h1>Аудиовызов</h1>
+        <p>Тренировка Аудиовызов развивает понимание иностранных слов на слух.<br>
+            Используй кнопки 1,2,3,4,5 или клик мыши для ответа. Удачной игры!
+            <br><br>
+            Перед началом игры можно изменить <a class="a_settings-link" href="">Настройки</a>.</p>
+        <div class="a_settings a_hidden">
+            <div>
+                <label for="a_difficulty">Уровень сложности:</label>
+                <input type="number" min="1" max="6" value="1" id="a_difficulty" class="a_difficulty">
+            </div>
+            <div>
+                <label for="a_round">Раунд:</label>
+                <input type="number" min="1" max="30" value="1" id="a_round" class="a_round">
+            </div>
+            <label for="a_words-in-game">В игре использовать слова:</label>
+            <div id="a_words-in-game" class="a_words-in-game a_layout-flex">
+
+                <label><input type="radio" id="a_all-words" name="words" value="all"><span>все</span></label>
+                <label><input type="radio" id="a_known-words" name="words" value="known"><span>изученные</span></label>
+                <label><input type="radio" id="a_unknown-words" name="words" value="unknown"
+                        checked><span>новые</span></label>
+            </div>
+            <button class="a_close-button">Ок</button>
+        </div>
+        <button class="a_start-button">Начать</button>
+    </div>
+    <div class="a_game a_hidden">
+        <a class="a_game-settings-link" href=""> Вернуться на старт </a>
+        <div class="a_image">
+            <img class="a_img a_audio" src="" alt="">
+            <div class="a_currentWordInfo">
+                <img class="a_img-small a_audio" src="" alt="">
+                <p class="a_word"></p>
+            </div>
+        </div>
+        <div class="a_items">
+        </div>
+        <div class="a_buttons">
+            <button class="a_answer-button a_hidden">Не знаю</button>
+            <button class="a_next-button">Дальше &rarr; </button>
+        </div>
+    </div>
+    <div class="a_results a_hidden">
+        <div class="a_results-container">
+            <p class="a_errors">Ошибок
+                <span id="a_errors-num"></span>
+            </p>
+            <div id="a_error-list">
+            </div>
+            <p class="a_success">Знаю
+                <span id="a_success-num"></span>
+            </p>
+            <div id="a_success-list"></div>
+            <div class="a_result-buttons">
+                <button class="a_restart-button" >Повторить игру</button>
+                <a href="index.html" class="a_home-button">На главную</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

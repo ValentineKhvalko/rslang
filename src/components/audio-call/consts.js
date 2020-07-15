@@ -1,0 +1,11 @@
+export const answerButton = document.querySelector('.a_answer-button');
+export const nextButton = document.querySelector('.a_next-button');
+export const itemsContainer = document.querySelector('.a_items');
+export const audioIcons = document.getElementsByClassName('a_audio');
+export const currentWordInfo = document.querySelector('.a_currentWordInfo');
+export const image = document.querySelector('.a_img');
+export const errorList = document.getElementById('a_error-list');
+export const successList = document.getElementById('a_success-list');
+export const successNumber = document.getElementById('a_success-num');
+export const errorNumber = document.getElementById('a_errors-num');
+export const numbers = [1, 2, 3, 4, 5];
