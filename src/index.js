@@ -55,7 +55,7 @@ const loginUser = async (user) => {
       }
 	  }
   } catch (e) {
-    console.log('Error!:', e);
+    alert('Вы ввели не правильный логин или пароль');
   }
 };
 
@@ -72,7 +72,7 @@ const createUser = async (user) => {
     const content = await rawResponse.json();
     loginUser({ email: document.querySelector('.email').value, password: document.querySelector('.password').value });
  	} catch (e) {
- 		console.log('Error!:', e);
+ 		alert('Некоректный ввод данных');
  	}
 };
 
@@ -144,10 +144,11 @@ const getStudiedWords = async () => {
     		difficulty: 'studied',
   		},
   };
-  	studObj = await getAgrWords(userI, token);
-  	studIndex = 0;
-  	shuffle(studObj[0].paginatedResults);
-  	document.querySelector('.translation').innerHTML = studObj[0].paginatedResults[studIndex].wordTranslate;
+
+  studObj = await getAgrWords(userI, token);
+  studIndex = 0;
+  shuffle(studObj[0].paginatedResults);
+  document.querySelector('.translation').innerHTML = studObj[0].paginatedResults[studIndex].wordTranslate;
   document.querySelector('.transcription').innerHTML = studObj[0].paginatedResults[studIndex].transcription;
   document.querySelector('.meaning').innerHTML = studObj[0].paginatedResults[studIndex].textMeaningTranslate;
   document.querySelector('.example').innerHTML = studObj[0].paginatedResults[studIndex].textExampleTranslate;
@@ -172,15 +173,8 @@ function play() {
       getWords(page, group);
       setTimeout(play, 1000);
     } else {
-  			/* for(var i = 0; i < delObj[0].paginatedResults.length; i) {
-  				if(delObj[0].paginatedResults[i]._id === mainObj[nowWord].id) {
-  					numberWord;
-					nowWord;
-  					play();
-  				}
-  			} */
-  			document.querySelector('.word').value = '';
-  			if (document.querySelector('#new').checked) {
+      document.querySelector('.word').value = '';
+      if (document.querySelector('#new').checked) {
         document.querySelector('.translation').innerHTML = mainObj[nowWord].wordTranslate;
         document.querySelector('.transcription').innerHTML = mainObj[nowWord].transcription;
         document.querySelector('.meaning').innerHTML = mainObj[nowWord].textMeaningTranslate;
@@ -244,12 +238,6 @@ const createUserWord = async ({ userId, wordId, word }) => {
  	}
 };
 
-/* createUserWord({
-  userId: "5ec993df4ca9d600178740ae",
-  wordId: "5e9f5ee35eb9e72bc21af716",
-  word: { "difficulty": "weak", "optional": {testFieldString: 'test', testFieldBoolean: true} }
-}); */
-
 const getUserWord = async ({ userId, wordId }) => {
   const rawResponse = await fetch(`https://afternoon-falls-25894.herokuapp.com/users/${userId}/words/${wordId}`, {
     method: 'GET',
@@ -260,14 +248,7 @@ const getUserWord = async ({ userId, wordId }) => {
     },
   });
   const content = await rawResponse.json();
-
-  console.log(content);
 };
-
-/* getUserWord({
-  userId: "5ec993df4ca9d600178740ae",
-  wordId: "5e9f5ee35eb9e72bc21af716"
-}); */
 
 let url;
 let filter;

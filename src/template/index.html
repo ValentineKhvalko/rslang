@@ -12,9 +12,10 @@
 		<header class="header">
 			<h1>RS Lang</h1>
 			<div class="wrapper w-header">
-				<div class="settings">
+				<span class="card-settings settings">
+					<p>Настройки карточек</p>
 					<img class="settings-img" alt="settings">
-				</div>
+				</span>
 				<span class="games">Игры</span>
 				<span class="static">Статистика</span>
 				<select class="dict">
@@ -22,7 +23,7 @@
 				    <option value="deleted">Удалённые</option>
 				    <option value="difficult">Сложные</option>
 				</select>
-				<a href="promo.html" ><span class="promo">Промо-страница</span></a>
+				<span><a href="promo.html" class="promo">Промо-страница</a></span>
 			</div>
 		</header>
 		<section class="enter-cont">
@@ -45,7 +46,10 @@
 				<div class="gigh-buttons"></div>
 				<div class="pr-win">
 					<progress class="progress" value="0" max="100"></progress>
-					<div class="points"></div>
+					<div class="completed-card">
+						<p>Количество выполненных карточек</p>
+						<div class="points"></div>
+					</div>
 				</div>
 				<hr><br>
 				<div class="main-input">
